@@ -8,18 +8,18 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "pr_mark")
-public class Mark {
+@Table(name = "pr_test_kind")
+public class TestKind {
 
     @Id
-    @Column(name = "mark_id")
+    @Column(name = "test_kind_id", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "mark_name")
+    @Column(name = "test_name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "marks")
+    @OneToMany(mappedBy = "testKind")
     @EqualsAndHashCode.Exclude
-    private List<Student> students;
+    private List<TeacherPlan> teacherPlan;
 }

@@ -72,8 +72,8 @@ CREATE TABLE pr_teacher_plan(
 
 CREATE TABLE pr_lesson(
   lesson_id SERIAL PRIMARY KEY,
-  lesson_kind_id INTEGER,
-  teacher_id INTEGER,
+  lesson_kind_id INTEGER NOT NULL,
+  teacher_id INTEGER NOT NULL ,
   hours INTEGER
 );
 

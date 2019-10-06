@@ -23,7 +23,11 @@ public class Group {
 
     private Date groupCreateDate;
 
-    @EqualsAndHashCode.Exclude
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
+    @EqualsAndHashCode.Exclude
     private List<Student> students;
+
+    @OneToMany(mappedBy = "group")
+    @EqualsAndHashCode.Exclude
+    private List<TeacherPlan> teacherPlan;
 }

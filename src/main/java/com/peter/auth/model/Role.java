@@ -18,8 +18,8 @@ public class Role {
 
     private String name;
 
-    @EqualsAndHashCode.Exclude
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+    @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties("roles")
     private Set<User> users;
 

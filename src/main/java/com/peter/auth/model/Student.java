@@ -24,23 +24,24 @@ public class Student extends Person {
 
     @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "personId")
+    @EqualsAndHashCode.Exclude
     private Person person;
 
-    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
             name = "pr_student_group",
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
+    @EqualsAndHashCode.Exclude
     private List<Group> groups;
 
-    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
             name = "pr_student_marks",
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "mark_id")}
     )
+    @EqualsAndHashCode.Exclude
     private List<Mark> marks;
 }

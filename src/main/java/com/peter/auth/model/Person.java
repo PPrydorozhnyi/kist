@@ -2,11 +2,13 @@ package com.peter.auth.model;
 
 import com.peter.auth.model.type.PostgreEnumType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,5 +36,13 @@ public class Person {
     private String birthPlace;
 
     private String telephoneNumber;
+
+    @OneToMany(mappedBy = "teacher")
+    @EqualsAndHashCode.Exclude
+    private List<Lesson> lessons;
+
+    @OneToMany(mappedBy = "tester")
+    @EqualsAndHashCode.Exclude
+    private List<TeacherPlan> teacherPlans;
 
 }
