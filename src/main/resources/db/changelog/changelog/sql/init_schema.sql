@@ -31,6 +31,7 @@ CREATE TABLE pr_person (
 
 CREATE TABLE pr_student(
   student_id SERIAL PRIMARY KEY,
+  person_id INTEGER,
   book_number VARCHAR(20),
   note VARCHAR(150)
 );
@@ -102,7 +103,7 @@ CREATE TABLE pr_semester(
   attest2_date TIMESTAMP
 );
 
-ALTER TABLE ONLY pr_student ADD CONSTRAINT fk_student_person_id FOREIGN KEY (student_id) REFERENCES pr_person(person_id);
+ALTER TABLE ONLY pr_student ADD CONSTRAINT fk_student_person_id FOREIGN KEY (person_id) REFERENCES pr_person(person_id);
 
 ALTER TABLE ONLY pr_student_group ADD CONSTRAINT fk_student_group_id FOREIGN KEY (student_id) REFERENCES pr_student(student_id);
 ALTER TABLE ONLY pr_student_group ADD CONSTRAINT fk_group_student_id FOREIGN KEY (group_id) REFERENCES pr_groups(group_id);
