@@ -64,8 +64,8 @@ CREATE TABLE pr_teacher_plan(
   semester_id INTEGER,
   group_id INTEGER,
   subject_id INTEGER,
-  tester_id INTEGER,
-  test_kind_id INTEGER,
+  tester_id INTEGER NOT NULL,
+  test_kind_id INTEGER NOT NULL,
   test_date TIMESTAMP,
   obligatory BOOLEAN
 );
@@ -73,7 +73,7 @@ CREATE TABLE pr_teacher_plan(
 CREATE TABLE pr_lesson(
   lesson_id SERIAL PRIMARY KEY,
   lesson_kind_id INTEGER NOT NULL,
-  teacher_id INTEGER NOT NULL ,
+  teacher_id INTEGER NOT NULL NOT NULL,
   hours INTEGER
 );
 
