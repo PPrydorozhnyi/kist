@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "rrole")
+@Table(name = "pr_role")
 public class Role {
     @Id
     @Column(name = "role_id")

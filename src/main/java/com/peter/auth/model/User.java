@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "uuser")
+@Table(name = "pr_user")
 public class User {
     @Id
     @Column(name = "user_id")
@@ -26,7 +26,7 @@ public class User {
     @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
-            name = "uuser_rrole",
+            name = "pr_user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
