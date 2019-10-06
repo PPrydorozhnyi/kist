@@ -33,13 +33,13 @@ CREATE TABLE pr_student(
   student_id SERIAL PRIMARY KEY,
   person_id INTEGER,
   book_number VARCHAR(20),
-  note VARCHAR(150)
+  note VARCHAR(150),
+  group_putting_date TIMESTAMP
 );
 
 CREATE TABLE pr_student_group(
   group_id INTEGER,
-  student_id INTEGER,
-  putting_date TIMESTAMP
+  student_id INTEGER
 );
 
 CREATE TABLE pr_groups(
