@@ -34,4 +34,13 @@ public class Student extends Person {
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
     private List<Group> groups;
+
+    @EqualsAndHashCode.Exclude
+    @ManyToMany
+    @JoinTable(
+            name = "pr_student_marks",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "mark_id")}
+    )
+    private List<Mark> marks;
 }
