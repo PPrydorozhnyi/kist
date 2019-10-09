@@ -1,0 +1,16 @@
+.table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.margin-table-view{
+    margin-top: 20px;
+}
+
+.margin-view {
+    margin-top: 40px;
+}
+
+td {
+    text-align: center;
+}
