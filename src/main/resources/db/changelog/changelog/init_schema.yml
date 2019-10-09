@@ -4,7 +4,7 @@ databaseChangeLog:
       value: 1
   - changeSet:
       id: init_schema_${db.version}.${init_schema.ver}
-      author: auth
+      author: kist
       validCheckSum: ANY
       changes:
         - sqlFile:

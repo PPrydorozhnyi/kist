@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: clear_schema_${db.version}
-      author: auth
+      author: kist
       validCheckSum: ANY
       changes:
         - sqlFile:
