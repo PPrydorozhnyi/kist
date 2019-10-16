@@ -1,5 +1,6 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.Group;
 import com.peter.kist.model.Student;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,10 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    Logger logger = LoggerFactory.getLogger(StudentController.class);
-
     @GetMapping("/{id}")
     public String getStudent(Model model, @PathVariable Integer id) {
 
-        logger.debug("student");
+        log.debug("getStudent");
 
         Student student = studentService.getStudent(id);
 
@@ -38,6 +37,8 @@ public class StudentController {
 
     @GetMapping("/create")
     public String createStudent(Model model) {
+
+        log.debug("createStudent");
 
         Student student = new Student();
 
@@ -63,12 +64,15 @@ public class StudentController {
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute("studentForm") Student student, Model model) {
+        log.debug("editStudent");
 
         return "studentCreation";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Integer id) {
+
+        log.debug("deleteStudent");
 
         studentService.deleteStudent(id);
 
@@ -78,6 +82,8 @@ public class StudentController {
     @GetMapping("/all")
     public String findAll(Model model) {
 
+        log.debug("findAllStudent");
+
         List<Student> students = studentService.findAll();
 
         model.addAttribute("students", students);
@@ -85,6 +91,18 @@ public class StudentController {
         model.addAttribute("deletedUserName", null);
 
         return "studentTableView";
+    }
+
+    @GetMapping("/{id}/groups")
+    public String getGroupsForStudent(@PathVariable Integer id, Model model) {
+
+        log.debug("getGroupsForStudent");
+
+        List<Group> groupsForStudent = studentService.getGroupsForStudent(id);
+
+        model.addAttribute("groups", groupsForStudent);
+
+        return "groupTableView";
     }
 
 

@@ -1,5 +1,6 @@
 package com.peter.kist.service.impl;
 
+import com.peter.kist.model.Group;
 import com.peter.kist.model.Student;
 import com.peter.kist.repository.StudentRepository;
 import com.peter.kist.service.StudentService;
@@ -41,5 +42,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findAll() {
         return studentRepository.findAll();
+    }
+
+    @Override
+    public List<Group> getGroupsForStudent(Integer id) {
+        Student student = studentRepository.getOne(id);
+        return student.getGroups();
     }
 }

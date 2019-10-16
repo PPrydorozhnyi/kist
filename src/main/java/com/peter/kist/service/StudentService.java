@@ -1,5 +1,6 @@
 package com.peter.kist.service;
 
+import com.peter.kist.model.Group;
 import com.peter.kist.model.Student;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface StudentService {
     void deleteStudent(Integer id);
 
     List<Student> findAll();
+
+    List<Group> getGroupsForStudent(Integer id);
 }
