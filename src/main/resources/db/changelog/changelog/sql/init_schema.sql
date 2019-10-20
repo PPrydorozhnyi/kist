@@ -26,7 +26,8 @@ CREATE TABLE pr_person (
   birth_date TIMESTAMP,
   birth_place VARCHAR(255),
   address VARCHAR(255),
-  telephone_number VARCHAR(13)
+  telephone_number VARCHAR(13),
+  person_type VARCHAR(10)
 );
 
 CREATE TABLE pr_student(
@@ -101,6 +102,45 @@ CREATE TABLE pr_semester(
   attest1_date TIMESTAMP,
   attest2_date TIMESTAMP
 );
+
+CREATE TABLE pr_violation(
+  violation_id SERIAL PRIMARY KEY,
+  violation_kind_id INTEGER,
+  punish_kind_id INTEGER,
+  violation_date TIMESTAMP,
+  person_id INTEGER,
+  order_id INTEGER
+);
+
+CREATE TABLE pr_violation_kind(
+  violation_kind_id SERIAL PRIMARY KEY,
+  violation_kind_name VARCHAR(50)
+);
+
+CREATE TABLE pr_punish_kind(
+  punish_kind_id SERIAL PRIMARY KEY,
+  punish_kind_name VARCHAR(50)
+);
+
+CREATE TABLE pr_order(
+  order_id SERIAL PRIMARY KEY,
+  order_kind_id INTEGER,
+  order_date TIMESTAMP,
+  order_no INTEGER,
+  order_text VARCHAR(250)
+);
+
+CREATE TABLE pr_order_kind(
+  order_kind_id SERIAL PRIMARY KEY,
+  order_kind_name VARCHAR(50)
+);
+
+ALTER TABLE ONLY pr_violation ADD CONSTRAINT fk_violation_kind FOREIGN KEY (violation_kind_id) REFERENCES pr_violation_kind(violation_kind_id);
+ALTER TABLE ONLY pr_violation ADD CONSTRAINT fk_punish_kind FOREIGN KEY (punish_kind_id) REFERENCES pr_punish_kind(punish_kind_id);
+ALTER TABLE ONLY pr_violation ADD CONSTRAINT fk_violation_person_id FOREIGN KEY (person_id) REFERENCES pr_person(person_id);
+ALTER TABLE ONLY pr_violation ADD CONSTRAINT fk_violation_order_id FOREIGN KEY (order_id) REFERENCES pr_order(order_id);
+
+ALTER TABLE ONLY pr_order ADD CONSTRAINT fk_order_kind_id FOREIGN KEY (order_kind_id) REFERENCES pr_order_kind(order_kind_id);
 
 ALTER TABLE ONLY pr_student ADD CONSTRAINT fk_student_person_id FOREIGN KEY (student_id) REFERENCES pr_person(person_id);
 

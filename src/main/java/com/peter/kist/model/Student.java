@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @PrimaryKeyJoinColumn(name = "studentId")
+@DiscriminatorValue("Student")
 @Table(name = "pr_student")
 public class Student extends Person{
 
