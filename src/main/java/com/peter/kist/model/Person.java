@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Table(name = "pr_person")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="person_type", discriminatorType=DiscriminatorType.STRING,length=10)
+@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING, length = 10)
 @TypeDef(name = "pg_enum", typeClass = PostgreEnumType.class)
 public class Person {
     @Id
@@ -51,5 +51,9 @@ public class Person {
     //Vadim
     @OneToMany(mappedBy = "person")
     private List<Violation> violations;
+
+    //Yarik
+    @OneToMany(mappedBy = "person")
+    private List<PersonPrivilegeReference> personPrivilegeReference;
 
 }

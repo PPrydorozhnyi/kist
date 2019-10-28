@@ -29,4 +29,9 @@ public class Group {
 
     @OneToMany(mappedBy = "group")
     private List<TeacherPlan> teacherPlan;
+
+    //Yarik
+    @ManyToOne
+    @JoinColumn(name = "speciality_id")
+    private Speciality speciality;
 }
