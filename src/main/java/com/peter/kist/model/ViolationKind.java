@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,5 +21,8 @@ public class ViolationKind {
     @Length(max = 50)
     @Column(name = "violation_kind_name")
     private String name;
+
+    @OneToMany(mappedBy = "violationKind")
+    private List<Violation> violations;
 
 }

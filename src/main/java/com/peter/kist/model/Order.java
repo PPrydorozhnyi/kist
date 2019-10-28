@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,5 +30,8 @@ public class Order {
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_kind_id")
-    private OrderKind violationKind;
+    private OrderKind orderKind;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<Violation> violations;
 }

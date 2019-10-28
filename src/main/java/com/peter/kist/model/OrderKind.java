@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,5 +21,8 @@ public class OrderKind {
     @Length(max = 50)
     @Column(name = "order_kind_name")
     private String name;
+
+    @OneToMany(mappedBy = "orderKind", fetch = FetchType.LAZY)
+    private List<Order> violations;
 
 }

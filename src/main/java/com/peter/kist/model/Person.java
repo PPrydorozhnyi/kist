@@ -48,4 +48,8 @@ public class Person {
     @OneToMany(mappedBy = "tester")
     private List<TeacherPlan> teacherPlans;
 
+    //Vadim
+    @OneToMany(mappedBy = "person")
+    private List<Violation> violations;
+
 }
