@@ -5,23 +5,21 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "pr_person_privilege")
-public class PersonPrivilegeReference {
+public class PersonPrivilege implements Serializable {
 
     @Id
-    @Column(updatable = false, nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
+    @Id
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "privilege_id")
     private Privilege privilege;

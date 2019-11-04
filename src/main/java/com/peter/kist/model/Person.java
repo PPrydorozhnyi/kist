@@ -49,11 +49,11 @@ public class Person {
     private List<TeacherPlan> teacherPlans;
 
     //Vadim
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Violation> violations;
 
     //Yarik
-    @OneToMany(mappedBy = "person")
-    private List<PersonPrivilegeReference> personPrivilegeReference;
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PersonPrivilege> personPrivilege;
 
 }

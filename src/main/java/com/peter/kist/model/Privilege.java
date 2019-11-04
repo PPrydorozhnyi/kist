@@ -20,6 +20,6 @@ public class Privilege {
     @Column(name = "privilege_name")
     private String name;
 
-    @OneToMany(mappedBy = "privilege")
-    private List<PersonPrivilegeReference> personPrivilegeReference;
+    @OneToMany(mappedBy = "privilege", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PersonPrivilege> personPrivilege;
 }

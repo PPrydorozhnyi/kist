@@ -165,7 +165,6 @@ CREATE TABLE pr_privilege
 
 CREATE TABLE pr_person_privilege
 (
-    id              SERIAL PRIMARY KEY,
     privilege_id    INTEGER,
     person_id       INTEGER,
     priv_begin_date TIMESTAMP,
