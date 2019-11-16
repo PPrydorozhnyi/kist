@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @PrimaryKeyJoinColumn(name = "studentId")
 @Table(name = "pr_student")
-public class Student extends Person{
+public class Student extends Person {
 
     private String bookNumber;
 
