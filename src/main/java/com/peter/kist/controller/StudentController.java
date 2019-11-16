@@ -47,13 +47,8 @@ public class StudentController {
 
     @PostMapping("/create")
     public String createStudent(@ModelAttribute("studentForm") Student studentForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
 
         log.debug("Student creation");
-
-        if (bindingResult.hasErrors()) {
-            return "studentCreation";
-        }
 
         studentService.createStudent(studentForm);
 
