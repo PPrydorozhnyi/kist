@@ -11,6 +11,9 @@ import org.springframework.validation.Validator;
 
 @Component
 public class UserValidator implements Validator {
+
+    private static final String USER_NAME_PARAMETER = "username";
+
     private final UserService userService;
 
     @Autowired
@@ -27,12 +30,12 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         UserDTO user = (UserDTO) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, USER_NAME_PARAMETER, "NotEmpty");
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+            errors.rejectValue(USER_NAME_PARAMETER, "Size.userForm.username");
         }
         if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue(USER_NAME_PARAMETER, "Duplicate.userForm.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
