@@ -1,7 +1,7 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Role;
-import com.peter.kist.model.User;
+import com.peter.kist.model.entity.Role;
+import com.peter.kist.model.entity.User;
 import com.peter.kist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,4 +1,4 @@
-package com.peter.kist.model;
+package com.peter.kist.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,18 +10,18 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "pr_lesson_kind")
-public class LessonKind {
+@Table(name = "pr_mark")
+public class Mark {
 
     @Id
-    @Column(name = "lesson_kind_id")
+    @Column(name = "mark_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "lesson_kind_name")
+    @Column(name = "mark_name")
     private String name;
 
-    @OneToMany(mappedBy = "lessonKind")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "marks")
     @EqualsAndHashCode.Exclude
-    private List<Lesson> lessons;
+    private List<Student> students;
 }

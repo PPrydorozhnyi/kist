@@ -1,6 +1,6 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.OrderKind;
+import com.peter.kist.model.entity.OrderKind;
 
 import java.util.List;
 

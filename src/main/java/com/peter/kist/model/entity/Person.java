@@ -1,5 +1,6 @@
-package com.peter.kist.model;
+package com.peter.kist.model.entity;
 
+import com.peter.kist.model.enums.Sex;
 import com.peter.kist.model.type.PostgreEnumType;
 import lombok.Getter;
 import lombok.Setter;

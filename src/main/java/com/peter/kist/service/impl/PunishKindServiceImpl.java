@@ -1,6 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.PunishKind;
+import com.peter.kist.model.entity.PunishKind;
 import com.peter.kist.repository.PunishKindRepository;
 import com.peter.kist.service.PunishKindService;
 import lombok.RequiredArgsConstructor;

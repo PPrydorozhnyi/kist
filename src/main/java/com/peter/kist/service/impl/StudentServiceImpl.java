@@ -1,8 +1,8 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Mark;
-import com.peter.kist.model.Student;
+import com.peter.kist.model.entity.Group;
+import com.peter.kist.model.entity.Mark;
+import com.peter.kist.model.entity.Student;
 import com.peter.kist.repository.StudentRepository;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
