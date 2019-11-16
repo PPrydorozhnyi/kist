@@ -1,8 +1,8 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Mark;
-import com.peter.kist.model.Student;
+import com.peter.kist.model.entity.Group;
+import com.peter.kist.model.entity.Mark;
+import com.peter.kist.model.entity.Student;
 
 import java.util.List;
 

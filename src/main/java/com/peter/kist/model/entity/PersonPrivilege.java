@@ -1,4 +1,4 @@
-package com.peter.kist.model;
+package com.peter.kist.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

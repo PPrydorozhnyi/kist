@@ -1,4 +1,4 @@
-package com.peter.kist.model;
+package com.peter.kist.model.enums;
 
 public enum Sex {
     MALE,

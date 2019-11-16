@@ -1,7 +1,7 @@
 package com.peter.kist.controller;
 
 
-import com.peter.kist.model.Mark;
+import com.peter.kist.model.entity.Mark;
 import com.peter.kist.service.MarkService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

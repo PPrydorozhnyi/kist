@@ -1,6 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.OrderKind;
+import com.peter.kist.model.entity.OrderKind;
 import com.peter.kist.repository.OrderKindRepository;
 import com.peter.kist.service.OrderKindService;
 import lombok.RequiredArgsConstructor;

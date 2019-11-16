@@ -1,6 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.PunishKind;
+import com.peter.kist.model.entity.PunishKind;
 import com.peter.kist.service.PunishKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

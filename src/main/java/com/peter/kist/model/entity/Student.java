@@ -1,4 +1,4 @@
-package com.peter.kist.model;
+package com.peter.kist.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Student;
+import com.peter.kist.model.entity.Group;
+import com.peter.kist.model.entity.Student;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.peter.kist.controller;
 
 
-import com.peter.kist.model.OrderKind;
+import com.peter.kist.model.entity.OrderKind;
 import com.peter.kist.service.OrderKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

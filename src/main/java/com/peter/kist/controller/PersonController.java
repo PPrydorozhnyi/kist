@@ -1,6 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Person;
+import com.peter.kist.model.entity.Person;
 import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

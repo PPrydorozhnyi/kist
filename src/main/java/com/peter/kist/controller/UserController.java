@@ -1,9 +1,11 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.User;
+import com.peter.kist.model.dto.UserDTO;
+import com.peter.kist.model.entity.User;
 import com.peter.kist.service.SecurityService;
 import com.peter.kist.service.UserService;
 import com.peter.kist.validator.UserValidator;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +22,14 @@ public class UserController {
 
     private final UserValidator userValidator;
 
+    private final ModelMapper mapper;
+
     @Autowired
-    public UserController(UserService userService, SecurityService securityService, UserValidator userValidator) {
+    public UserController(UserService userService, SecurityService securityService, UserValidator userValidator, ModelMapper mapper) {
         this.userService = userService;
         this.securityService = securityService;
         this.userValidator = userValidator;
+        this.mapper = mapper;
     }
 
     @GetMapping("/registration")
@@ -35,16 +40,18 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        userService.save(userForm);
+        User user = mapper.map(userForm, User.class);
 
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+        userService.save(user);
+
+        securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
 
         return "redirect:/welcome";
     }
