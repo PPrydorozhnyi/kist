@@ -30,8 +30,7 @@ CREATE TABLE pr_person
     birth_date       TIMESTAMP,
     birth_place      VARCHAR(255),
     address          VARCHAR(255),
-    telephone_number VARCHAR(13),
-    person_type      VARCHAR(10)
+    telephone_number VARCHAR(13)
 );
 
 CREATE TABLE pr_student

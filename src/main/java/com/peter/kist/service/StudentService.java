@@ -1,6 +1,7 @@
 package com.peter.kist.service;
 
 import com.peter.kist.model.Group;
+import com.peter.kist.model.Mark;
 import com.peter.kist.model.Student;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface StudentService {
     List<Student> findAll();
 
     List<Group> getGroupsForStudent(Integer id);
+
+    List<Mark> getMarksForStudent(Integer id);
 }

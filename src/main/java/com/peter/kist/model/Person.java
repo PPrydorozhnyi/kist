@@ -38,9 +38,6 @@ public class Person {
 
     private String telephoneNumber;
 
-    @Column(name = "person_type", insertable = false, updatable = false)
-    private String personType;
-
     @OneToMany(mappedBy = "teacher")
     private List<Lesson> lessons;
 
