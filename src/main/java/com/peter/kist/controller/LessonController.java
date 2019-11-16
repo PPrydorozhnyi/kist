@@ -1,16 +1,24 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.dto.LessonDTO;
+import com.peter.kist.model.dto.LessonKindDTO;
+import com.peter.kist.model.dto.PersonDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
+
+//  TODO change mapping module for child relations
 
 @Controller
 @Slf4j
@@ -20,6 +28,11 @@ public class LessonController {
 
     private final LessonService lessonService;
 
+    private static final Type LESSON_LIST_TYPE = (new TypeToken<List<LessonDTO>>() {
+    }).getType();
+
+    private final ModelMapper mapper;
+
     @GetMapping("/{id}")
     public String getLesson(Model model, @PathVariable Integer id) {
 
@@ -27,7 +40,7 @@ public class LessonController {
 
         Lesson lesson = lessonService.getLesson(id);
 
-        model.addAttribute("lessonForm", lesson);
+        model.addAttribute("lessonForm", mapper.map(lesson, LessonDTO.class));
 
         return "lessonView";
     }
@@ -37,29 +50,29 @@ public class LessonController {
 
         log.debug("createLesson");
 
-        Lesson lesson = new Lesson();
-
-        model.addAttribute("lessonForm", lesson);
+        model.addAttribute("lessonForm", new LessonDTO(new PersonDTO(), new LessonKindDTO()));
 
         return "lessonCreation";
     }
 
     @PostMapping("/create")
-    public String createLesson(@ModelAttribute("lessonForm") Lesson lessonForm, BindingResult bindingResult) {
+    public String createLesson(@ModelAttribute("lessonForm") LessonDTO lessonForm, BindingResult bindingResult) {
 
         log.debug("Lesson creation");
+
+        Lesson lesson = mapper.map(lessonForm, Lesson.class);
 
         if (bindingResult.hasErrors()) {
             return "lessonCreation";
         }
 
-        lessonService.createLesson(lessonForm);
+        lessonService.createLesson(lesson);
 
-        return "redirect:/lesson/" + lessonForm.getId();
+        return "redirect:/lesson/" + lesson.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("lessonForm") Lesson lesson, Model model) {
+    public String edit(@ModelAttribute("lessonForm") LessonDTO lesson, Model model) {
         log.debug("editLesson");
 
         return "lessonCreation";
@@ -82,7 +95,7 @@ public class LessonController {
 
         List<Lesson> lessons = lessonService.findAll();
 
-        model.addAttribute("lessons", lessons);
+        model.addAttribute("lessons", mapper.map(lessons, LESSON_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

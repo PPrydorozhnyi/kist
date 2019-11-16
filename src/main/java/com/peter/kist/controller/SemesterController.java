@@ -1,24 +1,33 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.dto.SemesterDTO;
 import com.peter.kist.model.entity.Semester;
 import com.peter.kist.service.SemesterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor(onConstructor_={@Autowired})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/semester")
 public class SemesterController {
 
     private final SemesterService semesterService;
+
+    private static final Type SEMESTER_LIST_TYPE = (new TypeToken<List<SemesterDTO>>() {
+    }).getType();
+
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public String getSemester(Model model, @PathVariable Integer id) {
@@ -27,7 +36,7 @@ public class SemesterController {
 
         Semester semester = semesterService.getSemester(id);
 
-        model.addAttribute("semesterForm", semester);
+        model.addAttribute("semesterForm", mapper.map(semester, SemesterDTO.class));
 
         return "semesterView";
     }
@@ -37,30 +46,29 @@ public class SemesterController {
 
         log.debug("createSemester");
 
-        Semester semester = new Semester();
-
-        model.addAttribute("semesterForm", semester);
+        model.addAttribute("semesterForm", new SemesterDTO());
 
         return "semesterCreation";
     }
 
     @PostMapping("/create")
-    public String createSemester(@ModelAttribute("semesterForm") Semester semesterForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
+    public String createSemester(@ModelAttribute("semesterForm") SemesterDTO semesterForm, BindingResult bindingResult) {
 
         log.debug("Semester creation");
+
+        Semester semester = mapper.map(semesterForm, Semester.class);
 
         if (bindingResult.hasErrors()) {
             return "semesterCreation";
         }
 
-        semesterService.createSemester(semesterForm);
+        semesterService.createSemester(semester);
 
-        return "redirect:/semester/" + semesterForm.getId();
+        return "redirect:/semester/" + semester.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("semesterForm") Semester semester, Model model) {
+    public String edit(@ModelAttribute("semesterForm") SemesterDTO semester, Model model) {
         log.debug("editSemester");
 
         return "semesterCreation";
@@ -83,7 +91,7 @@ public class SemesterController {
 
         List<Semester> semesters = semesterService.findAll();
 
-        model.addAttribute("semesters", semesters);
+        model.addAttribute("semesters", mapper.map(semesters, SEMESTER_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

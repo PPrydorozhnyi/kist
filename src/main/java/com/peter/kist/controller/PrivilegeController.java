@@ -1,15 +1,19 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.dto.PrivilegeDTO;
 import com.peter.kist.model.entity.Privilege;
 import com.peter.kist.service.PrivilegeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -20,6 +24,11 @@ public class PrivilegeController {
 
     private final PrivilegeService privilegeService;
 
+    private static final Type PRIVILEGE_LIST_TYPE = (new TypeToken<List<PrivilegeDTO>>(){
+    }).getType();
+
+    private final ModelMapper mapper;
+
     @GetMapping("/{id}")
     public String getPrivilege(Model model, @PathVariable Integer id) {
 
@@ -27,7 +36,7 @@ public class PrivilegeController {
 
         Privilege privilege = privilegeService.getPrivilege(id);
 
-        model.addAttribute("privilegeForm", privilege);
+        model.addAttribute("privilegeForm", mapper.map(privilege, PrivilegeDTO.class));
 
         return "privilegeView";
     }
@@ -37,29 +46,29 @@ public class PrivilegeController {
 
         log.debug("createPrivilege");
 
-        Privilege privilege = new Privilege();
-
-        model.addAttribute("privilegeForm", privilege);
+        model.addAttribute("privilegeForm", new PrivilegeDTO());
 
         return "privilegeCreation";
     }
 
     @PostMapping("/create")
-    public String createPrivilege(@ModelAttribute("privilegeForm") Privilege privilegeForm, BindingResult bindingResult) {
+    public String createPrivilege(@ModelAttribute("privilegeForm") PrivilegeDTO privilegeForm, BindingResult bindingResult) {
 
         log.debug("Privilege creation");
+
+        Privilege privilege = mapper.map(privilegeForm, Privilege.class);
 
         if (bindingResult.hasErrors()) {
             return "privilegeCreation";
         }
 
-        privilegeService.createPrivilege(privilegeForm);
+        privilegeService.createPrivilege(privilege);
 
-        return "redirect:/privilege/" + privilegeForm.getId();
+        return "redirect:/privilege/" + privilege.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("privilegeForm") Privilege privilege, Model model) {
+    public String edit(@ModelAttribute("privilegeForm") PrivilegeDTO privilege, Model model) {
         log.debug("editPrivilege");
 
         return "privilegeCreation";
@@ -82,7 +91,7 @@ public class PrivilegeController {
 
         List<Privilege> privileges = privilegeService.findAll();
 
-        model.addAttribute("privileges", privileges);
+        model.addAttribute("privileges", mapper.map(privileges, PRIVILEGE_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 
