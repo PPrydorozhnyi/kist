@@ -1,6 +1,5 @@
 package com.peter.kist.service;
 
-//import com.peter.kist.model.Group;
 import com.peter.kist.model.Subject;
 
 import java.util.List;
@@ -17,5 +16,4 @@ public interface SubjectService {
 
     List<Subject> findAll();
 
-    //List<Group> getGroupsForSubject(Integer id);
 }
