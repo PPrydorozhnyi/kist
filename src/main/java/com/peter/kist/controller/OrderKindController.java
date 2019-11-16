@@ -49,10 +49,6 @@ public class OrderKindController {
 
         log.debug("OrderKind creation");
 
-        if (bindingResult.hasErrors()) {
-            return "orderKindCreation";
-        }
-
         orderKindService.createOrderKind(orderKindForm);
 
         return "redirect:/order-kind/" + orderKindForm.getId();
