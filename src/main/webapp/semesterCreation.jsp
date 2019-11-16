@@ -25,16 +25,16 @@
 
         <%--teachBeginDate--%>
         <spring:bind path="teachBeginDate">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="date" path="teachBeginDate" class="form-control" placeholder="teachBeginDate"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Teach Begin Date:
+                <form:input type="date" path="teachBeginDate" class="form-control" />
                 <form:errors path="teachBeginDate"/>
             </div>
         </spring:bind>
 
         <%--teachEndDate--%>
         <spring:bind path="teachEndDate">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="date" path="teachEndDate" class="form-control" placeholder="teachEndDate"
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Teach End Date:
+                <form:input type="date" path="teachEndDate" class="form-control"
                             autofocus="true"/>
                 <form:errors path="teachEndDate"/>
             </div>
@@ -42,16 +42,16 @@
 
         <%--sessionBeginDate--%>
         <spring:bind path="sessionBeginDate">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="date" path="sessionBeginDate" class="form-control" placeholder="sessionBeginDate"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Session Begin Date:
+                <form:input type="date" path="sessionBeginDate" class="form-control" />
                 <form:errors path="sessionBeginDate"/>
             </div>
         </spring:bind>
 
         <%--sessionEndDate--%>
         <spring:bind path="sessionEndDate">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="date" path="sessionEndDate" class="form-control" placeholder="sessionEndDate"
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Session End Date:
+                <form:input type="date" path="sessionEndDate" class="form-control"
                             autofocus="true"/>
                 <form:errors path="sessionEndDate"/>
             </div>
@@ -59,16 +59,16 @@
 
         <%--attest1Date--%>
         <spring:bind path="attest1Date">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="date" path="attest1Date" class="form-control" placeholder="attest1Date"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Attest1 date:
+                <form:input type="date" path="attest1Date" class="form-control" />
                 <form:errors path="attest1Date"/>
             </div>
         </spring:bind>
 
         <%--attest2Date--%>
         <spring:bind path="attest2Date">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="date" path="attest2Date" class="form-control" placeholder="attest2Date"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Attest2 date:
+                <form:input type="date" path="attest2Date" class="form-control"
                             autofocus="true"/>
                 <form:errors path="attest2Date"/>
             </div>

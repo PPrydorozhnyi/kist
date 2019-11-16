@@ -25,8 +25,8 @@
 
         <%--lesson_name--%>
         <spring:bind path="teacher">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="teacher" class="form-control" placeholder="Lesson teacher"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson teacher:
+                <form:input type="text" path="teacher" class="form-control"
                             autofocus="true"/>
                 <form:errors path="teacher"/>
             </div>
@@ -34,16 +34,16 @@
 
         <%--Integer--%>
         <spring:bind path="lessonKind">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="lessonKind" class="form-control" placeholder="Lesson Kind"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson Kind:
+                <form:input type="text" path="lessonKind" class="form-control" />
                 <form:errors path="lessonKind"/>
             </div>
         </spring:bind>
 
         <%--lesson_name--%>
         <spring:bind path="hours">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="hours" class="form-control" placeholder="Lesson hours"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson hours:
+                <form:input type="text" path="hours" class="form-control"
                             autofocus="true"/>
                 <form:errors path="hours"/>
             </div>

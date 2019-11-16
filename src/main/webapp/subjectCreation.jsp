@@ -26,8 +26,8 @@
 
         <%--subject_name--%>
         <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="name" class="form-control" placeholder="Subject name"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Subject name:
+                <form:input type="text" path="name" class="form-control"
                             autofocus="true"/>
                 <form:errors path="name"/>
             </div>
@@ -35,8 +35,8 @@
 
         <%--subject_shifr--%>
         <spring:bind path="code">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="code" class="form-control" placeholder="Subject shifr"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Subject shifr:
+                <form:input type="text" path="code" class="form-control" />
                 <form:errors path="code"/>
             </div>
         </spring:bind>
