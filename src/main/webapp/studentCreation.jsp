@@ -51,7 +51,7 @@
             </spring:bind>
 
             <%--Sex--%>
-            <spring:bind path="address">
+            <spring:bind path="sex">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <form:select path="sex" cssClass="form-control">
                         <form:options items="${sexnEnum}"/>
