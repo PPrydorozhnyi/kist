@@ -30,7 +30,7 @@
                 <tbody>
                 <c:forEach items="${mark}" var="mark">
                     <tr>
-                        <td><a href="${contextPath}/mark/${mark.id}/marks">${mark.name}</a></td>
+                        <td><a href="${contextPath}/mark/${mark.id}">${mark.name}</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
