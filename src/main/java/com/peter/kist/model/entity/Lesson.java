@@ -27,12 +27,4 @@ public class Lesson {
 
     @Column(name = "hours")
     private Integer hours;
-//
-//    @JoinTable(
-//            name = "pr_subject",
-//            joinColumns = {@JoinColumn(name = "student_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "mark_id")}
-//    )
-//    private List<Mark> marks;
-
 }

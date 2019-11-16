@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor(onConstructor_={@Autowired})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/lesson-kind")
 public class LessonKindController {
 
@@ -46,7 +46,6 @@ public class LessonKindController {
 
     @PostMapping("/create")
     public String createLessonKind(@ModelAttribute("lessonKindForm") LessonKind lessonKindForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
 
         log.debug("LessonKind creation");
 

@@ -51,15 +51,6 @@
             </div>
         </spring:bind>
 
-<%--        &lt;%&ndash;subject_name&ndash;%&gt;--%>
-<%--        <spring:bind path="subjectName">--%>
-<%--            <div class="form-group ${status.error ? 'has-error' : ''}">--%>
-<%--                <form:input type="text" path="subjectName" class="form-control" placeholder="Subject Name"/>--%>
-<%--                <form:errors path="subjectName"/>--%>
-<%--            </div>--%>
-<%--        </spring:bind>--%>
-
-
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 </div>
