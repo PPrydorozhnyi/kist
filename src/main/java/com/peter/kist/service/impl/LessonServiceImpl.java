@@ -1,7 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Lesson;
+import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.repository.LessonRepository;
 import com.peter.kist.service.LessonService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Privilege;
+
+import com.peter.kist.model.entity.Privilege;
 import com.peter.kist.repository.PrivilegeRepository;
 import com.peter.kist.service.PrivilegeService;
 import lombok.RequiredArgsConstructor;

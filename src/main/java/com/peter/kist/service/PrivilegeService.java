@@ -1,6 +1,7 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.Privilege;
+
+import com.peter.kist.model.entity.Privilege;
 
 import java.util.List;
 

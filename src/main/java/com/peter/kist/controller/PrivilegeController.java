@@ -1,7 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Privilege;
+import com.peter.kist.model.entity.Privilege;
 import com.peter.kist.service.PrivilegeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

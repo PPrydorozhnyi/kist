@@ -1,6 +1,6 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.Lesson;
+import com.peter.kist.model.entity.Lesson;
 
 import java.util.List;
 

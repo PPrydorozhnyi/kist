@@ -1,6 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Semester;
+import com.peter.kist.model.entity.Semester;
 import com.peter.kist.repository.SemesterRepository;
 import com.peter.kist.service.SemesterService;
 import lombok.RequiredArgsConstructor;
@@ -42,11 +42,5 @@ public class SemesterServiceImpl implements SemesterService {
     public List<Semester> findAll() {
         return semesterRepository.findAll();
     }
-
-//    @Override
-//    public List<Group> getGroupsForSemester(Integer id) {
-//        Semester semester = semesterRepository.getOne(id);
-//        return semester.getGroups();
-//    }
 
 }

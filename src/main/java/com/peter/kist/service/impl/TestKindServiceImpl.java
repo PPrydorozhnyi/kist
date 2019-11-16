@@ -1,7 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.TestKind;
+import com.peter.kist.model.entity.TestKind;
 import com.peter.kist.repository.TestKindRepository;
 import com.peter.kist.service.TestKindService;
 import lombok.RequiredArgsConstructor;

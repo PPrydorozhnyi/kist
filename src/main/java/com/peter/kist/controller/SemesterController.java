@@ -1,7 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Semester;
+import com.peter.kist.model.entity.Semester;
 import com.peter.kist.service.SemesterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -90,18 +89,6 @@ public class SemesterController {
 
         return "semesterTableView";
     }
-
-//    @GetMapping("/{id}/groups")
-//    public String getGroupsForSemester(@PathVariable Integer id, Model model) {
-//
-//        log.debug("getGroupsForSemester");
-//
-//        List<Group> groupsForSemester = semesterService.getGroupsForSemester(id);
-//
-//        model.addAttribute("groups", groupsForSemester);
-//
-//        return "groupTableView";
-//    }
 
 
 }

@@ -1,7 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.TestKind;
+import com.peter.kist.model.entity.TestKind;
 import com.peter.kist.service.TestKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +46,6 @@ public class TestKindController {
 
     @PostMapping("/create")
     public String createTestKind(@ModelAttribute("testKindForm") TestKind testKindForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
 
         log.debug("TestKind creation");
 

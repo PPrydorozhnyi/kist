@@ -1,7 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Lesson;
+import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
