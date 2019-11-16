@@ -1,16 +1,20 @@
 package com.peter.kist.controller;
 
 
+import com.peter.kist.model.dto.OrderKindDTO;
 import com.peter.kist.model.entity.OrderKind;
 import com.peter.kist.service.OrderKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -18,6 +22,12 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/order-kind")
 public class OrderKindController {
+
+    private static final Type ORDER_KIND_LIST_TYPE = (new TypeToken<List<OrderKindDTO>>() {
+    }).getType();
+
+    private final ModelMapper mapper;
+
     private final OrderKindService orderKindService;
 
     @GetMapping("/{id}")
@@ -27,7 +37,7 @@ public class OrderKindController {
 
         OrderKind orderKind = orderKindService.getOrderKind(id);
 
-        model.addAttribute("orderKindForm", orderKind);
+        model.addAttribute("orderKindForm", mapper.map(orderKind, OrderKindDTO.class));
 
         return "orderKindView";
     }
@@ -37,25 +47,25 @@ public class OrderKindController {
 
         log.debug("createOrderKind");
 
-        OrderKind orderKind = new OrderKind();
-
-        model.addAttribute("orderKindForm", orderKind);
+        model.addAttribute("orderKindForm", new OrderKindDTO());
 
         return "orderKindCreation";
     }
 
     @PostMapping("/create")
-    public String createOrderKind(@ModelAttribute("orderKindForm") OrderKind orderKindForm, BindingResult bindingResult) {
+    public String createOrderKind(@ModelAttribute("orderKindForm") OrderKindDTO orderKindForm, BindingResult bindingResult) {
 
         log.debug("OrderKind creation");
 
-        orderKindService.createOrderKind(orderKindForm);
+        OrderKind orderKind = mapper.map(orderKindForm, OrderKind.class);
 
-        return "redirect:/order-kind/" + orderKindForm.getId();
+        orderKindService.createOrderKind(orderKind);
+
+        return "redirect:/order-kind/" + orderKind.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("orderKindForm") OrderKind orderKind, Model model) {
+    public String edit(@ModelAttribute("orderKindForm") OrderKindDTO orderKind, Model model) {
         log.debug("editOrderKind");
 
         return "orderKindCreation";
@@ -78,7 +88,7 @@ public class OrderKindController {
 
         List<OrderKind> orderKind = orderKindService.findAll();
 
-        model.addAttribute("orderKind", orderKind);
+        model.addAttribute("orderKind", mapper.map(orderKind, ORDER_KIND_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

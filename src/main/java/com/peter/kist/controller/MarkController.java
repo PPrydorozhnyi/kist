@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping("/mark")
 public class MarkController {
 
-    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<MarkDTO>>() {
+    private static final Type MARK_LIST_TYPE = (new TypeToken<List<MarkDTO>>() {
     }).getType();
 
     private final MarkService markService;
@@ -61,7 +61,7 @@ public class MarkController {
 
         markService.createMark(mark);
 
-        return "redirect:/mark/" + markForm.getId();
+        return "redirect:/mark/" + mark.getId();
     }
 
     @PostMapping("/edit")
@@ -88,7 +88,7 @@ public class MarkController {
 
         List<Mark> mark = markService.findAll();
 
-        model.addAttribute("mark", mapper.map(mark, PERSON_LIST_TYPE));
+        model.addAttribute("mark", mapper.map(mark, MARK_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 
