@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/punish-kind")
 public class PunishKindController {
     private final PunishKindService punishKindService;
