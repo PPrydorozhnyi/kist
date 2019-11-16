@@ -1,6 +1,5 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
 import com.peter.kist.model.Subject;
 import com.peter.kist.service.SubjectService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor(onConstructor_={@Autowired})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/subject")
 public class SubjectController {
 

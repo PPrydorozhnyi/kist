@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/order-kind")
 public class OrderKindController {
     private final OrderKindService orderKindService;
