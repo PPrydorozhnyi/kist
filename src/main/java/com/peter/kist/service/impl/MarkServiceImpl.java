@@ -1,6 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Mark;
+import com.peter.kist.model.entity.Mark;
 import com.peter.kist.repository.MarkRepository;
 import com.peter.kist.service.MarkService;
 import lombok.RequiredArgsConstructor;

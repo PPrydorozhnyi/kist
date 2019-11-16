@@ -1,4 +1,4 @@
-package com.peter.kist.model;
+package com.peter.kist.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,19 +10,19 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "pr_punish_kind")
-public class PunishKind {
+@Table(name = "pr_order_kind")
+public class OrderKind {
 
     @Id
-    @Column(name = "punish_kind_id", updatable = false, nullable = false)
+    @Column(name = "order_kind_id", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Length(max = 50)
-    @Column(name = "punish_kind_name")
+    @Column(name = "order_kind_name")
     private String name;
 
-    @OneToMany(mappedBy = "punishKind")
-    private List<Violation> violations;
+    @OneToMany(mappedBy = "orderKind", fetch = FetchType.LAZY)
+    private List<Order> violations;
 
 }

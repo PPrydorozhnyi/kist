@@ -1,16 +1,20 @@
 package com.peter.kist.controller;
 
 
-import com.peter.kist.model.Mark;
+import com.peter.kist.model.dto.MarkDTO;
+import com.peter.kist.model.entity.Mark;
 import com.peter.kist.service.MarkService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -18,7 +22,13 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/mark")
 public class MarkController {
+
+    private static final Type MARK_LIST_TYPE = (new TypeToken<List<MarkDTO>>() {
+    }).getType();
+
     private final MarkService markService;
+
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public String getMark(Model model, @PathVariable Integer id) {
@@ -27,7 +37,7 @@ public class MarkController {
 
         Mark mark = markService.getMark(id);
 
-        model.addAttribute("markForm", mark);
+        model.addAttribute("markForm", mapper.map(mark, MarkDTO.class));
 
         return "markView";
     }
@@ -37,30 +47,25 @@ public class MarkController {
 
         log.debug("createMark");
 
-        Mark mark = new Mark();
-
-        model.addAttribute("markForm", mark);
+        model.addAttribute("markForm", new MarkDTO());
 
         return "markCreation";
     }
 
     @PostMapping("/create")
-    public String createMark(@ModelAttribute("markForm") Mark markForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
+    public String createMark(@ModelAttribute("markForm") MarkDTO markForm, BindingResult bindingResult) {
 
         log.debug("Mark creation");
 
-        if (bindingResult.hasErrors()) {
-            return "markCreation";
-        }
+        Mark mark = mapper.map(markForm, Mark.class);
 
-        markService.createMark(markForm);
+        markService.createMark(mark);
 
-        return "redirect:/mark/" + markForm.getId();
+        return "redirect:/mark/" + mark.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("markForm") Mark mark, Model model) {
+    public String edit(@ModelAttribute("markForm") MarkDTO mark, Model model) {
         log.debug("editMark");
 
         return "markCreation";
@@ -83,7 +88,7 @@ public class MarkController {
 
         List<Mark> mark = markService.findAll();
 
-        model.addAttribute("mark", mark);
+        model.addAttribute("mark", mapper.map(mark, MARK_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

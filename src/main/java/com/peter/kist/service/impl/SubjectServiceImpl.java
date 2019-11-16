@@ -1,7 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Subject;
+import com.peter.kist.model.entity.Subject;
 import com.peter.kist.repository.SubjectRepository;
 import com.peter.kist.service.SubjectService;
 import lombok.RequiredArgsConstructor;
@@ -44,9 +43,4 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.findAll();
     }
 
-    /*@Override
-    public List<Group> getGroupsForSubject(Integer id) {
-        Subject subject = subjectRepository.getOne(id);
-        return subject.getGroups();
-    }*/
 }

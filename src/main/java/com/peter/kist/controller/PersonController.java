@@ -1,15 +1,19 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Person;
+import com.peter.kist.model.dto.PersonDTO;
+import com.peter.kist.model.entity.Person;
 import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -18,7 +22,13 @@ import java.util.List;
 @RequestMapping("/person")
 
 public class PersonController {
+
+    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {
+    }).getType();
+
     private final PersonService personService;
+
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public String getPerson(Model model, @PathVariable Integer id) {
@@ -27,7 +37,7 @@ public class PersonController {
 
         Person person = personService.getPerson(id);
 
-        model.addAttribute("personForm", person);
+        model.addAttribute("personForm", mapper.map(person, PersonDTO.class));
 
         return "personView";
     }
@@ -37,30 +47,25 @@ public class PersonController {
 
         log.debug("createPerson");
 
-        Person person = new Person();
-
-        model.addAttribute("personForm", person);
+        model.addAttribute("personForm", new PersonDTO());
 
         return "personCreation";
     }
 
     @PostMapping("/create")
-    public String createPerson(@ModelAttribute("personForm") Person personForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
+    public String createPerson(@ModelAttribute("personForm") PersonDTO personForm, BindingResult bindingResult) {
 
         log.debug("Person creation");
 
-        if (bindingResult.hasErrors()) {
-            return "personCreation";
-        }
+        Person person = mapper.map(personForm, Person.class);
 
-        personService.createPerson(personForm);
+        person = personService.createPerson(person);
 
-        return "redirect:/person/" + personForm.getId();
+        return "redirect:/person/" + person.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("personForm") Person person, Model model) {
+    public String edit(@ModelAttribute("personForm") PersonDTO person, Model model) {
         log.debug("editPerson");
 
         return "personCreation";
@@ -81,9 +86,9 @@ public class PersonController {
 
         log.debug("findAllPerson");
 
-        List<Person> person = personService.findAll();
+        List<Person> persons = personService.findAll();
 
-        model.addAttribute("person", person);
+        model.addAttribute("person", mapper.map(persons, PERSON_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

@@ -1,16 +1,21 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.Group;
-import com.peter.kist.model.Student;
+import com.peter.kist.model.dto.GroupDTO;
+import com.peter.kist.model.dto.StudentDTO;
+import com.peter.kist.model.entity.Group;
+import com.peter.kist.model.entity.Student;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -19,7 +24,15 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
+    private static final Type STUDENT_LIST_TYPE = (new TypeToken<List<StudentDTO>>() {
+    }).getType();
+
+    private static final Type GROUP_LIST_TYPE = (new TypeToken<List<GroupDTO>>() {
+    }).getType();
+
     private final StudentService studentService;
+
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public String getStudent(Model model, @PathVariable Integer id) {
@@ -28,7 +41,7 @@ public class StudentController {
 
         Student student = studentService.getStudent(id);
 
-        model.addAttribute("studentForm", student);
+        model.addAttribute("studentForm", mapper.map(student, StudentDTO.class));
 
         return "studentView";
     }
@@ -38,30 +51,25 @@ public class StudentController {
 
         log.debug("createStudent");
 
-        Student student = new Student();
-
-        model.addAttribute("studentForm", student);
+        model.addAttribute("studentForm", new StudentDTO());
 
         return "studentCreation";
     }
 
     @PostMapping("/create")
-    public String createStudent(@ModelAttribute("studentForm") Student studentForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
+    public String createStudent(@ModelAttribute("studentForm") StudentDTO studentForm, BindingResult bindingResult) {
 
         log.debug("Student creation");
 
-        if (bindingResult.hasErrors()) {
-            return "studentCreation";
-        }
+        Student student = mapper.map(studentForm, Student.class);
 
-        studentService.createStudent(studentForm);
+        student = studentService.createStudent(student);
 
-        return "redirect:/student/" + studentForm.getId();
+        return "redirect:/student/" + student.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("studentForm") Student student, Model model) {
+    public String edit(@ModelAttribute("studentForm") StudentDTO student, Model model) {
         log.debug("editStudent");
 
         return "studentCreation";
@@ -84,7 +92,7 @@ public class StudentController {
 
         List<Student> students = studentService.findAll();
 
-        model.addAttribute("students", students);
+        model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 
@@ -98,7 +106,7 @@ public class StudentController {
 
         List<Group> groupsForStudent = studentService.getGroupsForStudent(id);
 
-        model.addAttribute("groups", groupsForStudent);
+        model.addAttribute("groups", mapper.map(groupsForStudent, GROUP_LIST_TYPE));
 
         return "groupTableView";
     }

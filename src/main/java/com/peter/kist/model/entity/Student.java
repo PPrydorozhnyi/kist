@@ -1,4 +1,4 @@
-package com.peter.kist.model;
+package com.peter.kist.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @PrimaryKeyJoinColumn(name = "studentId")
 @Table(name = "pr_student")
-public class Student extends Person{
+public class Student extends Person {
 
     private String bookNumber;
 

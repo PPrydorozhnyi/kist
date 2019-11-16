@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Order Kind page</title>
+    <title>Punish kind page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -27,15 +27,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${orderKind}" var="orderKind">
+                <c:forEach items="${punishKind}" var="punishKind">
                     <tr>
-                        <td><a href="${contextPath}/order-kind/${orderKind.id}">${orderKind.name}</a></td>
+                        <td><a href="${contextPath}/punish-kind/${punishKind.id}">${punishKind.name}</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/order-kind/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/punish-kind/create" class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>
