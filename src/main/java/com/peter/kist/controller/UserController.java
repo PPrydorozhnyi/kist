@@ -43,6 +43,10 @@ public class UserController {
     public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+
         User user = mapper.map(userForm, User.class);
 
         userService.save(user);
@@ -61,11 +65,6 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
-
-    @GetMapping("/adminPage")
-    public String admin(Model model) {
-        return "admin";
     }
 
     @GetMapping({"/", "/welcome"})
