@@ -46,13 +46,8 @@ public class SubjectController {
 
     @PostMapping("/create")
     public String createSubject(@ModelAttribute("subjectForm") Subject subjectForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
 
         log.debug("Subject creation");
-
-        if (bindingResult.hasErrors()) {
-            return "subjectCreation";
-        }
 
         subjectService.createSubject(subjectForm);
 
@@ -89,18 +84,5 @@ public class SubjectController {
 
         return "subjectTableView";
     }
-
-    /*@GetMapping("/{id}/groups")
-    public String getGroupsForStudent(@PathVariable Integer id, Model model) {
-
-        log.debug("getGroupsForStudent");
-
-        List<Group> groupsForStudent = studentService.getGroupsForStudent(id);
-
-        model.addAttribute("groups", groupsForStudent);
-
-        return "groupTableView";
-    }*/
-
 
 }

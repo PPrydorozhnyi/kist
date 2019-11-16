@@ -46,13 +46,8 @@ public class MarkController {
 
     @PostMapping("/create")
     public String createMark(@ModelAttribute("markForm") Mark markForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
 
         log.debug("Mark creation");
-
-        if (bindingResult.hasErrors()) {
-            return "markCreation";
-        }
 
         markService.createMark(markForm);
 

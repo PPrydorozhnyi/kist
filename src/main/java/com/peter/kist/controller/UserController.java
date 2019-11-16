@@ -43,10 +43,6 @@ public class UserController {
     public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
         User user = mapper.map(userForm, User.class);
 
         userService.save(user);

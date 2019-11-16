@@ -48,10 +48,6 @@ public class PunishKindController {
 
         log.debug("PunishKind creation");
 
-        if (bindingResult.hasErrors()) {
-            return "punishKindCreation";
-        }
-
         punishKindService.createPunishKind(punishKindForm);
 
         return "redirect:/punish-kind/" + punishKindForm.getId();

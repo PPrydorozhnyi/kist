@@ -46,13 +46,8 @@ public class PersonController {
 
     @PostMapping("/create")
     public String createPerson(@ModelAttribute("personForm") Person personForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
 
         log.debug("Person creation");
-
-        if (bindingResult.hasErrors()) {
-            return "personCreation";
-        }
 
         personService.createPerson(personForm);
 
