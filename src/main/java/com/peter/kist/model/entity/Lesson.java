@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,4 +25,6 @@ public class Lesson {
     @JoinColumn(name = "lessonKindId", nullable = false)
     private LessonKind lessonKind;
 
+    @Column(name = "hours")
+    private Integer hours;
 }

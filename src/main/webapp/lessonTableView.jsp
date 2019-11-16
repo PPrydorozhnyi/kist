@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Subject page</title>
+    <title>Lesson page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -23,21 +23,23 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Subject name</th>
-                    <th>Surname</th>
+                    <th>Lesson teacher</th>
+                    <th>Lesson Kind</th>
+                    <th>Lesson hours</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${subjects}" var="subject">
+                <c:forEach items="${lessons}" var="lesson">
                     <tr>
-                        <td><a href="${contextPath}/subject/${subject.id}">${subject.name}</a></td>
-                        <td>${subject.code}</td>
+                        <td><a href="${contextPath}/lesson/${lesson.id}">${lesson.teacher}</a></td>
+                        <td>${lesson.lessonKind}</td>
+                        <td>${lesson.hours}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/subject/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/lesson/create" class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>

@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Order kind page</title>
+    <title>Privilege page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -18,20 +18,19 @@
 
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/order-kind/create" modelAttribute="orderKindForm" class="form-signin">
-        <h2 class="form-signin-heading">${orderKindForm.id != null ? 'Edit' : 'Create'} order kind</h2>
+    <form:form method="POST" action="${contextPath}/privilege/create" modelAttribute="privilegeForm" class="form-signin">
+        <h2 class="form-signin-heading">${privilegeForm.id != null ? 'Edit' : 'Create'} privilege</h2>
 
         <form:hidden path="id" />
 
-        <%--NAME--%>
+        <%--privilege_name--%>
         <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">  Order kind name:
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Privilege name:
                 <form:input type="text" path="name" class="form-control"
                             autofocus="true"/>
                 <form:errors path="name"/>
             </div>
         </spring:bind>
-
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 </div>
@@ -40,4 +39,3 @@
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
-

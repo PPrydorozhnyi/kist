@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Subject page</title>
+    <title>Semester page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -23,21 +23,29 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Subject name</th>
-                    <th>Surname</th>
+                    <th>teachBeginDate</th>
+                    <th>teachEndDate</th>
+                    <th>sessionBeginDate</th>
+                    <th>sessionEndDate</th>
+                    <th>attest1Date</th>
+                    <th>attest2Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${subjects}" var="subject">
+                <c:forEach items="${semesters}" var="semester">
                     <tr>
-                        <td><a href="${contextPath}/subject/${subject.id}">${subject.name}</a></td>
-                        <td>${subject.code}</td>
+                        <td><a href="${contextPath}/semester/${semester.id}">${semester.teachBeginDate}</a></td>
+                        <td>${semester.teachEndDate}</td>
+                        <td>${semester.sessionBeginDate}</td>
+                        <td>${semester.sessionEndDate}</td>
+                        <td>${semester.attest1Date}</td>
+                        <td>${semester.attest2Date}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/subject/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/semester/create" class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>

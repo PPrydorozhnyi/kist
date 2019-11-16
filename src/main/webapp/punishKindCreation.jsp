@@ -25,8 +25,8 @@
 
         <%--NAME--%>
         <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="name" class="form-control" placeholder="Punish kind name"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Punish kind name:
+                <form:input type="text" path="name" class="form-control"
                             autofocus="true"/>
                 <form:errors path="name"/>
             </div>
