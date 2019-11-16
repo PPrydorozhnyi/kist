@@ -7,6 +7,7 @@ import com.peter.kist.repository.StudentRepository;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student createStudent(Student student) {
+        if (student.getId() != null) {
+            student = updateStudent(student);
+        }
         return studentRepository.save(student);
     }
 
@@ -55,6 +59,13 @@ public class StudentServiceImpl implements StudentService {
     public List<Mark> getMarksForStudent(Integer id) {
         Student student = studentRepository.getOne(id);
         return student.getMarks();
+    }
+
+    private Student updateStudent(Student person) {
+        Student personFromCache = studentRepository.getOne(person.getId());
+        BeanUtils.copyProperties(person, personFromCache, "id", "lessons", "teacherPlans",
+                "violations", "personPrivilege");
+        return personFromCache;
     }
 
 }

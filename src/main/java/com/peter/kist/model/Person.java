@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @Table(name = "pr_person")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING, length = 10)
 @TypeDef(name = "pg_enum", typeClass = PostgreEnumType.class)
 public class Person {
     @Id
@@ -38,9 +37,6 @@ public class Person {
     private String birthPlace;
 
     private String telephoneNumber;
-
-    @Column(name = "person_type", insertable = false, updatable = false)
-    private String personType;
 
     @OneToMany(mappedBy = "teacher")
     private List<Lesson> lessons;
