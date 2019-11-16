@@ -14,7 +14,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "studentId")
 @DiscriminatorValue("Student")
 @Table(name = "pr_student")
-public class Student extends Person{
+public class Student extends Person {
 
     private String bookNumber;
 
