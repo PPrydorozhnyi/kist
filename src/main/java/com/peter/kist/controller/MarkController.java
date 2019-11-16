@@ -2,7 +2,6 @@ package com.peter.kist.controller;
 
 
 import com.peter.kist.model.Mark;
-import com.peter.kist.model.Person;
 import com.peter.kist.service.MarkService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor(onConstructor_={@Autowired})
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @RequestMapping("/mark")
 public class MarkController {
     private final MarkService markService;
@@ -46,7 +45,7 @@ public class MarkController {
     }
 
     @PostMapping("/create")
-    public String createMark(@ModelAttribute("personForm") Mark markForm, BindingResult bindingResult) {
+    public String createMark(@ModelAttribute("markForm") Mark markForm, BindingResult bindingResult) {
         //userValidator.validate(userForm, bindingResult);
 
         log.debug("Mark creation");
@@ -61,7 +60,7 @@ public class MarkController {
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("markForm") Person person, Model model) {
+    public String edit(@ModelAttribute("markForm") Mark mark, Model model) {
         log.debug("editMark");
 
         return "markCreation";
