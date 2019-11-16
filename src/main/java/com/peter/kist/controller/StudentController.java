@@ -61,7 +61,7 @@ public class StudentController {
 
         Student student = mapper.map(studentForm, Student.class);
 
-        studentService.createStudent(student);
+        student = studentService.createStudent(student);
 
         return "redirect:/student/" + student.getId();
     }

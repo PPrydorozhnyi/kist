@@ -1,15 +1,19 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.dto.PunishKindDTO;
 import com.peter.kist.model.entity.PunishKind;
 import com.peter.kist.service.PunishKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -17,7 +21,12 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/punish-kind")
 public class PunishKindController {
+
+    private static final Type PUNISH_KIND_DTO_LIST_TYPE = (new TypeToken<List<PunishKindDTO>>() {}).getType();
+
     private final PunishKindService punishKindService;
+
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public String getPunishKind(Model model, @PathVariable Integer id) {
@@ -26,7 +35,7 @@ public class PunishKindController {
 
         PunishKind punishKind = punishKindService.getPunishKind(id);
 
-        model.addAttribute("punishKindForm", punishKind);
+        model.addAttribute("punishKindForm", mapper.map(punishKind, PunishKindDTO.class));
 
         return "punishKindView";
     }
@@ -36,25 +45,25 @@ public class PunishKindController {
 
         log.debug("createPunishKind");
 
-        PunishKind punishKind = new PunishKind();
-
-        model.addAttribute("punishKindForm", punishKind);
+        model.addAttribute("punishKindForm", new PunishKindDTO());
 
         return "punishKindCreation";
     }
 
     @PostMapping("/create")
-    public String createPunishKind(@ModelAttribute("punishKindForm") PunishKind punishKindForm, BindingResult bindingResult) {
+    public String createPunishKind(@ModelAttribute("punishKindForm") PunishKindDTO punishKindForm, BindingResult bindingResult) {
 
         log.debug("PunishKind creation");
 
-        punishKindService.createPunishKind(punishKindForm);
+        PunishKind punishKind = mapper.map(punishKindForm, PunishKind.class);
 
-        return "redirect:/punish-kind/" + punishKindForm.getId();
+        punishKind = punishKindService.createPunishKind(punishKind);
+
+        return "redirect:/punish-kind/" + punishKind.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("punishKindForm") PunishKind punishKind, Model model) {
+    public String edit(@ModelAttribute("punishKindForm") PunishKindDTO punishKind, Model model) {
         log.debug("editPunishKind");
 
         return "punishKindCreation";
@@ -77,7 +86,7 @@ public class PunishKindController {
 
         List<PunishKind> punishKind = punishKindService.findAll();
 
-        model.addAttribute("punishKind", punishKind);
+        model.addAttribute("punishKind", mapper.map(punishKind, PUNISH_KIND_DTO_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

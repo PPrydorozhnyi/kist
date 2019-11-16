@@ -23,8 +23,7 @@ import java.util.List;
 
 public class PersonController {
 
-    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {
-    }).getType();
+    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {}).getType();
 
     private final PersonService personService;
 
@@ -59,9 +58,9 @@ public class PersonController {
 
         Person person = mapper.map(personForm, Person.class);
 
-        personService.createPerson(person);
+        person = personService.createPerson(person);
 
-        return "redirect:/person/" + personForm.getId();
+        return "redirect:/person/" + person.getId();
     }
 
     @PostMapping("/edit")
