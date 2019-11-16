@@ -22,7 +22,8 @@ import java.util.List;
 @RequestMapping("/punish-kind")
 public class PunishKindController {
 
-    private static final Type PUNISH_KIND_DTO_LIST_TYPE = (new TypeToken<List<PunishKindDTO>>() {}).getType();
+    private static final Type PUNISH_KIND_DTO_LIST_TYPE = (new TypeToken<List<PunishKindDTO>>() {
+    }).getType();
 
     private final PunishKindService punishKindService;
 

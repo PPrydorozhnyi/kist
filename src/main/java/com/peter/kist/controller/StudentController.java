@@ -24,9 +24,11 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-    private static final Type STUDENT_LIST_TYPE = (new TypeToken<List<StudentDTO>>() {}).getType();
+    private static final Type STUDENT_LIST_TYPE = (new TypeToken<List<StudentDTO>>() {
+    }).getType();
 
-    private static final Type GROUP_LIST_TYPE = (new TypeToken<List<GroupDTO>>() {}).getType();
+    private static final Type GROUP_LIST_TYPE = (new TypeToken<List<GroupDTO>>() {
+    }).getType();
 
     private final StudentService studentService;
 

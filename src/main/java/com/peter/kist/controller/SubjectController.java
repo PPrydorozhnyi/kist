@@ -1,15 +1,19 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.dto.SubjectDTO;
 import com.peter.kist.model.entity.Subject;
 import com.peter.kist.service.SubjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -18,7 +22,12 @@ import java.util.List;
 @RequestMapping("/subject")
 public class SubjectController {
 
+    private static final Type SUBJECT_DTO_LIST_TYPE = (new TypeToken<List<SubjectDTO>>() {
+    }).getType();
+
     private final SubjectService subjectService;
+
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public String getSubject(Model model, @PathVariable Integer id) {
@@ -27,7 +36,7 @@ public class SubjectController {
 
         Subject subject = subjectService.getSubject(id);
 
-        model.addAttribute("subjectForm", subject);
+        model.addAttribute("subjectForm", mapper.map(subject, SubjectDTO.class));
 
         return "subjectView";
     }
@@ -37,25 +46,25 @@ public class SubjectController {
 
         log.debug("createSubject");
 
-        Subject subject = new Subject();
-
-        model.addAttribute("subjectForm", subject);
+        model.addAttribute("subjectForm", new SubjectDTO());
 
         return "subjectCreation";
     }
 
     @PostMapping("/create")
-    public String createSubject(@ModelAttribute("subjectForm") Subject subjectForm, BindingResult bindingResult) {
+    public String createSubject(@ModelAttribute("subjectForm") SubjectDTO subjectForm, BindingResult bindingResult) {
 
         log.debug("Subject creation");
 
-        subjectService.createSubject(subjectForm);
+        Subject subject = mapper.map(subjectForm, Subject.class);
 
-        return "redirect:/subject/" + subjectForm.getId();
+        subjectService.createSubject(subject);
+
+        return "redirect:/subject/" + subject.getId();
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("subjectForm") Subject subject, Model model) {
+    public String edit(@ModelAttribute("subjectForm") SubjectDTO subject, Model model) {
         log.debug("editSubject");
 
         return "subjectCreation";
@@ -78,7 +87,7 @@ public class SubjectController {
 
         List<Subject> subjects = subjectService.findAll();
 
-        model.addAttribute("subjects", subjects);
+        model.addAttribute("subjects", mapper.map(subjects, SUBJECT_DTO_LIST_TYPE));
 
         model.addAttribute("deletedUserName", null);
 

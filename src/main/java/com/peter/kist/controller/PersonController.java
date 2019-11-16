@@ -23,7 +23,8 @@ import java.util.List;
 
 public class PersonController {
 
-    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {}).getType();
+    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {
+    }).getType();
 
     private final PersonService personService;
 
