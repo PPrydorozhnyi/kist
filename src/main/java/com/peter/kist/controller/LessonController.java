@@ -1,6 +1,8 @@
 package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.LessonDTO;
+import com.peter.kist.model.dto.LessonKindDTO;
+import com.peter.kist.model.dto.PersonShortDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.model.entity.LessonKind;
 import com.peter.kist.model.entity.Person;
@@ -59,8 +61,8 @@ public class LessonController {
 
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
-        final var map = Map.of("lessonForm", new LessonDTO(),
-                "teachers", mapper.map(teachers, PERSON_LIST_TYPE),
+        final Map<String, Object> map = Map.of("lessonForm", new LessonDTO(new PersonShortDTO(), new LessonKindDTO()),
+                "teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
                 "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
 
         model.addAllAttributes(map);
@@ -92,7 +94,7 @@ public class LessonController {
 
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
-        final var map = Map.of("teachers", mapper.map(teachers, PERSON_LIST_TYPE),
+        final Map<String, Object> map = Map.of("teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
                 "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
 
         model.addAllAttributes(map);

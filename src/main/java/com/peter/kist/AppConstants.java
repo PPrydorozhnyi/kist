@@ -14,6 +14,9 @@ public class AppConstants {
     public static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {
     }).getType();
 
+    public static final Type PERSON_SHORT_LIST_TYPE = (new TypeToken<List<PersonShortDTO>>() {
+    }).getType();
+
     public static final Type LESSON_KIND_LIST_TYPE = (new TypeToken<List<LessonKindDTO>>() {
     }).getType();
 

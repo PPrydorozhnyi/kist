@@ -14,4 +14,9 @@ public class LessonDTO {
     private PersonShortDTO teacher;
     private LessonKindDTO lessonKind;
 
+    public LessonDTO(PersonShortDTO teacher, LessonKindDTO lessonKind) {
+        this.teacher = teacher;
+        this.lessonKind = lessonKind;
+    }
+
 }
