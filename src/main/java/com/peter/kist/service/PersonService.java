@@ -16,4 +16,6 @@ public interface PersonService {
 
     List<Person> findAll();
 
+    List<Person> getTeachers();
+
 }

@@ -4,19 +4,24 @@ import com.peter.kist.model.dto.LessonDTO;
 import com.peter.kist.model.dto.LessonKindDTO;
 import com.peter.kist.model.dto.PersonDTO;
 import com.peter.kist.model.entity.Lesson;
+import com.peter.kist.model.entity.LessonKind;
+import com.peter.kist.model.entity.Person;
+import com.peter.kist.service.LessonKindService;
 import com.peter.kist.service.LessonService;
+import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
+
+import static com.peter.kist.AppConstants.*;
 
 //  TODO change mapping module for child relations
 
@@ -28,8 +33,9 @@ public class LessonController {
 
     private final LessonService lessonService;
 
-    private static final Type LESSON_LIST_TYPE = (new TypeToken<List<LessonDTO>>() {
-    }).getType();
+    private final PersonService personService;
+
+    private final LessonKindService lessonKindService;
 
     private final ModelMapper mapper;
 
@@ -40,7 +46,15 @@ public class LessonController {
 
         Lesson lesson = lessonService.getLesson(id);
 
-        model.addAttribute("lessonForm", mapper.map(lesson, LessonDTO.class));
+        List<Person> teachers = personService.getTeachers();
+
+        List<LessonKind> lessonKinds = lessonKindService.findAll();
+
+        Map<String, Object> map = Map.of("lessonForm", mapper.map(lesson, LessonDTO.class),
+                "teachers", mapper.map(teachers, PERSON_LIST_TYPE),
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+
+        model.addAllAttributes(map);
 
         return "lessonView";
     }
