@@ -1,6 +1,6 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.Person;
+import com.peter.kist.model.entity.Person;
 import com.peter.kist.repository.PersonRepository;
 import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;

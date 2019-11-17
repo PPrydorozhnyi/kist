@@ -1,6 +1,6 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.Mark;
+import com.peter.kist.model.entity.Mark;
 
 import java.util.List;
 

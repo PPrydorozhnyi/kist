@@ -25,8 +25,8 @@
 
         <%--NAME--%>
         <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="name" class="form-control" placeholder="Mark name"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Mark name:
+                <form:input type="text" path="name" class="form-control"
                             autofocus="true"/>
                 <form:errors path="name"/>
             </div>

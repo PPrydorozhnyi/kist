@@ -1,4 +1,4 @@
-<%@ page import="com.peter.kist.model.Sex" %>
+<%@ page import="com.peter.kist.model.enums.Sex" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -27,8 +27,8 @@
 
         <%--NAME--%>
         <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="name" class="form-control" placeholder="Person name"
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Person name:
+                <form:input type="text" path="name" class="form-control"
                             autofocus="true"/>
                 <form:errors path="name"/>
             </div>
@@ -36,23 +36,23 @@
 
         <%--SURNAME--%>
         <spring:bind path="surname">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="surname" class="form-control" placeholder="Person surname"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Person surname:
+                <form:input type="text" path="surname" class="form-control"/>
                 <form:errors path="surname"/>
             </div>
         </spring:bind>
 
         <%--Address--%>
         <spring:bind path="address">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="address" class="form-control" placeholder="Address"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Address:
+                <form:input type="text" path="address" class="form-control"/>
                 <form:errors path="address"/>
             </div>
         </spring:bind>
 
         <%--Sex--%>
         <spring:bind path="address">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Sex:
                 <form:select path="sex" cssClass="form-control">
                     <form:options items="${sexnEnum}"/>
                 </form:select>
@@ -61,7 +61,7 @@
 
         <%--Birth_date--%>
         <spring:bind path="birthDate">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Birth date:
                 <form:input type="date" path="birthDate" class="form-control"/>
                 <form:errors path="birthDate"/>
             </div>
@@ -69,16 +69,16 @@
 
         <%--Birth_place--%>
         <spring:bind path="birthPlace">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="birthPlace" class="form-control" placeholder="Birth place"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Birth place:
+                <form:input type="text" path="birthPlace" class="form-control" />
                 <form:errors path="birthPlace"/>
             </div>
         </spring:bind>
 
-        <%--Birth_place--%>
+        <%--Telephone Number--%>
         <spring:bind path="telephoneNumber">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="telephoneNumber" class="form-control" placeholder="Telephone Number"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">  Telephone Number:
+                <form:input type="text" path="telephoneNumber" class="form-control" />
                 <form:errors path="telephoneNumber"/>
             </div>
         </spring:bind>
