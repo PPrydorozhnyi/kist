@@ -40,7 +40,7 @@
         <%--Integer--%>
         <spring:bind path="lessonKindId">
             <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson Kind:
-                <form:select path="teacherId">
+                <form:select path="lessonKindId">
                     <c:forEach items="${lessonKinds}" var="lessonKind">
                         <option value="${lessonKind.id}">${lessonKind.name}</option>
                     </c:forEach>

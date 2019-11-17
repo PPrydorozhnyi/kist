@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +35,8 @@ public class LessonController {
     private final PersonService personService;
 
     private final LessonKindService lessonKindService;
+
+    private final ConversionService conversionService;
 
     private final ModelMapper mapper;
 
@@ -72,13 +75,13 @@ public class LessonController {
 
         log.debug("Lesson creation");
 
-        Lesson lesson = mapper.map(lessonForm, Lesson.class);
+        Lesson lesson = conversionService.convert(lessonForm, Lesson.class);
 
         if (bindingResult.hasErrors()) {
             return "lessonCreation";
         }
 
-        lessonService.createLesson(lesson);
+        lesson = lessonService.createLesson(lesson);
 
         return "redirect:/lesson/" + lesson.getId();
     }
