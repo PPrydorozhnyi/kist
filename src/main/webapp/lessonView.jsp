@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="teacher" value="${pageContext.request.getAttribute('teacher')}"/>
+<c:set var="lessonKind" value="${pageContext.request.getAttribute('lessonKind')}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,19 +30,20 @@
                 <form:hidden path="id"/>
 
                 <%--lesson_name--%>
-                <spring:bind path="teacher">
+                <spring:bind path="teacherId">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="teacher" class="form-control" placeholder="Lesson teacher"
-                                    autofocus="true"/>
-                        <form:errors path="teacher"/>
+                        <input type="text" class="form-control" value="${teacher.name}"
+                               readonly/>
+                        <form:errors path="teacherId"/>
                     </div>
                 </spring:bind>
 
                 <%--Integer--%>
-                <spring:bind path="lessonKind">
+                <spring:bind path="lessonKindId">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="lessonKind" class="form-control" placeholder="Lesson Kind"/>
-                        <form:errors path="lessonKind"/>
+                        <input type="text" class="form-control" value="${lessonKind.name}"
+                               readonly/>
+                        <form:errors path="lessonKindId"/>
                     </div>
                 </spring:bind>
 
@@ -48,7 +51,7 @@
                 <spring:bind path="hours">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="hours" class="form-control" placeholder="Lesson hours"
-                                    autofocus="true"/>
+                                    readonly="true"/>
                         <form:errors path="hours"/>
                     </div>
                 </spring:bind>

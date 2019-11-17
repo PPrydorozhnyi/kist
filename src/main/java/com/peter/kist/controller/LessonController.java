@@ -1,6 +1,7 @@
 package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.LessonDTO;
+import com.peter.kist.model.dto.LessonKindDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.model.entity.LessonKind;
 import com.peter.kist.model.entity.Person;
@@ -47,7 +48,11 @@ public class LessonController {
 
         Lesson lesson = lessonService.getLesson(id);
 
-        model.addAttribute("lessonForm", mapper.map(lesson, LessonDTO.class));
+        final Map<String, Object> lessonForm = Map.of("lessonForm", mapper.map(lesson, LessonDTO.class),
+                "teacher", mapper.map(lesson.getTeacher(), Person.class),
+                "lessonKind", mapper.map(lesson.getLessonKind(), LessonKindDTO.class));
+
+        model.addAllAttributes(lessonForm);
 
         return "lessonView";
     }
