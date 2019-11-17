@@ -12,9 +12,9 @@
     <title>Lesson page</title>
 
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
 </head>
 
 <body>
