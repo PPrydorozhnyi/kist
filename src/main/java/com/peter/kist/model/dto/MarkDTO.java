@@ -6,5 +6,5 @@ import lombok.Data;
 public class MarkDTO {
     private Integer id;
 
-    private String name;
+    private Integer value;
 }

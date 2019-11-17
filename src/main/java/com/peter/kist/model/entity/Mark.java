@@ -18,8 +18,8 @@ public class Mark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "mark_name")
-    private String name;
+    @Column(name = "mark_value")
+    private Integer value;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "marks")
     @EqualsAndHashCode.Exclude

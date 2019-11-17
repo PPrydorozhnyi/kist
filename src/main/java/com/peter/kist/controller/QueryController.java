@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/query")
 public class QueryController {
 
-    private final QueryService studentService;
+    private final QueryService queryService;
 
     @GetMapping("/query1")
     public String getStudent(Model model, @PathVariable Integer id) {
 
         log.debug("first query");
 
-        studentService.query1();
+        queryService.query1();
 
         return "querySearch";
     }
