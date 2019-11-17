@@ -28,24 +28,20 @@
                 <h2 class="form-signin-heading">View lesson</h2>
 
                 <form:hidden path="id"/>
+                <form:hidden path="teacherId"/>
+                <form:hidden path="lessonKindId"/>
 
                 <%--lesson_name--%>
-                <spring:bind path="teacherId">
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <input type="text" class="form-control" value="${teacher.name}"
-                               readonly/>
-                        <form:errors path="teacherId"/>
-                    </div>
-                </spring:bind>
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <input type="text" class="form-control" value="${teacher.name}"
+                           readonly/>
+                </div>
 
                 <%--Integer--%>
-                <spring:bind path="lessonKindId">
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <input type="text" class="form-control" value="${lessonKind.name}"
-                               readonly/>
-                        <form:errors path="lessonKindId"/>
-                    </div>
-                </spring:bind>
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <input type="text" class="form-control" value="${lessonKind.name}"
+                           readonly/>
+                </div>
 
                 <%--hours--%>
                 <spring:bind path="hours">

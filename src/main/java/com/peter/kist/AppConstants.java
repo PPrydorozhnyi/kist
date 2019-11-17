@@ -50,6 +50,8 @@ public class AppConstants {
     public static final Type VIOLATION_KIND_LIST_TYPE = (new TypeToken<List<ViolationKindDTO>>() {
     }).getType();
 
+    public static final String LESSON_CREATION_PAGE = "lessonCreation";
+
     private AppConstants() {
     }
 }
