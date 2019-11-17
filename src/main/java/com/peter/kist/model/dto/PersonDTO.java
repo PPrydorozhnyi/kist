@@ -2,17 +2,13 @@ package com.peter.kist.model.dto;
 
 import com.peter.kist.model.enums.Sex;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 @Data
-public class PersonDTO {
-
-    private Integer id;
-
-    private String name;
-
-    private String surname;
+@EqualsAndHashCode(callSuper = true)
+public class PersonDTO extends PersonShortDTO {
 
     private Sex sex;
 

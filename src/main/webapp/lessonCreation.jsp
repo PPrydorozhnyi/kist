@@ -27,30 +27,28 @@
         <form:hidden path="id"/>
 
         <%--lesson_name--%>
-        <spring:bind path="teacherId">
+        <spring:bind path="teacher.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="teach_name">   Lesson teacher: </label>
-                <form:select id = "teach_name" path="teacherId" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "teach_name" path="teacher.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
                     <c:forEach items="${teachers}" var="teacher">
-                        <%--                        <% System.out.println("teacherId: " + pageContext.findAttribute("lessonForm.teacherId") +--%>
-                        <%--                        " currentTeacherId: " + pageContext.findAttribute("teacher.id")); %>--%>
-                        <option ${teacher.id == lessonForm.teacherId ? 'selected="selected"' : ''}
-                                value="${teacher.id}">${teacher.name}</option>
+                        <option ${teacher.id == lessonForm.teacher.id ? 'selected="selected"' : ''}
+                                value="${teacher.id}">${"".concat(teacher.name).concat(" ").concat(teacher.surname)}</option>
                     </c:forEach>
                 </form:select>
-                <form:errors path="teacherId"/>
+                <form:errors path="teacher.id"/>
             </div>
         </spring:bind>
 
         <%--Integer--%>
-        <spring:bind path="lessonKindId">
+        <spring:bind path="lessonKind.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="kind_name">   Lesson Kind: </label>
-                <form:select path="lessonKindId" id = "kind_name" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select path="lessonKind.id" id = "kind_name" class="selectpicker" data-show-subtext="true" data-live-search="true">
                     <c:forEach items="${lessonKinds}" var="lessonKind">
-                        <option ${lessonKind.id == lessonForm.lessonKindId ? 'selected="selected"' : ''}
+                        <option ${lessonKind.id == lessonForm.lessonKind.id ? 'selected="selected"' : ''}
                                 value="${lessonKind.id}">${lessonKind.name}</option>
                     </c:forEach>
                 </form:select>
-                <form:errors path="lessonKindId"/>
+                <form:errors path="lessonKind.id"/>
             </div>
         </spring:bind>
 

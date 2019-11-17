@@ -25,8 +25,8 @@ public class LessonDtoToInstanceConverter implements Converter<LessonDTO, Lesson
 
         Lesson lesson = mapper.map(lessonDTO, Lesson.class);
 
-        lesson.setLessonKind(lessonKindRepository.getOne(lessonDTO.getLessonKindId()));
-        lesson.setTeacher(personRepository.getOne(lessonDTO.getTeacherId()));
+        lesson.setLessonKind(lessonKindRepository.getOne(lessonDTO.getLessonKind().getId()));
+        lesson.setTeacher(personRepository.getOne(lessonDTO.getTeacher().getId()));
 
         return lesson;
     }

@@ -1,7 +1,6 @@
 package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.LessonDTO;
-import com.peter.kist.model.dto.LessonKindDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.model.entity.LessonKind;
 import com.peter.kist.model.entity.Person;
@@ -46,11 +45,7 @@ public class LessonController {
 
         Lesson lesson = lessonService.getLesson(id);
 
-        final Map<String, Object> lessonForm = Map.of("lessonForm", mapper.map(lesson, LessonDTO.class),
-                "teacher", mapper.map(lesson.getTeacher(), Person.class),
-                "lessonKind", mapper.map(lesson.getLessonKind(), LessonKindDTO.class));
-
-        model.addAllAttributes(lessonForm);
+        model.addAttribute("lessonForm", mapper.map(lesson, LessonDTO.class));
 
         return "lessonView";
     }
@@ -64,7 +59,7 @@ public class LessonController {
 
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
-        Map<String, Object> map = Map.of("lessonForm", new LessonDTO(),
+        final var map = Map.of("lessonForm", new LessonDTO(),
                 "teachers", mapper.map(teachers, PERSON_LIST_TYPE),
                 "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
 
@@ -97,7 +92,7 @@ public class LessonController {
 
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
-        var map = Map.of("teachers", mapper.map(teachers, PERSON_LIST_TYPE),
+        final var map = Map.of("teachers", mapper.map(teachers, PERSON_LIST_TYPE),
                 "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
 
         model.addAllAttributes(map);

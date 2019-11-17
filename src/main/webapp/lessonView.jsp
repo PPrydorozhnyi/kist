@@ -3,8 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<c:set var="teacher" value="${pageContext.request.getAttribute('teacher')}"/>
-<c:set var="lessonKind" value="${pageContext.request.getAttribute('lessonKind')}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,20 +26,35 @@
                 <h2 class="form-signin-heading">View lesson</h2>
 
                 <form:hidden path="id"/>
-                <form:hidden path="teacherId"/>
-                <form:hidden path="lessonKindId"/>
+                <form:hidden path="teacher.id"/>
+                <form:hidden path="lessonKind.id"/>
 
-                <%--lesson_name--%>
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <input type="text" class="form-control" value="${teacher.name}"
-                           readonly/>
-                </div>
+                <spring:bind path="teacher.name">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Teacher name:<br>
+                        <form:input type="text" path="teacher.name" class="form-control" placeholder="Teacher name"
+                                    readonly="true"/>
+                        <form:errors path="teacher.name"/>
+                    </div>
+                </spring:bind>
+                <spring:bind path="teacher.surname">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Teacher name:<br>
+                        <form:input type="text" path="teacher.surname" class="form-control"
+                                    placeholder="Teacher surname"
+                                    readonly="true"/>
+                        <form:errors path="teacher.surname"/>
+                    </div>
+                </spring:bind>
 
-                <%--Integer--%>
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <input type="text" class="form-control" value="${lessonKind.name}"
-                           readonly/>
-                </div>
+                <spring:bind path="lessonKind.name">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Teacher surname:<br>
+                        <form:input type="text" path="lessonKind.name" class="form-control" placeholder="Lesson Kind"
+                                    readonly="true"/>
+                        <form:errors path="lessonKind.name"/>
+                    </div>
+                </spring:bind>
 
                 <%--hours--%>
                 <spring:bind path="hours">

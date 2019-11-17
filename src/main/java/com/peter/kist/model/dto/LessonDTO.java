@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LessonDTO {
     private Integer id;
-    private Integer teacherId;
-    private Integer lessonKindId;
     private Integer hours;
+
+    private PersonShortDTO teacher;
+    private LessonKindDTO lessonKind;
 
 }
