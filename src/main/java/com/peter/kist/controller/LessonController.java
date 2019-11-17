@@ -1,8 +1,6 @@
 package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.LessonDTO;
-import com.peter.kist.model.dto.LessonKindDTO;
-import com.peter.kist.model.dto.PersonDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.model.entity.LessonKind;
 import com.peter.kist.model.entity.Person;
@@ -46,15 +44,7 @@ public class LessonController {
 
         Lesson lesson = lessonService.getLesson(id);
 
-        List<Person> teachers = personService.getTeachers();
-
-        List<LessonKind> lessonKinds = lessonKindService.findAll();
-
-        Map<String, Object> map = Map.of("lessonForm", mapper.map(lesson, LessonDTO.class),
-                "teachers", mapper.map(teachers, PERSON_LIST_TYPE),
-                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
-
-        model.addAllAttributes(map);
+        model.addAttribute("lessonForm", mapper.map(lesson, LessonDTO.class));
 
         return "lessonView";
     }
@@ -64,7 +54,15 @@ public class LessonController {
 
         log.debug("createLesson");
 
-        model.addAttribute("lessonForm", new LessonDTO(new PersonDTO(), new LessonKindDTO()));
+        List<Person> teachers = personService.getTeachers();
+
+        List<LessonKind> lessonKinds = lessonKindService.findAll();
+
+        Map<String, Object> map = Map.of("lessonForm", new LessonDTO(),
+                "teachers", mapper.map(teachers, PERSON_LIST_TYPE),
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+
+        model.addAllAttributes(map);
 
         return "lessonCreation";
     }

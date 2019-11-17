@@ -1,16 +1,16 @@
 package com.peter.kist.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LessonDTO {
     private Integer id;
-    private PersonDTO teacher;
-    private LessonKindDTO lessonKind;
+    private Integer teacherId;
+    private Integer lessonKindId;
     private Integer hours;
 
-    public LessonDTO(PersonDTO person, LessonKindDTO lessonKind){
-        this.teacher = person;
-        this.lessonKind = lessonKind;
-    }
 }

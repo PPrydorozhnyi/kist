@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="teachers" value="${pageContext.request.getAttribute('teachers')}"/>
+<c:set var="lessonKinds" value="${pageContext.request.getAttribute('lessonKinds')}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,19 +26,26 @@
         <form:hidden path="id" />
 
         <%--lesson_name--%>
-        <spring:bind path="teacher">
+        <spring:bind path="teacherId">
             <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson teacher:
-                <form:input type="text" path="teacher" class="form-control"
-                            autofocus="true"/>
-                <form:errors path="teacher"/>
+                <form:select path="teacherId">
+                    <c:forEach items="${teachers}" var="teacher">
+                        <option value="${teacher.id}">${teacher.name}</option>
+                    </c:forEach>
+                </form:select>
+                <form:errors path="teacherId"/>
             </div>
         </spring:bind>
 
         <%--Integer--%>
-        <spring:bind path="lessonKind">
+        <spring:bind path="lessonKindId">
             <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson Kind:
-                <form:input type="text" path="lessonKind" class="form-control" />
-                <form:errors path="lessonKind"/>
+                <form:select path="teacherId">
+                    <c:forEach items="${lessonKinds}" var="lessonKind">
+                        <option value="${lessonKind.id}">${lessonKind.name}</option>
+                    </c:forEach>
+                </form:select>
+                <form:errors path="lessonKindId"/>
             </div>
         </spring:bind>
 
