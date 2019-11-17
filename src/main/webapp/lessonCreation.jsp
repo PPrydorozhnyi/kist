@@ -39,7 +39,7 @@
             </div>
         </spring:bind>
 
-        <%--Integer--%>
+        <%--Lesson Kind--%>
         <spring:bind path="lessonKind.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="kind_name">   Lesson Kind: </label>
                 <form:select path="lessonKind.id" id = "kind_name" class="selectpicker" data-show-subtext="true" data-live-search="true">
