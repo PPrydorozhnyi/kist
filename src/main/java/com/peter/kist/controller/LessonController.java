@@ -23,8 +23,6 @@ import java.util.Map;
 
 import static com.peter.kist.AppConstants.*;
 
-//  TODO change mapping module for child relations
-
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -72,7 +70,7 @@ public class LessonController {
 
         model.addAllAttributes(map);
 
-        return "lessonCreation";
+        return LESSON_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -83,7 +81,7 @@ public class LessonController {
         Lesson lesson = conversionService.convert(lessonForm, Lesson.class);
 
         if (bindingResult.hasErrors()) {
-            return "lessonCreation";
+            return LESSON_CREATION_PAGE;
         }
 
         lesson = lessonService.createLesson(lesson);
@@ -104,7 +102,7 @@ public class LessonController {
 
         model.addAllAttributes(map);
 
-        return "lessonCreation";
+        return LESSON_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")
