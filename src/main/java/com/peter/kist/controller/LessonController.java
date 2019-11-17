@@ -95,6 +95,15 @@ public class LessonController {
     public String edit(@ModelAttribute("lessonForm") LessonDTO lesson, Model model) {
         log.debug("editLesson");
 
+        List<Person> teachers = personService.getTeachers();
+
+        List<LessonKind> lessonKinds = lessonKindService.findAll();
+
+        var map = Map.of("teachers", mapper.map(teachers, PERSON_LIST_TYPE),
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+
+        model.addAllAttributes(map);
+
         return "lessonCreation";
     }
 

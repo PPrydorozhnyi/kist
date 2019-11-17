@@ -23,14 +23,18 @@
     <form:form method="POST" action="${contextPath}/lesson/create" modelAttribute="lessonForm" class="form-signin">
         <h2 class="form-signin-heading">${lessonForm.id != null ? 'Edit' : 'Create'} lesson</h2>
 
-        <form:hidden path="id" />
+        <form:hidden path="id"/>
 
         <%--lesson_name--%>
         <spring:bind path="teacherId">
-            <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson teacher:
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Lesson teacher:
                 <form:select path="teacherId">
+
                     <c:forEach items="${teachers}" var="teacher">
-                        <option value="${teacher.id}">${teacher.name}</option>
+                        <%--                        <% System.out.println("teacherId: " + pageContext.findAttribute("lessonForm.teacherId") +--%>
+                        <%--                        " currentTeacherId: " + pageContext.findAttribute("teacher.id")); %>--%>
+                        <option ${teacher.id == lessonForm.teacherId ? 'selected="selected"' : ''}
+                                value="${teacher.id}">${teacher.name}</option>
                     </c:forEach>
                 </form:select>
                 <form:errors path="teacherId"/>
@@ -39,10 +43,11 @@
 
         <%--Integer--%>
         <spring:bind path="lessonKindId">
-            <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson Kind:
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Lesson Kind:
                 <form:select path="lessonKindId">
                     <c:forEach items="${lessonKinds}" var="lessonKind">
-                        <option value="${lessonKind.id}">${lessonKind.name}</option>
+                        <option ${lessonKind.id == lessonForm.lessonKindId ? 'selected="selected"' : ''}
+                                value="${lessonKind.id}">${lessonKind.name}</option>
                     </c:forEach>
                 </form:select>
                 <form:errors path="lessonKindId"/>
@@ -51,7 +56,7 @@
 
         <%--lesson_name--%>
         <spring:bind path="hours">
-            <div class="form-group ${status.error ? 'has-error' : ''}">  Lesson hours:
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Lesson hours:
                 <form:input type="text" path="hours" class="form-control"
                             autofocus="true"/>
                 <form:errors path="hours"/>
