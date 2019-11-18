@@ -53,7 +53,12 @@ public class AppConstants {
     public static final Type VIOLATION_KIND_LIST_TYPE = (new TypeToken<List<ViolationKindDTO>>() {
     }).getType();
 
+    public static final Type ORDER_LIST_TYPE = (new TypeToken<List<OrderDTO>>(){
+    }).getType();
+
     public static final String LESSON_CREATION_PAGE = "lessonCreation";
+
+    public static final String ORDER_CREATION_PAGE = "orderCreation";
 
     private AppConstants() {
     }
