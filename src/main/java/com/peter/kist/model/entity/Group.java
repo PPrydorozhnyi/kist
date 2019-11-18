@@ -28,7 +28,7 @@ public class Group {
     private List<Student> students;
 
     @OneToMany(mappedBy = "group")
-    private List<TeacherPlan> teacherPlan;
+    private List<TeacherPlan> teacherPlans;
 
     //Yarik
     @ManyToOne

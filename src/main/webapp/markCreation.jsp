@@ -24,11 +24,11 @@
         <form:hidden path="id" />
 
         <%--NAME--%>
-        <spring:bind path="name">
+        <spring:bind path="value">
             <div class="form-group ${status.error ? 'has-error' : ''}">  Mark name:
-                <form:input type="text" path="name" class="form-control"
+                <form:input type="text" path="value" class="form-control"
                             autofocus="true"/>
-                <form:errors path="name"/>
+                <form:errors path="value"/>
             </div>
         </spring:bind>
 

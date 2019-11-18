@@ -1,6 +1,6 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.service.StudentService;
+import com.peter.kist.service.QueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/query")
 public class QueryController {
 
-    private final StudentService studentService;
+    private final QueryService queryService;
 
     @GetMapping("/query1")
     public String getStudent(Model model, @PathVariable Integer id) {
 
         log.debug("first query");
 
-//        Student student = studentService.getStudent(id);
-//
-//        model.addAttribute("studentForm", student);
+        queryService.query1();
 
         return "querySearch";
     }

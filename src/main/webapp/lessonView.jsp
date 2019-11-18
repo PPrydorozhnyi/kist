@@ -26,21 +26,33 @@
                 <h2 class="form-signin-heading">View lesson</h2>
 
                 <form:hidden path="id"/>
+                <form:hidden path="teacher.id"/>
+                <form:hidden path="lessonKind.id"/>
 
-                <%--lesson_name--%>
-                <spring:bind path="teacher">
+                <spring:bind path="teacher.name">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="teacher" class="form-control" placeholder="Lesson teacher"
-                                    autofocus="true"/>
-                        <form:errors path="teacher"/>
+                        Teacher name:<br>
+                        <form:input type="text" path="teacher.name" class="form-control" placeholder="Teacher name"
+                                    readonly="true"/>
+                        <form:errors path="teacher.name"/>
+                    </div>
+                </spring:bind>
+                <spring:bind path="teacher.surname">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Teacher name:<br>
+                        <form:input type="text" path="teacher.surname" class="form-control"
+                                    placeholder="Teacher surname"
+                                    readonly="true"/>
+                        <form:errors path="teacher.surname"/>
                     </div>
                 </spring:bind>
 
-                <%--Integer--%>
-                <spring:bind path="lessonKind">
+                <spring:bind path="lessonKind.name">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="lessonKind" class="form-control" placeholder="Lesson Kind"/>
-                        <form:errors path="lessonKind"/>
+                        Teacher surname:<br>
+                        <form:input type="text" path="lessonKind.name" class="form-control" placeholder="Lesson Kind"
+                                    readonly="true"/>
+                        <form:errors path="lessonKind.name"/>
                     </div>
                 </spring:bind>
 
@@ -48,7 +60,7 @@
                 <spring:bind path="hours">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="hours" class="form-control" placeholder="Lesson hours"
-                                    autofocus="true"/>
+                                    readonly="true"/>
                         <form:errors path="hours"/>
                     </div>
                 </spring:bind>

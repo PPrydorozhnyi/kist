@@ -7,24 +7,21 @@ import com.peter.kist.service.MarkService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+
+import static com.peter.kist.AppConstants.MARK_LIST_TYPE;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/mark")
 public class MarkController {
-
-    private static final Type MARK_LIST_TYPE = (new TypeToken<List<MarkDTO>>() {
-    }).getType();
 
     private final MarkService markService;
 

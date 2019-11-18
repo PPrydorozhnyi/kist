@@ -1,6 +1,5 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.dto.GroupDTO;
 import com.peter.kist.model.dto.StudentDTO;
 import com.peter.kist.model.entity.Group;
 import com.peter.kist.model.entity.Student;
@@ -8,27 +7,22 @@ import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+
+import static com.peter.kist.AppConstants.GROUP_LIST_TYPE;
+import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/student")
 public class StudentController {
-
-    private static final Type STUDENT_LIST_TYPE = (new TypeToken<List<StudentDTO>>() {
-    }).getType();
-
-    private static final Type GROUP_LIST_TYPE = (new TypeToken<List<GroupDTO>>() {
-    }).getType();
 
     private final StudentService studentService;
 

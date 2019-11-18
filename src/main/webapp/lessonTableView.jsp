@@ -31,15 +31,17 @@
                 <tbody>
                 <c:forEach items="${lessons}" var="lesson">
                     <tr>
-                        <td><a href="${contextPath}/lesson/${lesson.id}">${lesson.teacher}</a></td>
-                        <td>${lesson.lessonKind}</td>
+                        <td><a href="${contextPath}/lesson/${lesson.id}">
+                                ${"".concat(lesson.teacher.name).concat(" ").concat(lesson.teacher.surname)}</a></td>
+                        <td>${lesson.lessonKind.name}</td>
                         <td>${lesson.hours}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/lesson/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/lesson/create"
+                   class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>

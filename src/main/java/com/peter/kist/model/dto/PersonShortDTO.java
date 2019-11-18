@@ -3,8 +3,12 @@ package com.peter.kist.model.dto;
 import lombok.Data;
 
 @Data
-public class MarkDTO {
+public class PersonShortDTO {
+
     private Integer id;
 
-    private Integer value;
+    private String name;
+
+    private String surname;
+
 }

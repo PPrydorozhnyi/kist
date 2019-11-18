@@ -23,13 +23,13 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Name</th>
+                    <th>Value</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${mark}" var="mark">
                     <tr>
-                        <td><a href="${contextPath}/mark/${mark.id}">${mark.name}</a></td>
+                        <td><a href="${contextPath}/mark/${mark.id}">${mark.value}</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -6,23 +6,21 @@ import com.peter.kist.service.ViolationKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+
+import static com.peter.kist.AppConstants.VIOLATION_KIND_LIST_TYPE;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/violation-kind")
 public class ViolationKindController {
-    private static final Type VIOLATION_KIND_LIST_TYPE = (new TypeToken<List<ViolationKindDTO>>() {
-    }).getType();
 
     private final ViolationKindService violationKindService;
 

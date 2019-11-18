@@ -6,15 +6,15 @@ import com.peter.kist.service.LessonKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+
+import static com.peter.kist.AppConstants.LESSON_KIND_LIST_TYPE;
 
 @Controller
 @Slf4j
@@ -23,9 +23,6 @@ import java.util.List;
 public class LessonKindController {
 
     private final LessonKindService lessonKindService;
-
-    private static final Type LESSON_KIND_LIST_TYPE = (new TypeToken<List<LessonKindDTO>>() {
-    }).getType();
 
     private final ModelMapper mapper;
 

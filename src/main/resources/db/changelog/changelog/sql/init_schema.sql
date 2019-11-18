@@ -65,8 +65,8 @@ CREATE TABLE pr_student_marks
 
 CREATE TABLE pr_mark
 (
-    mark_id   SERIAL PRIMARY KEY,
-    mark_name VARCHAR(1)
+    mark_id    SERIAL PRIMARY KEY,
+    mark_value INTEGER
 );
 
 CREATE TABLE pr_teacher_plan
@@ -247,18 +247,14 @@ VALUES ('guest');
 INSERT INTO pr_role (name)
 VALUES ('admin');
 
-INSERT INTO pr_mark (mark_name)
-VALUES ('A');
-INSERT INTO pr_mark (mark_name)
-VALUES ('B');
-INSERT INTO pr_mark (mark_name)
-VALUES ('C');
-INSERT INTO pr_mark (mark_name)
-VALUES ('D');
-INSERT INTO pr_mark (mark_name)
-VALUES ('E');
-INSERT INTO pr_mark (mark_name)
-VALUES ('F');
+DO '
+    BEGIN
+        FOR counter IN 60..100 LOOP
+                INSERT INTO pr_mark(mark_value) VALUES (counter);
+            END LOOP;
+    END;
+'
+LANGUAGE plpgsql;
 
 INSERT INTO pr_lesson_kind (lesson_kind_name)
 VALUES ('Lecture');

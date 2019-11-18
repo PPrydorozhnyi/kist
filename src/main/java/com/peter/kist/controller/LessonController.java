@@ -2,23 +2,27 @@ package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.LessonDTO;
 import com.peter.kist.model.dto.LessonKindDTO;
-import com.peter.kist.model.dto.PersonDTO;
+import com.peter.kist.model.dto.PersonShortDTO;
 import com.peter.kist.model.entity.Lesson;
+import com.peter.kist.model.entity.LessonKind;
+import com.peter.kist.model.entity.Person;
+import com.peter.kist.service.LessonKindService;
 import com.peter.kist.service.LessonService;
+import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
-//  TODO change mapping module for child relations
+import static com.peter.kist.AppConstants.*;
 
 @Controller
 @Slf4j
@@ -28,8 +32,11 @@ public class LessonController {
 
     private final LessonService lessonService;
 
-    private static final Type LESSON_LIST_TYPE = (new TypeToken<List<LessonDTO>>() {
-    }).getType();
+    private final PersonService personService;
+
+    private final LessonKindService lessonKindService;
+
+    private final ConversionService conversionService;
 
     private final ModelMapper mapper;
 
@@ -50,9 +57,17 @@ public class LessonController {
 
         log.debug("createLesson");
 
-        model.addAttribute("lessonForm", new LessonDTO(new PersonDTO(), new LessonKindDTO()));
+        List<Person> teachers = personService.getTeachers();
 
-        return "lessonCreation";
+        List<LessonKind> lessonKinds = lessonKindService.findAll();
+
+        final Map<String, Object> map = Map.of("lessonForm", new LessonDTO(new PersonShortDTO(), new LessonKindDTO()),
+                "teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+
+        model.addAllAttributes(map);
+
+        return LESSON_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -60,13 +75,13 @@ public class LessonController {
 
         log.debug("Lesson creation");
 
-        Lesson lesson = mapper.map(lessonForm, Lesson.class);
+        Lesson lesson = conversionService.convert(lessonForm, Lesson.class);
 
         if (bindingResult.hasErrors()) {
-            return "lessonCreation";
+            return LESSON_CREATION_PAGE;
         }
 
-        lessonService.createLesson(lesson);
+        lesson = lessonService.createLesson(lesson);
 
         return "redirect:/lesson/" + lesson.getId();
     }
@@ -75,7 +90,16 @@ public class LessonController {
     public String edit(@ModelAttribute("lessonForm") LessonDTO lesson, Model model) {
         log.debug("editLesson");
 
-        return "lessonCreation";
+        List<Person> teachers = personService.getTeachers();
+
+        List<LessonKind> lessonKinds = lessonKindService.findAll();
+
+        final Map<String, Object> map = Map.of("teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+
+        model.addAllAttributes(map);
+
+        return LESSON_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")

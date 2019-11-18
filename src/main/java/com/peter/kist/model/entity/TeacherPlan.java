@@ -50,4 +50,9 @@ public class TeacherPlan {
     @JoinColumn(name = "testKindId", nullable = false)
     @EqualsAndHashCode.Exclude
     private TestKind testKind;
+
+    @ManyToOne
+    @JoinColumn(name = "subjectId", nullable = false)
+    @EqualsAndHashCode.Exclude
+    private Subject subject;
 }

@@ -6,15 +6,15 @@ import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
+
+import static com.peter.kist.AppConstants.PERSON_LIST_TYPE;
 
 @Controller
 @Slf4j
@@ -22,9 +22,6 @@ import java.util.List;
 @RequestMapping("/person")
 
 public class PersonController {
-
-    private static final Type PERSON_LIST_TYPE = (new TypeToken<List<PersonDTO>>() {
-    }).getType();
 
     private final PersonService personService;
 
