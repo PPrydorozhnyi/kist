@@ -37,7 +37,7 @@ public class CafedraController {
 
         model.addAttribute("cafedraForm", mapper.map(cafedra, CafedraDTO.class));
 
-        return "cafedraView";
+        return "cafedra/cafedraView";
     }
 
     @GetMapping("/create")
@@ -92,6 +92,6 @@ public class CafedraController {
 
         model.addAttribute("cafedras", mapper.map(cafedras, CAFEDRA_LIST_TYPE));
 
-        return "cafedraTableView";
+        return "cafedra/cafedraTableView";
     }
 }

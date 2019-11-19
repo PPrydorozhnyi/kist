@@ -35,7 +35,7 @@ public class PunishKindController {
 
         model.addAttribute("punishKindForm", mapper.map(punishKind, PunishKindDTO.class));
 
-        return "punishKindView";
+        return "punish-kind/punishKindView";
     }
 
     @GetMapping("/create")
@@ -45,7 +45,7 @@ public class PunishKindController {
 
         model.addAttribute("punishKindForm", new PunishKindDTO());
 
-        return "punishKindCreation";
+        return "punish-kind/punishKindCreation";
     }
 
     @PostMapping("/create")
@@ -64,7 +64,7 @@ public class PunishKindController {
     public String edit(@ModelAttribute("punishKindForm") PunishKindDTO punishKind, Model model) {
         log.debug("editPunishKind");
 
-        return "punishKindCreation";
+        return "punish-kind/punishKindCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -86,6 +86,6 @@ public class PunishKindController {
 
         model.addAttribute("punishKind", mapper.map(punishKind, PUNISH_KIND_DTO_LIST_TYPE));
 
-        return "punishKindTableView";
+        return "punish-kind/punishKindTableView";
     }
 }

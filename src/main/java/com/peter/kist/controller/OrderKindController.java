@@ -36,7 +36,7 @@ public class OrderKindController {
 
         model.addAttribute("orderKindForm", mapper.map(orderKind, OrderKindDTO.class));
 
-        return "orderKindView";
+        return "order-kind/orderKindView";
     }
 
     @GetMapping("/create")
@@ -46,7 +46,7 @@ public class OrderKindController {
 
         model.addAttribute("orderKindForm", new OrderKindDTO());
 
-        return "orderKindCreation";
+        return "order-kind/orderKindCreation";
     }
 
     @PostMapping("/create")
@@ -65,7 +65,7 @@ public class OrderKindController {
     public String edit(@ModelAttribute("orderKindForm") OrderKindDTO orderKind, Model model) {
         log.debug("editOrderKind");
 
-        return "orderKindCreation";
+        return "order-kind/orderKindCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -87,6 +87,6 @@ public class OrderKindController {
 
         model.addAttribute("orderKind", mapper.map(orderKind, ORDER_KIND_LIST_TYPE));
 
-        return "orderKindTableView";
+        return "order-kind/orderKindTableView";
     }
 }

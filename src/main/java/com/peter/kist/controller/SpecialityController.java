@@ -47,7 +47,7 @@ public class SpecialityController {
 
         model.addAttribute("specialityForm", mapper.map(speciality, SpecialityDTO.class));
 
-        return "specialityView";
+        return "speciality/specialityView";
     }
 
     @GetMapping("/create")
@@ -113,6 +113,6 @@ public class SpecialityController {
 
         model.addAttribute("specialities", mapper.map(specialitys, SPECIALITY_LIST_TYPE));
 
-        return "specialityTableView";
+        return "speciality/specialityTableView";
     }
 }

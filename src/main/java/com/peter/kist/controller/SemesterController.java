@@ -37,7 +37,7 @@ public class SemesterController {
 
         model.addAttribute("semesterForm", mapper.map(semester, SemesterDTO.class));
 
-        return "semesterView";
+        return "semester/semesterView";
     }
 
     @GetMapping("/create")
@@ -92,7 +92,7 @@ public class SemesterController {
 
         model.addAttribute("semesters", mapper.map(semesters, SEMESTER_LIST_TYPE));
 
-        return "semesterTableView";
+        return "semester/semesterTableView";
     }
 
 

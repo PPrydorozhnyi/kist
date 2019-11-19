@@ -47,7 +47,7 @@ public class OrderController {
 
         model.addAttribute("orderForm", mapper.map(order, OrderDTO.class));
 
-        return "orderView";
+        return "order/orderView";
     }
 
     @GetMapping("/create")
@@ -113,7 +113,7 @@ public class OrderController {
 
         model.addAttribute("orders", mapper.map(orders, ORDER_LIST_TYPE));
 
-        return "orderTableView";
+        return "order/orderTableView";
     }
 }
 

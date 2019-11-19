@@ -37,7 +37,7 @@ public class TestKindController {
 
         model.addAttribute("testKindForm", mapper.map(testKind, TestKindDTO.class));
 
-        return "testKindView";
+        return "test-kind/testKindView";
     }
 
     @GetMapping("/create")
@@ -92,6 +92,6 @@ public class TestKindController {
 
         model.addAttribute("testKinds", mapper.map(testKinds, TEST_KIND_LIST_TYPE));
 
-        return "testKindTableView";
+        return "test-kind/testKindTableView";
     }
 }

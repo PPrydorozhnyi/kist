@@ -37,7 +37,7 @@ public class PrivilegeController {
 
         model.addAttribute("privilegeForm", mapper.map(privilege, PrivilegeDTO.class));
 
-        return "privilegeView";
+        return "privilege/privilegeView";
     }
 
     @GetMapping("/create")
@@ -92,6 +92,6 @@ public class PrivilegeController {
 
         model.addAttribute("privileges", mapper.map(privileges, PRIVILEGE_LIST_TYPE));
 
-        return "privilegeTableView";
+        return "privilege/privilegeTableView";
     }
 }

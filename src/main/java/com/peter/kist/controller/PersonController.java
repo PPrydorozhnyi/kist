@@ -36,7 +36,7 @@ public class PersonController {
 
         model.addAttribute("personForm", mapper.map(person, PersonDTO.class));
 
-        return "personView";
+        return "person/personView";
     }
 
     @GetMapping("/create")
@@ -46,7 +46,7 @@ public class PersonController {
 
         model.addAttribute("personForm", new PersonDTO());
 
-        return "personCreation";
+        return "person/personCreation";
     }
 
     @PostMapping("/create")
@@ -65,7 +65,7 @@ public class PersonController {
     public String edit(@ModelAttribute("personForm") PersonDTO person, Model model) {
         log.debug("editPerson");
 
-        return "personCreation";
+        return "person/personCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -87,7 +87,7 @@ public class PersonController {
 
         model.addAttribute("person", mapper.map(persons, PERSON_LIST_TYPE));
 
-        return "personTableView";
+        return "person/personTableView";
     }
 
 }
