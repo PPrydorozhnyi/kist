@@ -24,4 +24,7 @@ public class Mark {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "marks")
     @EqualsAndHashCode.Exclude
     private List<Student> students;
+
+    @OneToMany(mappedBy = "group")
+    private List<TeacherPlan> teacherPlans;
 }
