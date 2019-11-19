@@ -1,12 +1,15 @@
 package com.peter.kist.model.dto;
 
-import com.peter.kist.model.entity.Speciality;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GroupDTO {
 
     private Integer id;
