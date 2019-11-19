@@ -35,7 +35,7 @@ public class ViolationKindController {
 
         model.addAttribute("violationKindForm", mapper.map(violationKind, ViolationKindDTO.class));
 
-        return "violatinon-kind/violationKindView";
+        return "violation-kind/violationKindView";
     }
 
     @GetMapping("/create")
@@ -45,7 +45,7 @@ public class ViolationKindController {
 
         model.addAttribute("violationKindForm", new ViolationKindDTO());
 
-        return "violatinon-kind/violationKindCreation";
+        return "violation-kind/violationKindCreation";
     }
 
     @PostMapping("/create")
@@ -64,7 +64,7 @@ public class ViolationKindController {
     public String edit(@ModelAttribute("violationKindForm") ViolationKindDTO violationKind, Model model) {
         log.debug("editViolationKind");
 
-        return "violatinon-kind/violationKindCreation";
+        return "violation-kind/violationKindCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -86,6 +86,6 @@ public class ViolationKindController {
 
         model.addAttribute("violationKind", mapper.map(violationKind, VIOLATION_KIND_LIST_TYPE));
 
-        return "violatinon-kind/violationKindTableView";
+        return "violation-kind/violationKindTableView";
     }
 }

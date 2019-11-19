@@ -1,8 +1,12 @@
 package com.peter.kist.service;
 
+import com.peter.kist.model.entity.Student;
+
+import java.util.List;
+
 public interface QueryService {
 
-    void query1();
+    List<Student> query1(Integer groupId, Integer subjectId);
 
     void query2();
 

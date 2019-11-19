@@ -22,7 +22,7 @@ import static com.peter.kist.AppConstants.LESSON_KIND_LIST_TYPE;
 @RequestMapping("/lesson-kind")
 public class LessonKindController {
 
-    private static final String LESSON_KIND_CREATION_PAGE = "lessonKindCreation";
+    private static final String LESSON_KIND_CREATION_PAGE = "lesson-kind/lessonKindCreation";
 
     private final LessonKindService lessonKindService;
 
