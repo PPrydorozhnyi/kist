@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.peter.kist.AppConstants.GROUP_LIST_TYPE;
-import static com.peter.kist.AppConstants.SPECIALITY_LIST_TYPE;
+import static com.peter.kist.AppConstants.SPECIALITY_SHORT_LIST_TYPE;
 
 @Controller
 @Slf4j
@@ -58,7 +58,7 @@ public class GroupController {
         List<Speciality> specialities = specialityService.findAll();
 
         final Map<String, Object> map = Map.of("groupForm", new GroupDTO(new SpecialityShortDTO()),
-                "specialities", mapper.map(specialities, SPECIALITY_LIST_TYPE));
+                "specialities", mapper.map(specialities, SPECIALITY_SHORT_LIST_TYPE));
 
         model.addAllAttributes(map);
 
@@ -87,7 +87,7 @@ public class GroupController {
 
         List<Speciality> specialities = specialityService.findAll();
 
-        final Map<String, Object> map = Map.of("specialities", mapper.map(specialities, SPECIALITY_LIST_TYPE));
+        final Map<String, Object> map = Map.of("specialities", mapper.map(specialities, SPECIALITY_SHORT_LIST_TYPE));
 
         model.addAllAttributes(map);
 
