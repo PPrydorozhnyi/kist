@@ -9,6 +9,7 @@ import com.peter.kist.service.SpecialityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
 import static com.peter.kist.AppConstants.GROUP_LIST_TYPE;
-import static com.peter.kist.AppConstants.SPECIALITY_SHORT_LIST_TYPE;
 
 @Controller
 @Slf4j
@@ -29,6 +30,9 @@ import static com.peter.kist.AppConstants.SPECIALITY_SHORT_LIST_TYPE;
 public class GroupController {
 
     private static final String GROUP_CREATION_PAGE = "group/groupCreation";
+
+    public static final Type SPECIALITY_SHORT_LIST_TYPE = (new TypeToken<List<SpecialityShortDTO>>(){
+    }).getType();
 
     private final GroupService groupService;
 
