@@ -59,6 +59,9 @@ public class AppConstants {
     public static final Type SPECIALITY_LIST_TYPE = (new TypeToken<List<SpecialityDTO>>(){
     }).getType();
 
+    public static final Type VIOLATION_LIST_TYPE = (new TypeToken<List<ViolationDTO>>() {
+    }).getType();
+
     private AppConstants() {
     }
 }
