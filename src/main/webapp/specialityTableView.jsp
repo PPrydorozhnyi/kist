@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Cafedra page</title>
+    <title>Speciality page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -23,21 +23,24 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
+                    <th>Speciality name</th>
+                    <th>Speciality code</th>
                     <th>Cafedra name</th>
-                    <th>Cafedra shifr</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${cafedras}" var="cafedra">
+                <c:forEach items="${specialities}" var="speciality">
                     <tr>
-                        <td><a href="${contextPath}/cafedra/${cafedra.id}">${cafedra.name}</a></td>
-                        <td>${cafedra.shifr}</td>
+                        <td><a href="${contextPath}/speciality/${speciality.id}">${speciality.name}</a></td>
+                        <td>${speciality.shifr}</td>
+                        <td>${speciality.cafedra.name}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/cafedra/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/speciality/create"
+                   class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>
