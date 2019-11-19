@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-import static com.peter.kist.AppConstants.*;
+import static com.peter.kist.AppConstants.ORDER_KIND_LIST_TYPE;
+import static com.peter.kist.AppConstants.ORDER_LIST_TYPE;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/order")
 public class OrderController {
+
+    private static final String ORDER_CREATION_PAGE = "orderCreation";
 
     private final OrderService orderService;
 
@@ -109,8 +112,6 @@ public class OrderController {
         List<Order> orders = orderService.findAll();
 
         model.addAttribute("orders", mapper.map(orders, ORDER_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "orderTableView";
     }

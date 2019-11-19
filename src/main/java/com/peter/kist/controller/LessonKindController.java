@@ -22,6 +22,8 @@ import static com.peter.kist.AppConstants.LESSON_KIND_LIST_TYPE;
 @RequestMapping("/lesson-kind")
 public class LessonKindController {
 
+    private static final String LESSON_KIND_CREATION_PAGE = "lessonKindCreation";
+
     private final LessonKindService lessonKindService;
 
     private final ModelMapper mapper;
@@ -45,7 +47,7 @@ public class LessonKindController {
 
         model.addAttribute("lessonKindForm", new LessonKindDTO());
 
-        return "lessonKindCreation";
+        return LESSON_KIND_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -56,7 +58,7 @@ public class LessonKindController {
         LessonKind lessonKind = mapper.map(lessonKindForm, LessonKind.class);
 
         if (bindingResult.hasErrors()) {
-            return "lessonKindCreation";
+            return LESSON_KIND_CREATION_PAGE;
         }
 
         lessonKindService.createLessonKind(lessonKind);
@@ -68,7 +70,7 @@ public class LessonKindController {
     public String edit(@ModelAttribute("lessonKindForm") LessonKindDTO lessonKind, Model model) {
         log.debug("editLessonKind");
 
-        return "lessonKindCreation";
+        return LESSON_KIND_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")
@@ -89,8 +91,6 @@ public class LessonKindController {
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
         model.addAttribute("lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "lessonKindTableView";
     }

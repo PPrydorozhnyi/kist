@@ -30,6 +30,8 @@ import static com.peter.kist.AppConstants.*;
 @RequestMapping("/lesson")
 public class LessonController {
 
+    private static final String LESSON_CREATION_PAGE = "lessonCreation";
+
     private final LessonService lessonService;
 
     private final PersonService personService;
@@ -120,8 +122,6 @@ public class LessonController {
         List<Lesson> lessons = lessonService.findAll();
 
         model.addAttribute("lessons", mapper.map(lessons, LESSON_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "lessonTableView";
     }

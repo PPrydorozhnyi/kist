@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-import static com.peter.kist.AppConstants.*;
+import static com.peter.kist.AppConstants.CAFEDRA_LIST_TYPE;
+import static com.peter.kist.AppConstants.SPECIALITY_LIST_TYPE;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/speciality")
 public class SpecialityController {
+
+    private static final String SPECIALITY_CREATION_PAGE = "specialityCreation";
 
     private final SpecialityService specialityService;
 
@@ -109,8 +112,6 @@ public class SpecialityController {
         List<Speciality> specialitys = specialityService.findAll();
 
         model.addAttribute("specialities", mapper.map(specialitys, SPECIALITY_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "specialityTableView";
     }

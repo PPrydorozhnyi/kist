@@ -86,8 +86,6 @@ public class ViolationKindController {
 
         model.addAttribute("violationKind", mapper.map(violationKind, VIOLATION_KIND_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "violationKindTableView";
     }
 }

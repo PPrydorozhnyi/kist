@@ -59,12 +59,6 @@ public class AppConstants {
     public static final Type SPECIALITY_LIST_TYPE = (new TypeToken<List<SpecialityDTO>>(){
     }).getType();
 
-    public static final String LESSON_CREATION_PAGE = "lessonCreation";
-
-    public static final String ORDER_CREATION_PAGE = "orderCreation";
-
-    public static final String SPECIALITY_CREATION_PAGE = "specialityCreation";
-
     private AppConstants() {
     }
 }

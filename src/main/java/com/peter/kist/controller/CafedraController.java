@@ -22,6 +22,8 @@ import static com.peter.kist.AppConstants.CAFEDRA_LIST_TYPE;
 @RequestMapping("/cafedra")
 public class CafedraController {
 
+    private static final String CAFEDRA_CREATION_PAGE = "cafedraCreation";
+
     private final CafedraService cafedraService;
 
     private final ModelMapper mapper;
@@ -45,7 +47,7 @@ public class CafedraController {
 
         model.addAttribute("cafedraForm", new CafedraDTO());
 
-        return "cafedraCreation";
+        return CAFEDRA_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -56,7 +58,7 @@ public class CafedraController {
         Cafedra cafedra = mapper.map(cafedraForm, Cafedra.class);
 
         if (bindingResult.hasErrors()) {
-            return "cafedraCreation";
+            return CAFEDRA_CREATION_PAGE;
         }
 
         cafedraService.createCafedra(cafedra);
@@ -68,7 +70,7 @@ public class CafedraController {
     public String edit(@ModelAttribute("cafedraForm") CafedraDTO cafedra, Model model) {
         log.debug("editCafedra");
 
-        return "cafedraCreation";
+        return CAFEDRA_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")
@@ -89,8 +91,6 @@ public class CafedraController {
         List<Cafedra> cafedras = cafedraService.findAll();
 
         model.addAttribute("cafedras", mapper.map(cafedras, CAFEDRA_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "cafedraTableView";
     }
