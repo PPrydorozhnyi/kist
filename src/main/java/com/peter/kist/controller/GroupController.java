@@ -31,7 +31,7 @@ public class GroupController {
 
     private static final String GROUP_CREATION_PAGE = "group/groupCreation";
 
-    public static final Type SPECIALITY_SHORT_LIST_TYPE = (new TypeToken<List<SpecialityShortDTO>>(){
+    private static final Type SPECIALITY_SHORT_LIST_TYPE = (new TypeToken<List<SpecialityShortDTO>>(){
     }).getType();
 
     private final GroupService groupService;
