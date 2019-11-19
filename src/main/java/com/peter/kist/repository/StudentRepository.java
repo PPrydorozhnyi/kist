@@ -20,5 +20,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
             "       join st.groups gr " +
             "       join st.marks mark " +
             "       where gr.id = :groupId)")
-    List<Student> customQuery1(@Param("groupId") Integer groupId, @Param("subjectId") Integer subjectId);
+    List<Student> studentWithMarksMoreThanAverage(@Param("groupId") Integer groupId, @Param("subjectId") Integer subjectId);
 }
