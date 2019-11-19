@@ -109,9 +109,9 @@ public class SpecialityController {
 
         log.debug("findAllSpeciality");
 
-        List<Speciality> specialitys = specialityService.findAll();
+        List<Speciality> specialities = specialityService.findAll();
 
-        model.addAttribute("specialities", mapper.map(specialitys, SPECIALITY_LIST_TYPE));
+        model.addAttribute("specialities", mapper.map(specialities, SPECIALITY_LIST_TYPE));
 
         return "speciality/specialityTableView";
     }

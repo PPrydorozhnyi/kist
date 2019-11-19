@@ -2,16 +2,14 @@ package com.peter.kist.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SpecialityDTO {
-
-    private Integer id;
-
-    private String name;
+@EqualsAndHashCode(callSuper = true)
+public class SpecialityDTO extends SpecialityShortDTO{
 
     private String shifr;
 

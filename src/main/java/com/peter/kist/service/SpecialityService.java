@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface SpecialityService {
     
-    Speciality createSpeciality(Speciality order);
+    Speciality createSpeciality(Speciality speciality);
 
-    Speciality editSpeciality(Speciality order);
+    Speciality editSpeciality(Speciality speciality);
 
     Speciality getSpeciality(Integer id);
 
