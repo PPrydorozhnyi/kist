@@ -22,6 +22,8 @@ import static com.peter.kist.AppConstants.TEST_KIND_LIST_TYPE;
 @RequestMapping("/test-kind")
 public class TestKindController {
 
+    private static final String TEST_KIND_CREATION_PAGE = "testKindCreation";
+
     private final TestKindService testKindService;
 
     private final ModelMapper mapper;
@@ -45,7 +47,7 @@ public class TestKindController {
 
         model.addAttribute("testKindForm", new TestKindDTO());
 
-        return "testKindCreation";
+        return TEST_KIND_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -56,7 +58,7 @@ public class TestKindController {
         TestKind testKind = mapper.map(testKindForm, TestKind.class);
 
         if (bindingResult.hasErrors()) {
-            return "testKindCreation";
+            return TEST_KIND_CREATION_PAGE;
         }
 
         testKindService.createTestKind(testKind);
@@ -68,7 +70,7 @@ public class TestKindController {
     public String edit(@ModelAttribute("testKindForm") TestKindDTO testKind, Model model) {
         log.debug("editTestKind");
 
-        return "testKindCreation";
+        return TEST_KIND_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")
@@ -89,8 +91,6 @@ public class TestKindController {
         List<TestKind> testKinds = testKindService.findAll();
 
         model.addAttribute("testKinds", mapper.map(testKinds, TEST_KIND_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "testKindTableView";
     }

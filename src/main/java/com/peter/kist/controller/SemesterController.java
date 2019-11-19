@@ -22,6 +22,8 @@ import static com.peter.kist.AppConstants.SEMESTER_LIST_TYPE;
 @RequestMapping("/semester")
 public class SemesterController {
 
+    private static final String SEMESTER_CREATION_PAGE = "semesterCreation";
+
     private final SemesterService semesterService;
 
     private final ModelMapper mapper;
@@ -45,7 +47,7 @@ public class SemesterController {
 
         model.addAttribute("semesterForm", new SemesterDTO());
 
-        return "semesterCreation";
+        return SEMESTER_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -56,7 +58,7 @@ public class SemesterController {
         Semester semester = mapper.map(semesterForm, Semester.class);
 
         if (bindingResult.hasErrors()) {
-            return "semesterCreation";
+            return SEMESTER_CREATION_PAGE;
         }
 
         semesterService.createSemester(semester);
@@ -68,7 +70,7 @@ public class SemesterController {
     public String edit(@ModelAttribute("semesterForm") SemesterDTO semester, Model model) {
         log.debug("editSemester");
 
-        return "semesterCreation";
+        return SEMESTER_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")
@@ -89,8 +91,6 @@ public class SemesterController {
         List<Semester> semesters = semesterService.findAll();
 
         model.addAttribute("semesters", mapper.map(semesters, SEMESTER_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "semesterTableView";
     }

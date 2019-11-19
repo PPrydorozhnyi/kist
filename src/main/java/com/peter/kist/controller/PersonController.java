@@ -87,8 +87,6 @@ public class PersonController {
 
         model.addAttribute("person", mapper.map(persons, PERSON_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "personTableView";
     }
 

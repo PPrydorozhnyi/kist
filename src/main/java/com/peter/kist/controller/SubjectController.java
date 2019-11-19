@@ -86,8 +86,6 @@ public class SubjectController {
 
         model.addAttribute("subjects", mapper.map(subjects, SUBJECT_DTO_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "subjectTableView";
     }
 

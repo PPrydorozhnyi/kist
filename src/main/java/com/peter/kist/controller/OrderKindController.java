@@ -87,8 +87,6 @@ public class OrderKindController {
 
         model.addAttribute("orderKind", mapper.map(orderKind, ORDER_KIND_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "orderKindTableView";
     }
 }

@@ -22,6 +22,8 @@ import static com.peter.kist.AppConstants.PRIVILEGE_LIST_TYPE;
 @RequestMapping("/privilege")
 public class PrivilegeController {
 
+    private static final String PRIVILEGE_CREATION_PAGE = "privilegeCreation";
+
     private final PrivilegeService privilegeService;
 
     private final ModelMapper mapper;
@@ -45,7 +47,7 @@ public class PrivilegeController {
 
         model.addAttribute("privilegeForm", new PrivilegeDTO());
 
-        return "privilegeCreation";
+        return PRIVILEGE_CREATION_PAGE;
     }
 
     @PostMapping("/create")
@@ -56,7 +58,7 @@ public class PrivilegeController {
         Privilege privilege = mapper.map(privilegeForm, Privilege.class);
 
         if (bindingResult.hasErrors()) {
-            return "privilegeCreation";
+            return PRIVILEGE_CREATION_PAGE;
         }
 
         privilegeService.createPrivilege(privilege);
@@ -68,7 +70,7 @@ public class PrivilegeController {
     public String edit(@ModelAttribute("privilegeForm") PrivilegeDTO privilege, Model model) {
         log.debug("editPrivilege");
 
-        return "privilegeCreation";
+        return PRIVILEGE_CREATION_PAGE;
     }
 
     @DeleteMapping("/{id}")
@@ -89,8 +91,6 @@ public class PrivilegeController {
         List<Privilege> privileges = privilegeService.findAll();
 
         model.addAttribute("privileges", mapper.map(privileges, PRIVILEGE_LIST_TYPE));
-
-        model.addAttribute("deletedUserName", null);
 
         return "privilegeTableView";
     }

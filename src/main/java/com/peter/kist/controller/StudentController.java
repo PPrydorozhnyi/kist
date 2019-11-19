@@ -88,8 +88,6 @@ public class StudentController {
 
         model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "studentTableView";
     }
 

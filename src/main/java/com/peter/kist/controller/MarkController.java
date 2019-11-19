@@ -87,8 +87,6 @@ public class MarkController {
 
         model.addAttribute("mark", mapper.map(mark, MARK_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "markTableView";
     }
 }

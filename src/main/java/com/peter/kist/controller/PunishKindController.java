@@ -86,8 +86,6 @@ public class PunishKindController {
 
         model.addAttribute("punishKind", mapper.map(punishKind, PUNISH_KIND_DTO_LIST_TYPE));
 
-        model.addAttribute("deletedUserName", null);
-
         return "punishKindTableView";
     }
 }
