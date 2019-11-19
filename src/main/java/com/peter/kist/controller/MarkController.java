@@ -36,7 +36,7 @@ public class MarkController {
 
         model.addAttribute("markForm", mapper.map(mark, MarkDTO.class));
 
-        return "markView";
+        return "mark/markView";
     }
 
     @GetMapping("/create")
@@ -46,7 +46,7 @@ public class MarkController {
 
         model.addAttribute("markForm", new MarkDTO());
 
-        return "markCreation";
+        return "mark/markCreation";
     }
 
     @PostMapping("/create")
@@ -65,7 +65,7 @@ public class MarkController {
     public String edit(@ModelAttribute("markForm") MarkDTO mark, Model model) {
         log.debug("editMark");
 
-        return "markCreation";
+        return "mark/markCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -87,6 +87,6 @@ public class MarkController {
 
         model.addAttribute("mark", mapper.map(mark, MARK_LIST_TYPE));
 
-        return "markTableView";
+        return "mark/markTableView";
     }
 }

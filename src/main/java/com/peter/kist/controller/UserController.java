@@ -36,7 +36,7 @@ public class UserController {
     public String registration(Model model) {
         model.addAttribute("userForm", new UserDTO());
 
-        return "registration";
+        return "user/registration";
     }
 
     @PostMapping("/registration")
@@ -44,7 +44,7 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "user/registration";
         }
 
         User user = mapper.map(userForm, User.class);
@@ -64,11 +64,11 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
-        return "login";
+        return "user/login";
     }
 
     @GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
-        return "welcome";
+        return "user/welcome";
     }
 }

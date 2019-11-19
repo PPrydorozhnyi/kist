@@ -35,7 +35,7 @@ public class SubjectController {
 
         model.addAttribute("subjectForm", mapper.map(subject, SubjectDTO.class));
 
-        return "subjectView";
+        return "subject/subjectView";
     }
 
     @GetMapping("/create")
@@ -45,7 +45,7 @@ public class SubjectController {
 
         model.addAttribute("subjectForm", new SubjectDTO());
 
-        return "subjectCreation";
+        return "subject/subjectCreation";
     }
 
     @PostMapping("/create")
@@ -64,7 +64,7 @@ public class SubjectController {
     public String edit(@ModelAttribute("subjectForm") SubjectDTO subject, Model model) {
         log.debug("editSubject");
 
-        return "subjectCreation";
+        return "subject/subjectCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -86,7 +86,7 @@ public class SubjectController {
 
         model.addAttribute("subjects", mapper.map(subjects, SUBJECT_DTO_LIST_TYPE));
 
-        return "subjectTableView";
+        return "subject/subjectTableView";
     }
 
 }

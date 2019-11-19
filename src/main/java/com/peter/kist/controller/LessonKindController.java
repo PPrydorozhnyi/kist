@@ -37,7 +37,7 @@ public class LessonKindController {
 
         model.addAttribute("lessonKindForm", mapper.map(lessonKind, LessonKindDTO.class));
 
-        return "lessonKindView";
+        return "lesson-kind/lessonKindView";
     }
 
     @GetMapping("/create")
@@ -92,6 +92,6 @@ public class LessonKindController {
 
         model.addAttribute("lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
 
-        return "lessonKindTableView";
+        return "lesson-kind/lessonKindTableView";
     }
 }

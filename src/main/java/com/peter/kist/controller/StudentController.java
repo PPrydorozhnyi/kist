@@ -37,7 +37,7 @@ public class StudentController {
 
         model.addAttribute("studentForm", mapper.map(student, StudentDTO.class));
 
-        return "studentView";
+        return "student/studentView";
     }
 
     @GetMapping("/create")
@@ -47,7 +47,7 @@ public class StudentController {
 
         model.addAttribute("studentForm", new StudentDTO());
 
-        return "studentCreation";
+        return "student/studentCreation";
     }
 
     @PostMapping("/create")
@@ -66,7 +66,7 @@ public class StudentController {
     public String edit(@ModelAttribute("studentForm") StudentDTO student, Model model) {
         log.debug("editStudent");
 
-        return "studentCreation";
+        return "student/studentCreation";
     }
 
     @DeleteMapping("/{id}")
@@ -88,7 +88,7 @@ public class StudentController {
 
         model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
 
-        return "studentTableView";
+        return "student/studentTableView";
     }
 
     @GetMapping("/{id}/groups")
