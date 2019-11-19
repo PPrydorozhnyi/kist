@@ -30,7 +30,7 @@ import static com.peter.kist.AppConstants.*;
 @RequestMapping("/lesson")
 public class LessonController {
 
-    private static final String LESSON_CREATION_PAGE = "lessonCreation";
+    private static final String LESSON_CREATION_PAGE = "lesson/lessonCreation";
 
     private final LessonService lessonService;
 

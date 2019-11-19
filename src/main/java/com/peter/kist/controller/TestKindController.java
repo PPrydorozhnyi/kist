@@ -22,7 +22,7 @@ import static com.peter.kist.AppConstants.TEST_KIND_LIST_TYPE;
 @RequestMapping("/test-kind")
 public class TestKindController {
 
-    private static final String TEST_KIND_CREATION_PAGE = "testKindCreation";
+    private static final String TEST_KIND_CREATION_PAGE = "test-kind/testKindCreation";
 
     private final TestKindService testKindService;
 

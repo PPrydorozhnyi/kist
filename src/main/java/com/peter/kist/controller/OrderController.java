@@ -28,7 +28,7 @@ import static com.peter.kist.AppConstants.ORDER_LIST_TYPE;
 @RequestMapping("/order")
 public class OrderController {
 
-    private static final String ORDER_CREATION_PAGE = "orderCreation";
+    private static final String ORDER_CREATION_PAGE = "order/orderCreation";
 
     private final OrderService orderService;
 

@@ -28,7 +28,7 @@ import static com.peter.kist.AppConstants.SPECIALITY_LIST_TYPE;
 @RequestMapping("/speciality")
 public class SpecialityController {
 
-    private static final String SPECIALITY_CREATION_PAGE = "specialityCreation";
+    private static final String SPECIALITY_CREATION_PAGE = "speciality/specialityCreation";
 
     private final SpecialityService specialityService;
 

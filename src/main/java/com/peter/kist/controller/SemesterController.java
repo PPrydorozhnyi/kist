@@ -22,7 +22,7 @@ import static com.peter.kist.AppConstants.SEMESTER_LIST_TYPE;
 @RequestMapping("/semester")
 public class SemesterController {
 
-    private static final String SEMESTER_CREATION_PAGE = "semesterCreation";
+    private static final String SEMESTER_CREATION_PAGE = "semester/semesterCreation";
 
     private final SemesterService semesterService;
 

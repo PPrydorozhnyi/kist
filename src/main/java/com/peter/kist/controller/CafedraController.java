@@ -22,7 +22,7 @@ import static com.peter.kist.AppConstants.CAFEDRA_LIST_TYPE;
 @RequestMapping("/cafedra")
 public class CafedraController {
 
-    private static final String CAFEDRA_CREATION_PAGE = "cafedraCreation";
+    private static final String CAFEDRA_CREATION_PAGE = "cafedra/cafedraCreation";
 
     private final CafedraService cafedraService;
 

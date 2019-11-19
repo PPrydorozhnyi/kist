@@ -22,7 +22,7 @@ import static com.peter.kist.AppConstants.PRIVILEGE_LIST_TYPE;
 @RequestMapping("/privilege")
 public class PrivilegeController {
 
-    private static final String PRIVILEGE_CREATION_PAGE = "privilegeCreation";
+    private static final String PRIVILEGE_CREATION_PAGE = "privilege/privilegeCreation";
 
     private final PrivilegeService privilegeService;
 

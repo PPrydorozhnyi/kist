@@ -1,14 +1,20 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.entity.Student;
 import com.peter.kist.service.QueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
 
 @Controller
 @Slf4j
@@ -18,14 +24,18 @@ public class QueryController {
 
     private final QueryService queryService;
 
+    private final ModelMapper mapper;
+
     @GetMapping("/query1")
-    public String getStudent(Model model, @PathVariable Integer id) {
+    public String getStudent(Model model, @RequestParam Integer groupId, @RequestParam Integer subjectId) {
 
         log.debug("first query");
 
-        queryService.query1();
+        final List<Student> students = queryService.query1(groupId, subjectId);
 
-        return "querySearch";
+        model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
+
+        return "student/studentTableView";
     }
 
 
