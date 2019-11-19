@@ -25,6 +25,6 @@ public class Mark {
     @EqualsAndHashCode.Exclude
     private List<Student> students;
 
-    @OneToMany(mappedBy = "group")
-    private List<TeacherPlan> teacherPlans;
+    @ManyToMany(mappedBy = "marks")
+    private List<TeacherPlan> teacherPlan;
 }
