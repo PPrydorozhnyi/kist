@@ -1,8 +1,6 @@
 package com.peter.kist;
 
 import com.peter.kist.model.dto.*;
-import com.peter.kist.model.entity.PersonPrivilege;
-import com.peter.kist.model.entity.TeacherPlan;
 import org.modelmapper.TypeToken;
 
 import java.lang.reflect.Type;

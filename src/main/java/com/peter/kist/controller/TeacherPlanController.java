@@ -1,26 +1,8 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.dto.TeacherPlanDTO;
-import com.peter.kist.model.dto.SemesterDTO;
-import com.peter.kist.model.dto.GroupDTO;
-import com.peter.kist.model.dto.PersonDTO;
-import com.peter.kist.model.dto.TestKindDTO;
-import com.peter.kist.model.dto.SubjectDTO;
-
-import com.peter.kist.model.entity.TeacherPlan;
-import com.peter.kist.model.entity.Semester;
-import com.peter.kist.model.entity.Group;
-import com.peter.kist.model.entity.Person;
-import com.peter.kist.model.entity.TestKind;
-import com.peter.kist.model.entity.Subject;
-
-import com.peter.kist.service.TeacherPlanService;
-import com.peter.kist.service.SemesterService;
-import com.peter.kist.service.GroupService;
-import com.peter.kist.service.PersonService;
-import com.peter.kist.service.TestKindService;
-import com.peter.kist.service.SubjectService;
-
+import com.peter.kist.model.dto.*;
+import com.peter.kist.model.entity.*;
+import com.peter.kist.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -32,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Date;
 import java.util.Map;
 
 import static com.peter.kist.AppConstants.*;
@@ -163,6 +144,4 @@ public class TeacherPlanController {
 
         return "teacher-plan/teacherPlanTableView";
     }
-    
-    
 }

@@ -2,8 +2,8 @@ package com.peter.kist.model.converter;
 
 import com.peter.kist.model.dto.PersonPrivilegeDTO;
 import com.peter.kist.model.entity.PersonPrivilege;
-import com.peter.kist.repository.PrivilegeRepository;
 import com.peter.kist.repository.PersonRepository;
+import com.peter.kist.repository.PrivilegeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,6 @@ public class PersonPrivilegeDtoToInstanceConverter implements Converter<PersonPr
 
     @Override
     public PersonPrivilege convert(PersonPrivilegeDTO personPrivilegeDTO) {
-
-//        PersonPrivilege personPrivilege = new PersonPrivilege();
-//
-//        personPrivilege.setBeginDate(personPrivilegeDTO.getBeginDate());
-//        personPrivilege.setEndDate(personPrivilegeDTO.getEndDate());
-//        personPrivilege.setGround(personPrivilegeDTO.getGround());
 
         PersonPrivilege personPrivilege = mapper.map(personPrivilegeDTO, PersonPrivilege.class);
 

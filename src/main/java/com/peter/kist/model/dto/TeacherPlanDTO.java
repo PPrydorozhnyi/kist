@@ -1,9 +1,9 @@
 package com.peter.kist.model.dto;
 
-import com.peter.kist.model.entity.TeacherPlan;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 @Data
@@ -15,7 +15,6 @@ public class TeacherPlanDTO {
 
     private Boolean obligatory;
 
-    //private MarkDTO marks;
     private SemesterDTO semester;
     private GroupDTO group;
     private PersonDTO tester;
