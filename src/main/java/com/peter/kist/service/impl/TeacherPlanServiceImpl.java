@@ -34,8 +34,7 @@ public class TeacherPlanServiceImpl implements TeacherPlanService {
 
     @Override
     public void deleteTeacherPlan(Integer id) {
-        TeacherPlan teacherPlan = teacherPlanRepository.getOne(id);
-        teacherPlanRepository.delete(teacherPlan);
+        teacherPlanRepository.deleteTeacherPlanById(id);
     }
 
     @Override
