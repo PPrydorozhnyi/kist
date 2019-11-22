@@ -34,8 +34,7 @@ public class CafedraServiceImpl implements CafedraService {
 
     @Override
     public void deleteCafedra(Integer id) {
-        Cafedra cafedra = cafedraRepository.getOne(id);
-        cafedraRepository.delete(cafedra);
+        cafedraRepository.deleteCafedraById(id);
     }
 
     @Override

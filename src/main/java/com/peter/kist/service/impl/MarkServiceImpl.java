@@ -33,8 +33,7 @@ public class MarkServiceImpl implements MarkService {
 
     @Override
     public void deleteMark(Integer id) {
-        Mark mark = markRepository.getOne(id);
-        markRepository.delete(mark);
+        markRepository.deleteMarkById(id);
     }
 
     @Override

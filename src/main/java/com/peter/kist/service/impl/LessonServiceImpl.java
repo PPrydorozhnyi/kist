@@ -34,8 +34,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public void deleteLesson(Integer id) {
-        Lesson lesson = lessonRepository.getOne(id);
-        lessonRepository.delete(lesson);
+        lessonRepository.deleteLessonById(id);
     }
 
     @Override

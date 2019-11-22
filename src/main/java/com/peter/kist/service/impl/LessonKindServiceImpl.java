@@ -34,18 +34,11 @@ public class LessonKindServiceImpl implements LessonKindService {
 
     @Override
     public void deleteLessonKind(Integer id) {
-        LessonKind lessonKind = lessonKindRepository.getOne(id);
-        lessonKindRepository.delete(lessonKind);
+        lessonKindRepository.deleteLessonKindById(id);
     }
 
     @Override
     public List<LessonKind> findAll() {
         return lessonKindRepository.findAll();
     }
-
-    /*@Override
-    public List<Group> getGroupsForLessonKind(Integer id) {
-        LessonKind lessonKind = lessonKindRepository.getOne(id);
-        return lessonKind.getGroups();
-    }*/
 }

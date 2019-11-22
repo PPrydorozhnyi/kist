@@ -39,8 +39,7 @@ public class PrivilegeServiceImpl implements PrivilegeService {
 
     @Override
     public void deletePrivilege(Integer id) {
-        Privilege privilege = privilegeRepository.getOne(id);
-        privilegeRepository.delete(privilege);
+        privilegeRepository.deletePrivilegeById(id);
     }
 
     @Override
@@ -53,10 +52,4 @@ public class PrivilegeServiceImpl implements PrivilegeService {
         BeanUtils.copyProperties(privilege, privilegeFromCache, "id", "personPrivilege");
         return privilegeFromCache;
     }
-
-    /*@Override
-    public List<Group> getGroupsForPrivilege(Integer id) {
-        Privilege privilege = privilegeRepository.getOne(id);
-        return privilege.getGroups();
-    }*/
 }

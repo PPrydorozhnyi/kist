@@ -34,18 +34,11 @@ public class TestKindServiceImpl implements TestKindService {
 
     @Override
     public void deleteTestKind(Integer id) {
-        TestKind testKind = testKindRepository.getOne(id);
-        testKindRepository.delete(testKind);
+        testKindRepository.deleteTestKindById(id);
     }
 
     @Override
     public List<TestKind> findAll() {
         return testKindRepository.findAll();
     }
-
-    /*@Override
-    public List<Group> getGroupsForTestKind(Integer id) {
-        TestKind testKind = testKindRepository.getOne(id);
-        return testKind.getGroups();
-    }*/
 }

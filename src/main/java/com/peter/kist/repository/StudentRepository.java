@@ -2,8 +2,10 @@ package com.peter.kist.repository;
 
 import com.peter.kist.model.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,5 +15,10 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
      */
     @Query(value = "SELECT s FROM Student s JOIN s.groups g JOIN s.marks m JOIN g.teacherPlans t JOIN t.subject subj " +
             "WHERE g.id = :groupId AND subj.id = :subjectId AND m.value > avg(m.value)")
-    public List<Student> customQuery1(@Param("groupId") Integer groupId, @Param("subjectId") Integer subjectId);
+    List<Student> customQuery1(@Param("groupId") Integer groupId, @Param("subjectId") Integer subjectId);
+
+    @Modifying
+    @Transactional
+    void deleteStudentById(Integer id);
+
 }

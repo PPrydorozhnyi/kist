@@ -34,8 +34,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public void deleteSubject(Integer id) {
-        Subject subject = subjectRepository.getOne(id);
-        subjectRepository.delete(subject);
+        subjectRepository.deleteSubjectById(id);
     }
 
     @Override
