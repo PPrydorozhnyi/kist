@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface QueryService {
 
-    List<Student> query1(Integer groupId, Integer subjectId);
+    List<Student> query1(Integer groupId);
 
     void query2();
 

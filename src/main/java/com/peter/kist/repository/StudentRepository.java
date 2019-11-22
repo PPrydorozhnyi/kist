@@ -11,18 +11,13 @@ import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
     /**
-     * Query for search all students that have marks higher than average for specified subject and group
+     * Query for search all students that have marks higher than average for specified group
      */
-    @Query(value = "SELECT s FROM Student s JOIN s.groups g JOIN s.marks m JOIN g.teacherPlans t JOIN t.subject subj " +
-            "WHERE g.id = :groupId " +
-            "AND subj.id = :subjectId " +
-            "AND m.value > " +
-            "   (select avg(mark.value) " +
-            "       from Student st " +
-            "       join st.groups gr " +
-            "       join st.marks mark " +
-            "       where gr.id = :groupId)")
-    List<Student> studentWithMarksMoreThanAverage(@Param("groupId") Integer groupId, @Param("subjectId") Integer subjectId);
+    @Query(value = "SELECT s FROM Student s JOIN s.studentMarks sm JOIN sm.teacherPlan t JOIN s.groups gr JOIN sm.mark m " +
+            "WHERE t.group.id = :groupId " +
+            "AND m.value > (SELECT avg(m.value) FROM Student s JOIN s.studentMarks sm JOIN sm.mark m JOIN sm.teacherPlan t " +
+            "WHERE t.group.id = :groupId)")
+    List<Student> studentWithMarksMoreThanAverage(@Param("groupId") Integer groupId);
 
     @Modifying
     @Transactional

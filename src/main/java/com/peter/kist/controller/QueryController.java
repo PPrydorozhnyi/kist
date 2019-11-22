@@ -27,11 +27,11 @@ public class QueryController {
     private final ModelMapper mapper;
 
     @GetMapping("/query1")
-    public String getStudent(Model model, @RequestParam Integer groupId, @RequestParam Integer subjectId) {
+    public String getStudent(Model model, @RequestParam Integer groupId) {
 
         log.debug("first query");
 
-        final List<Student> students = queryService.query1(groupId, subjectId);
+        final List<Student> students = queryService.query1(groupId);
 
         model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
 
