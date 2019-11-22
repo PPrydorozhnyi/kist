@@ -40,8 +40,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void deletePerson(Integer id) {
-        Person person = personRepository.getOne(id);
-        personRepository.delete(person);
+        personRepository.deletePersonById(id);
     }
 
     @Override

@@ -32,8 +32,7 @@ public class ViolationServiceImpl implements ViolationService {
 
     @Override
     public void deleteViolation(Integer id) {
-        Violation violation = violationRepository.getOne(id);
-        violationRepository.delete(violation);
+        violationRepository.deleteViolationById(id);
     }
 
     @Override

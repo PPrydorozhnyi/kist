@@ -33,8 +33,7 @@ public class ViolationKindImpl implements ViolationKindService {
 
     @Override
     public void deleteViolationKind(Integer id) {
-        ViolationKind violationKind = violationKindRepository.getOne(id);
-        violationKindRepository.delete(violationKind);
+        violationKindRepository.deleteViolationKindById(id);
     }
 
     @Override

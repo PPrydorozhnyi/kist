@@ -33,8 +33,7 @@ public class PunishKindServiceImpl implements PunishKindService {
 
     @Override
     public void deletePunishKind(Integer id) {
-        PunishKind PunishKind = punishKindRepository.getOne(id);
-        punishKindRepository.delete(PunishKind);
+        punishKindRepository.deletePunishKindById(id);
     }
 
     @Override

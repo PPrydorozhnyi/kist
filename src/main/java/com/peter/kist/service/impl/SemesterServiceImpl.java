@@ -34,8 +34,7 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Override
     public void deleteSemester(Integer id) {
-        Semester semester = semesterRepository.getOne(id);
-        semesterRepository.delete(semester);
+        semesterRepository.deleteSemesterById(id);
     }
 
     @Override
