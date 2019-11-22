@@ -33,8 +33,7 @@ public class SpecialityServiceImpl implements SpecialityService {
 
     @Override
     public void deleteSpeciality(Integer id) {
-        Speciality speciality = specialityRepository.getOne(id);
-        specialityRepository.delete(speciality);
+        specialityRepository.deleteSpecialityById(id);
     }
 
     @Override

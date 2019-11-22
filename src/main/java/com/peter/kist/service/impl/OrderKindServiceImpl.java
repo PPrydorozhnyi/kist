@@ -33,8 +33,7 @@ public class OrderKindServiceImpl implements OrderKindService {
 
     @Override
     public void deleteOrderKind(Integer id) {
-        OrderKind orderKind = orderKindRepository.getOne(id);
-        orderKindRepository.delete(orderKind);
+        orderKindRepository.deleteOrderKindById(id);
     }
 
     @Override
