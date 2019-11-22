@@ -19,7 +19,7 @@ public class QueryServiceImpl implements QueryService {
 
     @Override
     public List<Student> query1(Integer groupId, Integer subjectId) {
-        return studentRepository.customQuery1(groupId, subjectId);
+        return studentRepository.studentWithMarksMoreThanAverage(groupId, subjectId);
     }
 
     @Override
