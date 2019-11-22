@@ -12,14 +12,17 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "pr_person_privilege")
-public class PersonPrivilege implements Serializable {
+public class PersonPrivilege {
 
     @Id
+    @Column(name = "person_privilege_id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
-    @Id
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "privilege_id")
     private Privilege privilege;

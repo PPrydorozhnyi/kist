@@ -1,6 +1,8 @@
 package com.peter.kist;
 
 import com.peter.kist.model.dto.*;
+import com.peter.kist.model.entity.PersonPrivilege;
+import com.peter.kist.model.entity.TeacherPlan;
 import org.modelmapper.TypeToken;
 
 import java.lang.reflect.Type;
@@ -44,7 +46,7 @@ public class AppConstants {
     public static final Type GROUP_LIST_TYPE = (new TypeToken<List<GroupDTO>>() {
     }).getType();
 
-    public static final Type SUBJECT_DTO_LIST_TYPE = (new TypeToken<List<SubjectDTO>>() {
+    public static final Type SUBJECT_LIST_TYPE = (new TypeToken<List<SubjectDTO>>() {
     }).getType();
 
     public static final Type TEST_KIND_LIST_TYPE = (new TypeToken<List<TestKindDTO>>() {
@@ -60,6 +62,12 @@ public class AppConstants {
     }).getType();
 
     public static final Type VIOLATION_LIST_TYPE = (new TypeToken<List<ViolationDTO>>() {
+    }).getType();
+
+    public static final Type TEACHER_PLAN_LIST_TYPE = (new TypeToken<List<TeacherPlanDTO>>() {
+    }).getType();
+
+    public static final Type PERSON_PRIVILEGE_LIST_TYPE = (new TypeToken<List<PersonPrivilegeDTO>>() {
     }).getType();
 
     private AppConstants() {

@@ -39,7 +39,7 @@
                 </spring:bind>
                 <spring:bind path="teacher.surname">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Teacher name:<br>
+                        Teacher surname:<br>
                         <form:input type="text" path="teacher.surname" class="form-control"
                                     placeholder="Teacher surname"
                                     readonly="true"/>
@@ -49,7 +49,7 @@
 
                 <spring:bind path="lessonKind.name">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Teacher surname:<br>
+                        Lesson Kind:<br>
                         <form:input type="text" path="lessonKind.name" class="form-control" placeholder="Lesson Kind"
                                     readonly="true"/>
                         <form:errors path="lessonKind.name"/>
@@ -59,6 +59,7 @@
                 <%--hours--%>
                 <spring:bind path="hours">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Hours:<br>
                         <form:input type="text" path="hours" class="form-control" placeholder="Lesson hours"
                                     readonly="true"/>
                         <form:errors path="hours"/>

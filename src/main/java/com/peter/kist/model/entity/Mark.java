@@ -21,7 +21,7 @@ public class Mark {
     @Column(name = "mark_value")
     private Integer value;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "marks")
     @EqualsAndHashCode.Exclude
-    private List<Student> students;
+    @OneToMany(mappedBy = "mark", fetch = FetchType.LAZY)
+    private List<StudentMark> studentMarks;
 }

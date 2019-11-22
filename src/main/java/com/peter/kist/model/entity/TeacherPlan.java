@@ -19,13 +19,8 @@ public class TeacherPlan {
     private Integer id;
 
     @EqualsAndHashCode.Exclude
-    @ManyToMany
-    @JoinTable(
-            name = "pr_student_marks",
-            joinColumns = {@JoinColumn(name = "teacher_plan_id")},
-            inverseJoinColumns = {@JoinColumn(name = "mark_id")}
-    )
-    private List<Mark> marks;
+    @OneToMany(mappedBy = "teacherPlan", fetch = FetchType.LAZY)
+    private List<StudentMark> studentMarks;
 
     private Date testDate;
 

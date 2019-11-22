@@ -1,6 +1,7 @@
 package com.peter.kist.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +22,6 @@ public class Student extends Person {
 
     private Date groupPuttingDate;
 
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -31,12 +31,7 @@ public class Student extends Person {
     )
     private List<Group> groups;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "pr_student_marks",
-            joinColumns = {@JoinColumn(name = "student_id")},
-            inverseJoinColumns = {@JoinColumn(name = "mark_id")}
-    )
-    private List<Mark> marks;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<StudentMark> studentMarks;
 }
