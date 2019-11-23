@@ -18,7 +18,5 @@ public interface StudentService {
 
     List<Student> findAll();
 
-    List<Group> getGroupsForStudent(Integer id);
-
     List<Mark> getMarksForStudent(Integer id);
 }

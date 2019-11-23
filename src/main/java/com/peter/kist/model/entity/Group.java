@@ -24,8 +24,8 @@ public class Group {
 
     private Date groupCreateDate;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
-    private List<Student> students;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
+    private List<StudentGroup> studentGroups;
 
     @OneToMany(mappedBy = "group")
     private List<TeacherPlan> teacherPlans;
