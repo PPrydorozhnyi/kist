@@ -23,7 +23,7 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Student name</th>
+                    <th>Student</th>
                     <th>Group</th>
                     <th>Putting Date</th>
                 </tr>

@@ -24,7 +24,7 @@ public class StudentGroup {
     private Student student;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", nullable = false)
     private Group group;
 
 }
