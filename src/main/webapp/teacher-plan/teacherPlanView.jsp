@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-10">
 
-            <form:form method="POST" action="${contextPath}/tester-plan/edit" modelAttribute="teacherPlanForm"
+            <form:form method="POST" action="${contextPath}/teacher-plan/edit" modelAttribute="teacherPlanForm"
                        class="form-signin">
                 <h2 class="form-signin-heading">View TeacherPlan</h2>
 
@@ -98,7 +98,7 @@
                 <%--obligatory--%>
                 <spring:bind path="obligatory">
                     <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="obligatory">   Obligatory: </label>
-                        <form:input type="bool" id = "obligatory" path="obligatory" class="form-control"
+                        <form:checkbox id = "obligatory" path="obligatory" class="form-control"
                                     readonly="true"/>
                         <form:errors path="obligatory"/>
                     </div>
@@ -114,10 +114,6 @@
             </form:form>
             <form:form method="GET" action="${contextPath}/teacher-plan/all" class="form-signin">
                 <button class="btn btn btn-info btn-block" type="submit">View all teacher plans</button>
-            </form:form>
-            <form:form method="GET" action="${contextPath}/teacher-plan/${teacherPlanForm.id}/groups" modelAttribute="teacherPlanForm"
-                       class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View groups for lesson</button>
             </form:form>
         </div>
     </div>
