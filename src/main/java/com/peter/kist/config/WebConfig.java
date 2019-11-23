@@ -1,6 +1,7 @@
 package com.peter.kist.config;
 
 
+import com.peter.kist.model.converter.EnumFromStringConverterFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -18,6 +19,8 @@ public class WebConfig implements WebMvcConfigurer {
         DateFormatter dateFormatter = new DateFormatter();
         dateFormatter.setPattern(datePattern);
         registry.addFormatter(dateFormatter);
+
+        registry.addConverterFactory(new EnumFromStringConverterFactory());
     }
 
 }

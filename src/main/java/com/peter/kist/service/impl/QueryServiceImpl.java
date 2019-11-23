@@ -2,6 +2,7 @@ package com.peter.kist.service.impl;
 
 import com.peter.kist.model.entity.Person;
 import com.peter.kist.model.entity.Student;
+import com.peter.kist.model.enums.MarkNames;
 import com.peter.kist.repository.PersonRepository;
 import com.peter.kist.repository.StudentRepository;
 import com.peter.kist.service.QueryService;
@@ -38,12 +39,7 @@ public class QueryServiceImpl implements QueryService {
     }
 
     @Override
-    public void query3() {
-
-    }
-
-    @Override
-    public void query4() {
-
+    public List<Student> query3(Integer personId, MarkNames mark) {
+        return studentRepository.studentWithMarks(mark.getMin(), mark.getMax(), personId);
     }
 }

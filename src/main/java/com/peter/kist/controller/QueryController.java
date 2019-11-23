@@ -2,6 +2,7 @@ package com.peter.kist.controller;
 
 import com.peter.kist.model.entity.Person;
 import com.peter.kist.model.entity.Student;
+import com.peter.kist.model.enums.MarkNames;
 import com.peter.kist.service.QueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,5 +55,16 @@ public class QueryController {
         return "person/personTableView";
     }
 
+    @GetMapping("/query3")
+    public String getTeachers(Model model, @RequestParam Integer personId, @RequestParam MarkNames mark) {
+
+        log.debug("third query");
+
+        final List<Student> students = queryService.query3(personId, mark);
+
+        model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
+
+        return "student/studentTableView";
+    }
 
 }
