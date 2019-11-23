@@ -14,6 +14,9 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
     @Transactional
     void deletePersonById(Integer id);
 
+    /**
+     * Query for search all teachers that have exams for specified semester and subject
+     */
     @Query("SELECT DISTINCT p FROM Person p JOIN p.teacherPlans t JOIN t.subject s " +
             "JOIN t.semester sem " +
             "WHERE s.id = ?3 " +
