@@ -68,6 +68,9 @@ public class AppConstants {
     public static final Type PERSON_PRIVILEGE_LIST_TYPE = (new TypeToken<List<PersonPrivilegeDTO>>() {
     }).getType();
 
+    public static final Type STUDENT_MARK_LIST_TYPE = (new TypeToken<List<StudentMarkDTO>>() {
+    }).getType();
+
     private AppConstants() {
     }
 }
