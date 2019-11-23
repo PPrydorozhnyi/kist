@@ -86,6 +86,7 @@ CREATE TABLE pr_lesson
 (
     lesson_id      SERIAL PRIMARY KEY,
     lesson_kind_id INTEGER NOT NULL,
+    teacher_plan_id INTEGER NOT NULL,
     teacher_id     INTEGER NOT NULL NOT NULL,
     hours          INTEGER
 );
@@ -238,6 +239,8 @@ ALTER TABLE ONLY pr_teacher_plan
 
 ALTER TABLE ONLY pr_lesson
     ADD CONSTRAINT fk_lesson_lesson_kind_id FOREIGN KEY (lesson_kind_id) REFERENCES pr_lesson_kind (lesson_kind_id);
+ALTER TABLE ONLY pr_lesson
+    ADD CONSTRAINT fk_lesson_teacher_plan_id FOREIGN KEY (teacher_plan_id) REFERENCES pr_teacher_plan (teacher_plan_id);
 
 ALTER TABLE ONLY pr_user_role
     ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES pr_user (user_id);
