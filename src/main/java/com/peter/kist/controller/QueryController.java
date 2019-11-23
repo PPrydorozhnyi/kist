@@ -23,12 +23,17 @@ import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
 @Controller
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/query")
+@RequestMapping("/queryP")
 public class QueryController {
 
     private final QueryService queryService;
 
     private final ModelMapper mapper;
+
+    @GetMapping
+    public String getQueryPage() {
+        return "query/queryP";
+    }
 
     @GetMapping("/query1")
     public String getStudents(Model model, @RequestParam Integer groupId) {
