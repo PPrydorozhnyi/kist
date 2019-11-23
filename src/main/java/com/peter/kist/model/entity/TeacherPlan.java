@@ -55,4 +55,7 @@ public class TeacherPlan {
     @JoinColumn(name = "subjectId", nullable = false)
     @EqualsAndHashCode.Exclude
     private Subject subject;
+
+    @OneToMany(mappedBy = "teacherPlan", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Lesson> lesson;
 }

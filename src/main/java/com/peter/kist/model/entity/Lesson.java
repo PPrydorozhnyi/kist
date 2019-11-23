@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -27,4 +26,8 @@ public class Lesson {
 
     @Column(name = "hours")
     private Integer hours;
+
+    @ManyToOne
+    @JoinColumn(name = "teacherPlanId", nullable = false)
+    private TeacherPlan teacherPlan;
 }
