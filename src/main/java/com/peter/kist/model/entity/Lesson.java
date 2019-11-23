@@ -26,4 +26,8 @@ public class Lesson {
 
     @Column(name = "hours")
     private Integer hours;
+
+    @ManyToOne
+    @JoinColumn(name = "teacherPlanId", nullable = false)
+    private TeacherPlan teacherPlan;
 }
