@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lesson page</title>
+    <title>Student Mark Page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -20,49 +20,46 @@
 
     <div class="row">
         <div class="col-10">
-
-            <form:form method="POST" action="${contextPath}/lesson/edit" modelAttribute="lessonForm"
+            <form:form method="POST" action="${contextPath}/student-mark/edit" modelAttribute="studentMarkForm"
                        class="form-signin">
-                <h2 class="form-signin-heading">View lesson</h2>
+                <h2 class="form-signin-heading">View student mark</h2>
 
                 <form:hidden path="id"/>
-                <form:hidden path="teacher.id"/>
-                <form:hidden path="lessonKind.id"/>
+                <form:hidden path="student.id"/>
+                <form:hidden path="teacherPlan.id"/>
 
-                <spring:bind path="teacher.name">
+                <spring:bind path="student.name">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Teacher name:<br>
-                        <form:input type="text" path="teacher.name" class="form-control" placeholder="Teacher name"
+                        Student name:<br>
+                        <form:input type="text" path="student.name" class="form-control"
                                     readonly="true"/>
-                        <form:errors path="teacher.name"/>
+                        <form:errors path="student.name"/>
                     </div>
                 </spring:bind>
-                <spring:bind path="teacher.surname">
+                <spring:bind path="student.surname">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Teacher surname:<br>
-                        <form:input type="text" path="teacher.surname" class="form-control"
-                                    placeholder="Teacher surname"
+                        Student surname:<br>
+                        <form:input type="text" path="student.surname" class="form-control"
                                     readonly="true"/>
-                        <form:errors path="teacher.surname"/>
-                    </div>
-                </spring:bind>
-
-                <spring:bind path="lessonKind.name">
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Lesson Kind:<br>
-                        <form:input type="text" path="lessonKind.name" class="form-control" placeholder="Lesson Kind"
-                                    readonly="true"/>
-                        <form:errors path="lessonKind.name"/>
+                        <form:errors path="student.surname"/>
                     </div>
                 </spring:bind>
 
-                <%--hours--%>
-                <spring:bind path="hours">
+                <spring:bind path="teachPlan.testDate">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Hours:<br>
-                        <form:input type="text" path="hours" class="form-control" placeholder="Lesson hours"
+                        Privilege:<br>
+                        <form:input type="text" path="teachPlan.testDate" class="form-control"
                                     readonly="true"/>
-                        <form:errors path="hours"/>
+                        <form:errors path="teachPlan.testDate"/>
+                    </div>
+                </spring:bind>
+
+                <spring:bind path="mark.value">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Mark:<br>
+                        <form:input type="text" path="mark.value" class="form-control"
+                                    readonly="true"/>
+                        <form:errors path="mark.value"/>
                     </div>
                 </spring:bind>
 
@@ -70,16 +67,13 @@
             </form:form>
         </div>
         <div class="col-2 margin-view">
-            <form:form method="DELETE" action="${contextPath}/lesson/${lessonForm.id}" modelAttribute="lessonForm"
+            <form:form method="DELETE" action="${contextPath}/student-mark/student/${studentMarkForm.student.id}/teachPlan/${studentMarkForm.teachPlan.id}"
+                       modelAttribute="studentMarkForm"
                        class="form-signin">
                 <button class="btn btn btn-danger btn-block" type="submit">Delete</button>
             </form:form>
-            <form:form method="GET" action="${contextPath}/lesson/all" class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View all lessons</button>
-            </form:form>
-            <form:form method="GET" action="${contextPath}/lesson/${lessonForm.id}/groups" modelAttribute="lessonForm"
-                       class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View groups for lesson</button>
+            <form:form method="GET" action="${contextPath}/student-mark/all" class="form-signin">
+                <button class="btn btn btn-info btn-block" type="submit">View all studentMarks</button>
             </form:form>
         </div>
     </div>

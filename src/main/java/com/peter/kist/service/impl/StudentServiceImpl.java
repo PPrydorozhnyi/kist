@@ -3,6 +3,7 @@ package com.peter.kist.service.impl;
 import com.peter.kist.model.entity.Group;
 import com.peter.kist.model.entity.Mark;
 import com.peter.kist.model.entity.Student;
+import com.peter.kist.model.entity.StudentMark;
 import com.peter.kist.repository.StudentRepository;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -54,10 +56,13 @@ public class StudentServiceImpl implements StudentService {
         return student.getGroups();
     }
 
+    //TODO refactor to repository method
     @Override
     public List<Mark> getMarksForStudent(Integer id) {
         Student student = studentRepository.getOne(id);
-        return student.getMarks();
+        return student.getStudentMarks().stream()
+                .map(StudentMark::getMark)
+                .collect(Collectors.toList());
     }
 
     private Student updateStudent(Student person) {

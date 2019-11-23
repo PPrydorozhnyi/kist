@@ -58,6 +58,7 @@ CREATE TABLE pr_groups
 
 CREATE TABLE pr_student_marks
 (
+    student_mark_id SERIAL PRIMARY KEY,
     student_id      INTEGER,
     teacher_plan_id INTEGER,
     mark_id         INTEGER
@@ -165,6 +166,7 @@ CREATE TABLE pr_privilege
 
 CREATE TABLE pr_person_privilege
 (
+    person_privilege_id SERIAL PRIMARY KEY,
     privilege_id    INTEGER,
     person_id       INTEGER,
     priv_begin_date TIMESTAMP,

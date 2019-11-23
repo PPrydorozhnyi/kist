@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Test Kind page</title>
+    <title>Student Mark Page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -23,19 +23,27 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>TestKind name</th>
+                    <th>Student</th>
+                    <th>Teacher Plan</th>
+                    <th>Mark</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${testKinds}" var="testKind">
+                <c:forEach items="${studentMarks}" var="studentMark">
                     <tr>
-                        <td><a href="${contextPath}/test-kind/${testKind.id}/">${testKind.name}</a></td>
+                        <td>
+                            <a href="${contextPath}/student-mark/student/${studentMark.student.id}/teacherPlan/${studentMark.teacherPlan.id}">
+                                    ${"".concat(studentMark.student.name).concat(" ").concat(studentMark.student.surname)}</a>
+                        </td>
+                        <td>${studentMark.teacherPlan.name}</td>
+                        <td>${studentMark.mark.value}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/test-kind/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/student-mark/create"
+                   class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>

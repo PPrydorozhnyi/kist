@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.peter.kist.AppConstants.SUBJECT_DTO_LIST_TYPE;
+import static com.peter.kist.AppConstants.SUBJECT_LIST_TYPE;
 
 @Controller
 @Slf4j
@@ -84,7 +84,7 @@ public class SubjectController {
 
         List<Subject> subjects = subjectService.findAll();
 
-        model.addAttribute("subjects", mapper.map(subjects, SUBJECT_DTO_LIST_TYPE));
+        model.addAttribute("subjects", mapper.map(subjects, SUBJECT_LIST_TYPE));
 
         return "subject/subjectTableView";
     }

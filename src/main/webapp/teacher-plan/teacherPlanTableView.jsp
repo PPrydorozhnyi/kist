@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Test Kind page</title>
+    <title>Teacher Plan page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -23,19 +23,33 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>TestKind name</th>
+                    <th>Tester name</th>
+                    <th>Semester</th>
+                    <th>Group</th>
+                    <th>Test Kind</th>
+                    <th>Subject</th>
+                    <th>Test Date</th>
+                    <th>Obligatory</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${testKinds}" var="testKind">
+                <c:forEach items="${teacherPlans}" var="teacherPlan">
                     <tr>
-                        <td><a href="${contextPath}/test-kind/${testKind.id}/">${testKind.name}</a></td>
+                        <td><a href="${contextPath}/teacher-plan/${teacherPlan.id}">
+                                ${"".concat(teacherPlan.tester.name).concat(" ").concat(teacherPlan.tester.surname)}</a></td>
+                        <td>${teacherPlan.semester.teachBeginDate}</td>
+                        <td>${teacherPlan.group.groupCode}</td>
+                        <td>${teacherPlan.testKind.name}</td>
+                        <td>${teacherPlan.subject.name}</td>
+                        <td>${teacherPlan.testDate}</td>
+                        <td>${teacherPlan.obligatory}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/test-kind/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/teacher-plan/create"
+                   class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>

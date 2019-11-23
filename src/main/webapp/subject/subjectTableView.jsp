@@ -24,7 +24,7 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>Subject name</th>
-                    <th>Surname</th>
+                    <th>Subject schifr</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Test Kind page</title>
+    <title>Person Privilege Page</title>
 
     <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
@@ -23,19 +23,31 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>TestKind name</th>
+                    <th>Person name</th>
+                    <th>Privilege</th>
+                    <th>Begin Date</th>
+                    <th>End Date</th>
+                    <th>Ground</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${testKinds}" var="testKind">
+                <c:forEach items="${personPrivileges}" var="personPrivilege">
                     <tr>
-                        <td><a href="${contextPath}/test-kind/${testKind.id}/">${testKind.name}</a></td>
+                        <td>
+                            <a href="${contextPath}/person-privilege/person/${personPrivilege.person.id}/privilege/${personPrivilege.privilege.id}">
+                                    ${"".concat(personPrivilege.person.name).concat(" ").concat(personPrivilege.person.surname)}</a>
+                        </td>
+                        <td>${personPrivilege.privilege.name}</td>
+                        <td>${personPrivilege.beginDate}</td>
+                        <td>${personPrivilege.endDate}</td>
+                        <td>${personPrivilege.ground}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/test-kind/create" class="form-signin">
+        <form:form cssClass="col-2 margin-table-view" method="GET" action="${contextPath}/person-privilege/create"
+                   class="form-signin">
             <button class="btn btn btn-success" type="submit">Create</button>
         </form:form>
     </div>
