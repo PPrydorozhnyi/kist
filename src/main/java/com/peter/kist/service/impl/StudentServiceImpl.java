@@ -50,12 +50,6 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
-    @Override
-    public List<Group> getGroupsForStudent(Integer id) {
-        Student student = studentRepository.getOne(id);
-        return student.getGroups();
-    }
-
     //TODO refactor to repository method
     @Override
     public List<Mark> getMarksForStudent(Integer id) {

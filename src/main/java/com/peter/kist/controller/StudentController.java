@@ -91,17 +91,4 @@ public class StudentController {
         return "student/studentTableView";
     }
 
-    @GetMapping("/{id}/groups")
-    public String getGroupsForStudent(@PathVariable Integer id, Model model) {
-
-        log.debug("getGroupsForStudent");
-
-        List<Group> groupsForStudent = studentService.getGroupsForStudent(id);
-
-        model.addAttribute("groups", mapper.map(groupsForStudent, GROUP_LIST_TYPE));
-
-        return "groupTableView";
-    }
-
-
 }
