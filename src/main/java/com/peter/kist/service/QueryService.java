@@ -14,4 +14,10 @@ public interface QueryService {
     List<Person> query2(Date startDate, Date endDate, Integer subjectId);
 
     List<Student> query3(Integer personId, MarkNames mark);
+
+    List<Student> queryY1(Integer privilegeId, Date privBeginDate, Date privEndDate);
+
+    List<Student> queryY2(Date violationDate, Date orderDate);
+
+    List<Student> queryY3(Integer specialityId, MarkNames mark);
 }

@@ -42,4 +42,19 @@ public class QueryServiceImpl implements QueryService {
     public List<Student> query3(Integer personId, MarkNames mark) {
         return studentRepository.studentWithMarks(mark.getMin(), mark.getMax(), personId);
     }
+
+    @Override
+    public List<Student> queryY1(Integer privilegeId, Date privBeginDate, Date privEndDate) {
+        return studentRepository.getStudentsByPrivilegeAndBeginAndEnd(privilegeId, privBeginDate, privEndDate);
+    }
+
+    @Override
+    public List<Student> queryY2(Date violationDate, Date orderDate) {
+        return studentRepository.getStudentsByViolationDate(violationDate, orderDate);
+    }
+
+    @Override
+    public List<Student> queryY3(Integer specialityId, MarkNames mark) {
+        return studentRepository.getStudentsBySpecialityAndMark(specialityId, mark);
+    }
 }
