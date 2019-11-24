@@ -20,16 +20,9 @@ public class Student extends Person {
 
     private String note;
 
-    private Date groupPuttingDate;
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "pr_student_group",
-            joinColumns = {@JoinColumn(name = "student_id")},
-            inverseJoinColumns = {@JoinColumn(name = "group_id")}
-    )
-    private List<Group> groups;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<StudentGroup> studentGroups;
 
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)

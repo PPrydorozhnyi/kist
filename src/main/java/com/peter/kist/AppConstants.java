@@ -71,6 +71,9 @@ public class AppConstants {
     public static final Type STUDENT_MARK_LIST_TYPE = (new TypeToken<List<StudentMarkDTO>>() {
     }).getType();
 
+    public static final Type STUDENT_GROUP_LIST_TYPE = (new TypeToken<List<StudentGroupDTO>>() {
+    }).getType();
+
     private AppConstants() {
     }
 }
