@@ -21,4 +21,10 @@ public interface QueryService {
     List<Student> queryVadim2(Integer violationKindId);
 
     List<Student> queryVadim3();
+
+    List<Student> queryY1(Integer privilegeId, Date privBeginDate, Date privEndDate);
+
+    List<Student> queryY2(Date violationDate, Date orderDate);
+
+    List<Student> queryY3(Integer specialityId, MarkNames mark);
 }

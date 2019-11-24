@@ -1,8 +1,11 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.dto.GroupDTO;
+import com.peter.kist.model.entity.Group;
 import com.peter.kist.model.entity.Person;
 import com.peter.kist.model.entity.Student;
 import com.peter.kist.model.enums.MarkNames;
+import com.peter.kist.service.GroupService;
 import com.peter.kist.service.QueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-import static com.peter.kist.AppConstants.PERSON_LIST_TYPE;
-import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
+import static com.peter.kist.AppConstants.*;
 
 @Controller
 @Slf4j
@@ -28,10 +31,20 @@ public class QueryController {
 
     private final QueryService queryService;
 
+    private final GroupService groupService;
+
     private final ModelMapper mapper;
 
     @GetMapping
-    public String getQueryPage() {
+    public String getQueryPage(Model model) {
+
+        List<Group> groups = groupService.findAll();
+
+        final Map<String, Object> map = Map.of(
+                "groups", mapper.map(groups, GROUP_LIST_TYPE));
+
+        model.addAllAttributes(map);
+
         return "query/queryP";
     }
 
