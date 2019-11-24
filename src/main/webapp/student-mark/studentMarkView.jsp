@@ -45,12 +45,29 @@
                     </div>
                 </spring:bind>
 
-                <spring:bind path="teachPlan.testDate">
+                <spring:bind path="teacherPlan.tester.name">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Privilege:<br>
-                        <form:input type="text" path="teachPlan.testDate" class="form-control"
+                        Tester name:<br>
+                        <form:input type="text" path="teacherPlan.tester.name" class="form-control"
                                     readonly="true"/>
-                        <form:errors path="teachPlan.testDate"/>
+                        <form:errors path="teacherPlan.tester.name"/>
+                    </div>
+                </spring:bind>
+                <spring:bind path="teacherPlan.tester.name">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Tester surname:<br>
+                        <form:input type="text" path="teacherPlan.tester.name" class="form-control"
+                                    readonly="true"/>
+                        <form:errors path="teacherPlan.tester.name"/>
+                    </div>
+                </spring:bind>
+
+                <spring:bind path="teacherPlan.testDate">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        Test date:<br>
+                        <form:input type="text" path="teacherPlan.testDate" class="form-control"
+                                    readonly="true"/>
+                        <form:errors path="teacherPlan.testDate"/>
                     </div>
                 </spring:bind>
 
@@ -67,7 +84,7 @@
             </form:form>
         </div>
         <div class="col-2 margin-view">
-            <form:form method="DELETE" action="${contextPath}/student-mark/student/${studentMarkForm.student.id}/teachPlan/${studentMarkForm.teachPlan.id}"
+            <form:form method="DELETE" action="${contextPath}/student-mark/student/${studentMarkForm.student.id}/teacherPlan/${studentMarkForm.teacherPlan.id}"
                        modelAttribute="studentMarkForm"
                        class="form-signin">
                 <button class="btn btn btn-danger btn-block" type="submit">Delete</button>

@@ -1,12 +1,12 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.dto.StudentMarkDTO;
 import com.peter.kist.model.dto.MarkDTO;
 import com.peter.kist.model.dto.StudentDTO;
+import com.peter.kist.model.dto.StudentMarkDTO;
 import com.peter.kist.model.dto.TeacherPlanDTO;
-import com.peter.kist.model.entity.StudentMark;
 import com.peter.kist.model.entity.Mark;
 import com.peter.kist.model.entity.Student;
+import com.peter.kist.model.entity.StudentMark;
 import com.peter.kist.model.entity.TeacherPlan;
 import com.peter.kist.service.MarkService;
 import com.peter.kist.service.StudentMarkService;
@@ -95,7 +95,7 @@ public class StudentMarkController {
 
         studentMark = studentMarkService.createStudentMark(studentMark);
 
-        return "redirect:/student-mark/" + studentMark.getId();
+        return String.format("redirect:/student-mark/student/%o/teacherPlan/%o", studentMark.getStudent().getId(), studentMark.getTeacherPlan().getId());
     }
 
     @PostMapping("/edit")
