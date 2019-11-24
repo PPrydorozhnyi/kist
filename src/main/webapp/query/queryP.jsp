@@ -1,3 +1,4 @@
+<%@ page import="com.peter.kist.model.enums.MarkNames" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -5,7 +6,7 @@
 <c:set var="groups" value="${pageContext.request.getAttribute('groups')}"/>
 <c:set var="subjects" value="${pageContext.request.getAttribute('subjects')}"/>
 <c:set var="persons" value="${pageContext.request.getAttribute('persons')}"/>
-<c:set var="marks" value="${pageContext.request.getAttribute('marks')}"/>
+<% pageContext.setAttribute("markEnum", MarkNames.values()); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,7 @@
         <h5 class="form-signin-heading">Query for search all students that have marks higher than average for specified group</h5>
 
         <%--Group--%>
-            <div class="form-group ${status.error ? 'has-error' : ''}"> Group:
+            <div class="form-group"> Group:
                 <select id="groupId" name="groupId">
                     <c:forEach items="${groups}" var="group">
                         <option ${id == group.id ? 'selected="selected"' : ''}
@@ -32,80 +33,63 @@
 
         <button class="btn btn-md btn-primary" type="submit">Process</button>
     </form:form>
+<%--    modelAttribute="semesterForm"--%>
+    <br>
+    <h2 class="form-signin-heading" align="center">Second query</h2>
+    <form:form id="form2" method="GET" action="${contextPath}/queryP/query2"
+               class="form-signin border border-primary">
+        <h5 class="form-signin-heading">Choose teachers ...</h5>
 
-<%--    <form:form id="form2" method="POST" action="${contextPath}/query/query2"--%>
-<%--               class="form-signin">--%>
-<%--        <h2 class="form-signin-heading">Second query</h2>--%>
-<%--        <h5 class="form-signin-heading">Choose teachers ...</h5>--%>
+        <%--subject--%>
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Subject:
+                <select id="subjectId" name="subjectId">
+                    <c:forEach items="${subjects}" var="subject">
+                        <option ${id == subject.id ? 'selected="selected"' : ''}
+                                value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
 
-<%--        &lt;%&ndash;subject&ndash;%&gt;--%>
-<%--        <spring:bind path="subject.id">--%>
-<%--            <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="subject">   Subject: </label>--%>
-<%--                <form:select id = "subject" path="subject.id" class="selectpicker" data-show-subtext="true" data-live-search="true">--%>
-<%--                    <c:forEach items="${subjects}" var="subject">--%>
-<%--                        <option ${subject.id == queryForm.subject.id ? 'selected="selected"' : ''}--%>
-<%--                                value="${subject.id}">${subject.name}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                </form:select>--%>
-<%--                <form:errors path="subject.id"/>--%>
-<%--            </div>--%>
-<%--        </spring:bind>--%>
+        <%--teachBeginDate--%>
+            <div class="form-group"> Teach Begin Date:
+                <input type="date" id="startDate" name="startDate" class="form-control" />
+            </div>
 
-<%--        &lt;%&ndash;teachBeginDate&ndash;%&gt;--%>
-<%--        <spring:bind path="teachBeginDate">--%>
-<%--            <div class="form-group ${status.error ? 'has-error' : ''}"> Teach Begin Date:--%>
-<%--                <form:input type="date" path="teachBeginDate" class="form-control" />--%>
-<%--                <form:errors path="teachBeginDate"/>--%>
-<%--            </div>--%>
-<%--        </spring:bind>--%>
+        <%--teachEndDate--%>
+            <div class="form-group"> Teach End Date:
+                <input type="date" id="endDate" name="endDate" class="form-control" />
+            </div>
 
-<%--        &lt;%&ndash;teachEndDate&ndash;%&gt;--%>
-<%--        <spring:bind path="teachEndDate">--%>
-<%--            <div class="form-group ${status.error ? 'has-error' : ''}"> Teach End Date:--%>
-<%--                <form:input type="date" path="teachEndDate" class="form-control"--%>
-<%--                            autofocus="true"/>--%>
-<%--                <form:errors path="teachEndDate"/>--%>
-<%--            </div>--%>
-<%--        </spring:bind>--%>
+        <button class="btn btn-md btn-primary" type="submit">Process</button>
+    </form:form>
 
-<%--        <button class="btn btn-lg btn-primary btn-block" type="submit">Process</button>--%>
-<%--    </form:form>--%>
+        <br>
+    <h2 class="form-signin-heading" align="center">Third query</h2>
+    <form:form id="form3" method="GET" action="${contextPath}/queryP/query3"
+               class="form-signin border border-primary">
+        <h5 class="form-signin-heading">Query for search all students that have marks in specified range and teacher for Math credit</h5>
 
-<%--    <form:form id="form3" method="POST" action="${contextPath}/query/query3"--%>
-<%--               class="form-signin">--%>
-<%--        <h2 class="form-signin-heading">Third query</h2>--%>
-<%--        <h5 class="form-signin-heading">Choose students ...</h5>--%>
+        <%--Person--%>
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Person:
+                <select id="personId" name="personId">
+                    <c:forEach items="${persons}" var="person">
+                        <option ${id == person.id ? 'selected="selected"' : ''}
+                                value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>
+                    </c:forEach>
+                </select>
+            </div>
 
-<%--        &lt;%&ndash;Person&ndash;%&gt;--%>
-<%--        <spring:bind path="person.id">--%>
-<%--            <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teach_name"> Person: </label>--%>
-<%--                <form:select id="teach_name" path="person.id" class="selectpicker" data-show-subtext="true"--%>
-<%--                             data-live-search="true">--%>
-<%--                    <c:forEach items="${persons}" var="person">--%>
-<%--                        <option ${person.id == queryForm.person.id ? 'selected="selected"' : ''}--%>
-<%--                                value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                </form:select>--%>
-<%--                <form:errors path="person.id"/>--%>
-<%--            </div>--%>
-<%--        </spring:bind>--%>
+        <%--Mark--%>
+        <div class="form-group ${status.error ? 'has-error' : ''}">  Mark:
+            <select path="mark" name="mark" cssClass="form-control">
+                <c:forEach items="${markEnum}" var="mark">
+                    <option value="${mark}">${mark}</option>
+                </c:forEach>
+            </select>
+        </div>
 
-<%--        &lt;%&ndash;Mark&ndash;%&gt;--%>
-<%--        <spring:bind path="mark.id">--%>
-<%--            <div class="form-group ${status.error ? 'has-error' : ''}">Person:--%>
-<%--                <form:select path="mark.id" class="selectpicker" data-show-subtext="true"--%>
-<%--                             data-live-search="true">--%>
-<%--                    <c:forEach items="${marks}" var="mark">--%>
-<%--                        <option ${mark.id == queryForm.mark.id ? 'selected="selected"' : ''}--%>
-<%--                                value="${mark.id}">${"".concat(mark.name).concat(" ").concat(mark.surname)}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                </form:select>--%>
-<%--                <form:errors path="mark.id"/>--%>
-<%--            </div>--%>
-<%--        </spring:bind>--%>
-
-<%--        <button class="btn btn-lg btn-primary btn-block" type="submit">Process</button>--%>
-<%--    </form:form>--%>
+        <button class="btn btn-md btn-primary" type="submit">Process</button>
+    </form:form>
 </div>
 
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
