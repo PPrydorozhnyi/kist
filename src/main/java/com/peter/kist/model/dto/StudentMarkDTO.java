@@ -1,6 +1,5 @@
 package com.peter.kist.model.dto;
 
-import com.peter.kist.model.entity.TeacherPlan;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
