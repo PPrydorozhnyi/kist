@@ -6,7 +6,6 @@ import com.peter.kist.service.QueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
@@ -26,9 +24,6 @@ import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/queryV")
 public class QueryVController{
-
-    private static final Type QUERY_LIST_TYPE = (new TypeToken<List<ThirdQueryDTO>>() {
-    }).getType();
 
     private final QueryService queryService;
 
@@ -74,7 +69,7 @@ public class QueryVController{
                 TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(Student.class)),
                 TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(ThirdQueryDTO.class)));
 
-        model.addAttribute("queryEnd");
+        model.addAttribute("queryEnd", queryEnd);
 
         return "student/studentTableView";
     }
