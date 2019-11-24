@@ -1,12 +1,10 @@
 package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.GroupDTO;
-import com.peter.kist.model.entity.Group;
-import com.peter.kist.model.entity.Person;
-import com.peter.kist.model.entity.Student;
+import com.peter.kist.model.dto.SemesterDTO;
+import com.peter.kist.model.entity.*;
 import com.peter.kist.model.enums.MarkNames;
-import com.peter.kist.service.GroupService;
-import com.peter.kist.service.QueryService;
+import com.peter.kist.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,15 +32,29 @@ public class QueryController {
 
     private final GroupService groupService;
 
-    private final ModelMapper mapper;
+    private final SubjectService subjectService;
 
+    private final SemesterService semesterService;
+
+    private final PersonService personService;
+
+    private final MarkService markService;
+
+    private final ModelMapper mapper;
     @GetMapping
     public String getQueryPage(Model model) {
 
         List<Group> groups = groupService.findAll();
+        List<Subject> subjects = subjectService.findAll();
+        List<Person> persons = personService.findAll();
+        List<Mark> marks = markService.findAll();
 
         final Map<String, Object> map = Map.of(
-                "groups", mapper.map(groups, GROUP_LIST_TYPE));
+                "groups", mapper.map(groups, GROUP_LIST_TYPE),
+                "subjects", mapper.map(subjects, SUBJECT_LIST_TYPE),
+                "persons", mapper.map(persons, PERSON_LIST_TYPE),
+                "marks", mapper.map(marks, MARK_LIST_TYPE)
+                );
 
         model.addAllAttributes(map);
 
