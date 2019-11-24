@@ -24,7 +24,7 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>Student</th>
-                    <th>Teacher Plan</th>
+                    <th>Tester</th>
                     <th>Mark</th>
                 </tr>
                 </thead>
@@ -35,7 +35,7 @@
                             <a href="${contextPath}/student-mark/student/${studentMark.student.id}/teacherPlan/${studentMark.teacherPlan.id}">
                                     ${"".concat(studentMark.student.name).concat(" ").concat(studentMark.student.surname)}</a>
                         </td>
-                        <td>${studentMark.teacherPlan.name}</td>
+                        <td>${"".concat(studentMark.teacherPlan.tester.name).concat(" ").concat(studentMark.teacherPlan.tester.surname)}</td>
                         <td>${studentMark.mark.value}</td>
                     </tr>
                 </c:forEach>
