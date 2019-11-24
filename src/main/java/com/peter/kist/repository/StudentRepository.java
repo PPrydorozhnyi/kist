@@ -15,8 +15,13 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
      */
     @Query(value = "SELECT s FROM Student s JOIN s.studentMarks sm JOIN sm.teacherPlan t JOIN sm.mark m " +
             "WHERE t.group.id = :groupId " +
-            "AND m.value > (SELECT avg(m.value) FROM Student s JOIN s.studentMarks sm JOIN sm.mark m JOIN sm.teacherPlan t " +
-            "WHERE t.group.id = :groupId)")
+            "AND m.value > (" +
+                "SELECT avg(m.value) FROM Student s " +
+                "JOIN s.studentMarks sm " +
+                "JOIN sm.mark m " +
+                "JOIN sm.teacherPlan t " +
+                    "WHERE t.group.id = :groupId" +
+            ")")
     List<Student> studentWithMarksMoreThanAverage(@Param("groupId") Integer groupId);
 
     /**
