@@ -1,5 +1,6 @@
 package com.peter.kist.service.impl;
 
+import com.peter.kist.model.dto.ThirdQueryDTO;
 import com.peter.kist.model.entity.Person;
 import com.peter.kist.model.entity.Student;
 import com.peter.kist.model.enums.MarkNames;
@@ -41,5 +42,20 @@ public class QueryServiceImpl implements QueryService {
     @Override
     public List<Student> query3(Integer personId, MarkNames mark) {
         return studentRepository.studentWithMarks(mark.getMin(), mark.getMax(), personId);
+    }
+
+    @Override
+    public List<Student> queryVadim1(Integer groupId){
+        return studentRepository.studentWithMarksMoreThanAverageFromOneGroup(groupId);
+    }
+
+    @Override
+    public List<Student> queryVadim2(Integer violationKindId){
+        return studentRepository.studentWithOneViolationKind(violationKindId);
+    }
+
+    @Override
+    public List<Student> queryVadim3(){
+        return studentRepository.studentThirdQuery();
     }
 }
