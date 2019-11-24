@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ThirdQueryDTO extends StudentDTO {
-    String violationKindName;
+    String punishKindName;
 
 }

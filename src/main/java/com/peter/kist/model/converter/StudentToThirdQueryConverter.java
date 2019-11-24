@@ -22,7 +22,7 @@ public class StudentToThirdQueryConverter implements Converter<Student, ThirdQue
         thirdQueryDTO.setSurname(student.getSurname());
         thirdQueryDTO.setSex(student.getSex());
         thirdQueryDTO.setTelephoneNumber(student.getTelephoneNumber());
-        thirdQueryDTO.setViolationKindName(student.getViolations().stream().findAny().map(Violation::getPunishKind).map(PunishKind::getName).orElseGet(String::new));
+        thirdQueryDTO.setPunishKindName(student.getViolations().stream().findAny().map(Violation::getPunishKind).map(PunishKind::getName).orElseGet(String::new));
 
         return thirdQueryDTO;
     }
