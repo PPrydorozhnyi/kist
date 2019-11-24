@@ -41,7 +41,6 @@ public class QueryController {
     private final MarkService markService;
 
     private final ModelMapper mapper;
-//, @PathVariable Integer id
     @GetMapping
     public String getQueryPage(Model model) {
 
@@ -49,10 +48,6 @@ public class QueryController {
         List<Subject> subjects = subjectService.findAll();
         List<Person> persons = personService.findAll();
         List<Mark> marks = markService.findAll();
-
-//        final Map<String, Object> map = Map.of(
-//                "groups", mapper.map(groups, GROUP_LIST_TYPE)
-//        );
 
         final Map<String, Object> map = Map.of(
                 "groups", mapper.map(groups, GROUP_LIST_TYPE),
