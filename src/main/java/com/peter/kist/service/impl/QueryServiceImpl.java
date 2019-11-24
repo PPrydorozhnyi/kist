@@ -44,6 +44,21 @@ public class QueryServiceImpl implements QueryService {
     }
 
     @Override
+    public List<Student> queryVadim1(Integer groupId){
+        return studentRepository.studentWithMarksMoreThanAverageFromOneGroup(groupId);
+    }
+
+    @Override
+    public List<Student> queryVadim2(Integer violationKindId){
+        return studentRepository.studentWithOneViolationKind(violationKindId);
+    }
+
+    @Override
+    public List<Student> queryVadim3(){
+        return studentRepository.studentThirdQuery();
+    }
+
+    @Override
     public List<Student> queryY1(Integer privilegeId, Date privBeginDate, Date privEndDate) {
         return studentRepository.getStudentsByPrivilegeAndBeginAndEnd(privilegeId, privBeginDate, privEndDate);
     }
