@@ -13,21 +13,25 @@
 <head>
     <meta charset="utf-8">
     <title>Query</title>
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
 </head>
 <body>
 <div class="container">
     <h2 class="form-signin-heading" align="center">First query</h2>
-    <form:form id="form1" method="GET" action="${contextPath}/queryP/query1" class="form-signin border border-primary">
+    <form:form id="form1" method="GET" action="${contextPath}/queryP/query1"
+               class="form-signin border border-primary my-border">
         <h5 class="form-signin-heading">Query for search all students that have marks higher than average for specified
             group</h5>
 
         <%--Group--%>
-        <div class="form-group"> Group:
-            <select id="groupId" name="groupId">
+        <div class="form-group"><label for="groupId">Group: </label>
+            <select id="groupId" name="groupId" class="selectpicker" data-show-subtext="true"
+                    data-live-search="true">
                 <c:forEach items="${groups}" var="group">
-                    <option ${id == group.id ? 'selected="selected"' : ''}
-                            value="${group.id}">${group.groupCode}</option>
+                    <option value="${group.id}">${group.groupCode}</option>
                 </c:forEach>
             </select>
         </div>
@@ -38,21 +42,22 @@
     <br>
     <h2 class="form-signin-heading" align="center">Second query</h2>
     <form:form id="form2" method="GET" action="${contextPath}/queryP/query2"
-               class="form-signin border border-primary">
-        <h5 class="form-signin-heading">Choose teachers ...</h5>
+               class="form-signin border border-primary my-border">
+        <h5 class="form-signin-heading">Query for search all teachers that have exams for specified semester and
+            subject</h5>
 
         <%--subject--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}"> Subject:
-            <select id="subjectId" name="subjectId">
+        <div class="form-group ${status.error ? 'has-error' : ''}"><label for="subjectId">Subject: </label>
+            <select id="subjectId" name="subjectId" class="selectpicker" data-show-subtext="true"
+                    data-live-search="true">
                 <c:forEach items="${subjects}" var="subject">
-                    <option ${id == subject.id ? 'selected="selected"' : ''}
-                            value="${subject.id}">${subject.name}</option>
+                    <option value="${subject.id}">${subject.name}</option>
                 </c:forEach>
             </select>
         </div>
 
         <%--teachBeginDate--%>
-        <div class="form-group"> Teach Begin Date:
+        <div class="form-group"><label for="startDate">Teach Begin Date: </label>
             <input type="date" id="startDate" name="startDate" class="form-control"/>
         </div>
 
@@ -67,23 +72,24 @@
     <br>
     <h2 class="form-signin-heading" align="center">Third query</h2>
     <form:form id="form3" method="GET" action="${contextPath}/queryP/query3"
-               class="form-signin border border-primary">
+               class="form-signin border border-primary my-border">
         <h5 class="form-signin-heading">Query for search all students that have marks in specified range and teacher for
             Math credit</h5>
 
         <%--Person--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}"> Person:
-            <select id="personId" name="personId">
+        <div class="form-group ${status.error ? 'has-error' : ''}"><label for="personId">Person: </label>
+            <select id="personId" name="personId" class="selectpicker" data-show-subtext="true"
+                    data-live-search="true">
                 <c:forEach items="${persons}" var="person">
-                    <option ${id == person.id ? 'selected="selected"' : ''}
-                            value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>
+                    <option value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>
                 </c:forEach>
             </select>
         </div>
 
         <%--Mark--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}"> Mark:
-            <select path="mark" name="mark" cssClass="form-control">
+        <div class="form-group ${status.error ? 'has-error' : ''}"><label for="mark">Mark: </label>
+            <select id="mark" name="mark" cssClass="form-control" class="selectpicker" data-show-subtext="true"
+                    data-live-search="true">
                 <c:forEach items="${markEnum}" var="mark">
                     <option value="${mark}">${mark}</option>
                 </c:forEach>
@@ -93,9 +99,6 @@
         <button class="btn btn-md btn-primary" type="submit">Process</button>
     </form:form>
 </div>
-
-<script src="${contextPath}/resources/js/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

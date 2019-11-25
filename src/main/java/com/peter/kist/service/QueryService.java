@@ -1,6 +1,5 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.dto.ThirdQueryDTO;
 import com.peter.kist.model.entity.Person;
 import com.peter.kist.model.entity.Student;
 import com.peter.kist.model.enums.MarkNames;
