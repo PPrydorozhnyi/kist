@@ -22,7 +22,14 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
             "WHERE s.id = ?3 " +
             "AND sem.teachBeginDate = ?1 " +
             "AND sem.teachEndDate = ?2 " +
-            "AND t.testKind.id = 1")
+            "AND t.testKind.id = 1 " +
+            "AND p.id NOT IN ( " +
+            "SELECT s.id FROM Student s)")
     List<Person> findPersonBySubjectAndSemester(Date startDate, Date endDate, Integer subjectId);
+
+    @Query("SELECT p FROM Person p " +
+            "WHERE p.id NOT IN ( " +
+            "SELECT s.id FROM Student s)")
+    List<Person> findTeachers();
 
 }

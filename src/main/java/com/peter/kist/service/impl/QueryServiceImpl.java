@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -32,10 +31,7 @@ public class QueryServiceImpl implements QueryService {
     @Override
     public List<Person> query2(Date startDate, Date endDate, Integer subjectId) {
 
-        return personRepository.findPersonBySubjectAndSemester(startDate, endDate, subjectId)
-                .stream()
-                .filter(person -> !Student.class.equals(person.getClass()))
-                .collect(Collectors.toList());
+        return personRepository.findPersonBySubjectAndSemester(startDate, endDate, subjectId);
     }
 
     @Override
