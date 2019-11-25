@@ -3,12 +3,15 @@ package com.peter.kist.controller;
 import com.peter.kist.model.dto.LessonDTO;
 import com.peter.kist.model.dto.LessonKindDTO;
 import com.peter.kist.model.dto.PersonShortDTO;
+import com.peter.kist.model.dto.TeacherPlanDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.model.entity.LessonKind;
 import com.peter.kist.model.entity.Person;
+import com.peter.kist.model.entity.TeacherPlan;
 import com.peter.kist.service.LessonKindService;
 import com.peter.kist.service.LessonService;
 import com.peter.kist.service.PersonService;
+import com.peter.kist.service.TeacherPlanService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -38,6 +41,8 @@ public class LessonController {
 
     private final LessonKindService lessonKindService;
 
+    private final TeacherPlanService teacherPlanService;
+
     private final ConversionService conversionService;
 
     private final ModelMapper mapper;
@@ -63,9 +68,13 @@ public class LessonController {
 
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
-        final Map<String, Object> map = Map.of("lessonForm", new LessonDTO(new PersonShortDTO(), new LessonKindDTO()),
+        List<TeacherPlan> teacherPlans = teacherPlanService.findAll();
+
+        final Map<String, Object> map = Map.of("lessonForm", new LessonDTO(new PersonShortDTO(), new LessonKindDTO(), new TeacherPlanDTO()),
                 "teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
-                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE),
+                "teacherPlans", mapper.map(teacherPlans, TEACHER_PLAN_LIST_TYPE)
+        );
 
         model.addAllAttributes(map);
 

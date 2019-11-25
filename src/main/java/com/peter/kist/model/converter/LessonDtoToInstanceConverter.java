@@ -4,6 +4,7 @@ import com.peter.kist.model.dto.LessonDTO;
 import com.peter.kist.model.entity.Lesson;
 import com.peter.kist.repository.LessonKindRepository;
 import com.peter.kist.repository.PersonRepository;
+import com.peter.kist.repository.TeacherPlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class LessonDtoToInstanceConverter implements Converter<LessonDTO, Lesson
 
     private final LessonKindRepository lessonKindRepository;
 
+    private final TeacherPlanRepository teacherPlanRepository;
+
     private final ModelMapper mapper;
 
     @Override
@@ -27,6 +30,7 @@ public class LessonDtoToInstanceConverter implements Converter<LessonDTO, Lesson
 
         lesson.setLessonKind(lessonKindRepository.getOne(lessonDTO.getLessonKind().getId()));
         lesson.setTeacher(personRepository.getOne(lessonDTO.getTeacher().getId()));
+        lesson.setTeacherPlan(teacherPlanRepository.getOne(lessonDTO.getTeacherPlan().getId()));
 
         return lesson;
     }
