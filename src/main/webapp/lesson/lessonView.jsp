@@ -28,6 +28,7 @@
                 <form:hidden path="id"/>
                 <form:hidden path="teacher.id"/>
                 <form:hidden path="lessonKind.id"/>
+                <form:hidden path="teacherPlan.id"/>
 
                 <spring:bind path="teacher.name">
                     <div class="form-group ${status.error ? 'has-error' : ''}">

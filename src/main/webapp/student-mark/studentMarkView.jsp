@@ -53,12 +53,12 @@
                         <form:errors path="teacherPlan.tester.name"/>
                     </div>
                 </spring:bind>
-                <spring:bind path="teacherPlan.tester.name">
+                <spring:bind path="teacherPlan.tester.surname">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         Tester surname:<br>
-                        <form:input type="text" path="teacherPlan.tester.name" class="form-control"
+                        <form:input type="text" path="teacherPlan.tester.surname" class="form-control"
                                     readonly="true"/>
-                        <form:errors path="teacherPlan.tester.name"/>
+                        <form:errors path="teacherPlan.tester.surname"/>
                     </div>
                 </spring:bind>
 

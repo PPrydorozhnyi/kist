@@ -1,7 +1,6 @@
 package com.peter.kist.service.impl;
 
 import com.peter.kist.model.entity.Person;
-import com.peter.kist.model.entity.Student;
 import com.peter.kist.repository.PersonRepository;
 import com.peter.kist.service.PersonService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -50,9 +48,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getTeachers() {
-        return personRepository.findAll().stream()
-                .filter(person -> !person.getClass().equals(Student.class))
-                .collect(Collectors.toList());
+        return personRepository.findTeachers();
     }
 
     private Person updatePerson(Person person) {
