@@ -1,8 +1,12 @@
 package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.ThirdQueryDTO;
+import com.peter.kist.model.entity.Group;
 import com.peter.kist.model.entity.Student;
+import com.peter.kist.model.entity.ViolationKind;
+import com.peter.kist.service.GroupService;
 import com.peter.kist.service.QueryService;
+import com.peter.kist.service.ViolationKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -16,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
-import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
+import static com.peter.kist.AppConstants.*;
 
 @Controller
 @Slf4j
@@ -29,10 +34,25 @@ public class QueryVController{
 
     private final ConversionService conversionService;
 
+    private final GroupService groupService;
+
+    private final ViolationKindService violationKindService;
+
     private final ModelMapper mapper;
 
     @GetMapping
-    public String getQueryPage() {
+    public String getQueryPage(Model model) {
+
+        List<Group> groups = groupService.findAll();
+        List<ViolationKind> violationKinds = violationKindService.findAll();
+
+        final Map<String, Object> map = Map.of(
+                "groups", mapper.map(groups, GROUP_LIST_TYPE),
+                "violationKinds", mapper.map(violationKinds, VIOLATION_KIND_LIST_TYPE)
+        );
+
+        model.addAllAttributes(map);
+
         return "query/queryV";
     }
 
@@ -55,7 +75,7 @@ public class QueryVController{
 
         final List<Student> students = queryService.queryVadim2(violationKindId);
 
-        model.addAttribute("studentsV2", mapper.map(students, STUDENT_LIST_TYPE));
+        model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
 
         return "student/studentTableView";
     }
@@ -71,6 +91,6 @@ public class QueryVController{
 
         model.addAttribute("queryEnd", queryEnd);
 
-        return "student/studentTableView";
+        return "query/queryVThird";
     }
 }
