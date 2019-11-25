@@ -15,8 +15,6 @@
     <title>Query</title>
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
 </head>
 <body>
 <div class="container">
@@ -28,8 +26,7 @@
 
         <%--Group--%>
         <div class="form-group"><label for="groupId">Group: </label>
-            <select id="groupId" name="groupId" class="selectpicker" data-show-subtext="true"
-                    data-live-search="true">
+            <select id="groupId" name="groupId" class="browser-default custom-select col-2">
                 <c:forEach items="${groups}" var="group">
                     <option value="${group.id}">${group.groupCode}</option>
                 </c:forEach>
@@ -47,9 +44,8 @@
             subject</h5>
 
         <%--subject--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}"><label for="subjectId">Subject: </label>
-            <select id="subjectId" name="subjectId" class="selectpicker" data-show-subtext="true"
-                    data-live-search="true">
+        <div class="form-group"><label for="subjectId">Subject: </label>
+            <select id="subjectId" name="subjectId" class="browser-default custom-select col-2">
                 <c:forEach items="${subjects}" var="subject">
                     <option value="${subject.id}">${subject.name}</option>
                 </c:forEach>
@@ -58,12 +54,12 @@
 
         <%--teachBeginDate--%>
         <div class="form-group"><label for="startDate">Teach Begin Date: </label>
-            <input type="date" id="startDate" name="startDate" class="form-control"/>
+            <input type="date" id="startDate" name="startDate" class="form-control col-2"/>
         </div>
 
         <%--teachEndDate--%>
-        <div class="form-group"> Teach End Date:
-            <input type="date" id="endDate" name="endDate" class="form-control"/>
+        <div class="form-group"> <label for="endDate">Teach End Date:  </label>
+            <input type="date" id="endDate" name="endDate" class="form-control col-2"/>
         </div>
 
         <button class="btn btn-md btn-primary" type="submit">Process</button>
@@ -77,9 +73,8 @@
             Math credit</h5>
 
         <%--Person--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}"><label for="personId">Person: </label>
-            <select id="personId" name="personId" class="selectpicker" data-show-subtext="true"
-                    data-live-search="true">
+        <div class="form-group"><label for="personId">Teacher: </label>
+            <select id="personId" name="personId" class="browser-default custom-select col-2">
                 <c:forEach items="${persons}" var="person">
                     <option value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>
                 </c:forEach>
@@ -87,9 +82,8 @@
         </div>
 
         <%--Mark--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}"><label for="mark">Mark: </label>
-            <select id="mark" name="mark" cssClass="form-control" class="selectpicker" data-show-subtext="true"
-                    data-live-search="true">
+        <div class="form-group"><label for="mark">Mark: </label>
+            <select id="mark" name="mark" cssClass="form-control" class="browser-default custom-select col-2">
                 <c:forEach items="${markEnum}" var="mark">
                     <option value="${mark}">${mark}</option>
                 </c:forEach>

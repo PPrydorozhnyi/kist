@@ -1,7 +1,5 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.dto.GroupDTO;
-import com.peter.kist.model.dto.SemesterDTO;
 import com.peter.kist.model.entity.*;
 import com.peter.kist.model.enums.MarkNames;
 import com.peter.kist.service.*;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,19 +31,18 @@ public class QueryController {
 
     private final SubjectService subjectService;
 
-    private final SemesterService semesterService;
-
     private final PersonService personService;
 
     private final MarkService markService;
 
     private final ModelMapper mapper;
+
     @GetMapping
     public String getQueryPage(Model model) {
 
         List<Group> groups = groupService.findAll();
         List<Subject> subjects = subjectService.findAll();
-        List<Person> persons = personService.findAll();
+        List<Person> persons = personService.getTeachers();
         List<Mark> marks = markService.findAll();
 
         final Map<String, Object> map = Map.of(
@@ -54,7 +50,7 @@ public class QueryController {
                 "subjects", mapper.map(subjects, SUBJECT_LIST_TYPE),
                 "persons", mapper.map(persons, PERSON_LIST_TYPE),
                 "marks", mapper.map(marks, MARK_LIST_TYPE)
-                );
+        );
 
         model.addAllAttributes(map);
 
