@@ -36,6 +36,31 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
             "AND subj.name like '%Math%'")
     List<Student> studentWithMarks(Integer min, Integer max, Integer personId);
 
+    /**
+     * Query for search all students that have marks higher than average for specified group
+     */
+    @Query(value = "SELECT s FROM Student s JOIN s.studentMarks sm JOIN s.studentGroups sg JOIN sm.mark m JOIN sg.group g " +
+            "WHERE g.id = :groupId " +
+            "AND m.value > (SELECT avg(m.value) FROM Student s JOIN s.studentMarks sm JOIN s.studentGroups sg JOIN sm.mark m JOIN sg.group g " +
+            "WHERE g.id = :groupId)")
+    List<Student> studentWithMarksMoreThanAverageFromOneGroup(@Param("groupId") Integer groupId);
+
+    @Query(value = "SELECT s FROM Student s JOIN s.violations v JOIN v.violationKind vk " +
+            "WHERE vk.id = :violationKindId")
+    List<Student> studentWithOneViolationKind(@Param("violationKindId") Integer violationKindId);
+
+    @Query(value = "SELECT s.*, p.* FROM pr_student s\n" +
+            "JOIN pr_person p ON s.student_id = p.person_id\n" +
+            "JOIN pr_violation v ON p.person_id = v.person_id\n" +
+            "JOIN pr_punish_kind pk ON v.punish_kind_id = pk.punish_kind_id \n" +
+            "WHERE v.punish_kind_id = (SELECT need_id FROM (SELECT COUNT(pk.punish_kind_id) count_violations, pk.punish_kind_id need_id FROM pr_violation v\n" +
+            "JOIN pr_punish_kind pk ON v.punish_kind_id = pk.punish_kind_id\n" +
+            "GROUP BY pk.punish_kind_id) counter\n" +
+            "WHERE count_violations = (SELECT MAX(count_violations) FROM (SELECT COUNT(pk.punish_kind_id) count_violations, pk.punish_kind_id need_id FROM pr_violation v\n" +
+            "JOIN pr_punish_kind pk ON v.punish_kind_id = pk.punish_kind_id\n" +
+            "GROUP BY pk.punish_kind_id) kind));", nativeQuery = true)
+    List<Student> studentThirdQuery();
+
     @Query("SELECT s FROM Student s JOIN s.personPrivilege pp JOIN pp.privilege p " +
             "WHERE p.id = ?1 " +
             "AND pp.beginDate = ?2 " +
