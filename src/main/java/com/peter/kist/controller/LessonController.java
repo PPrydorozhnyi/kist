@@ -105,8 +105,13 @@ public class LessonController {
 
         List<LessonKind> lessonKinds = lessonKindService.findAll();
 
-        final Map<String, Object> map = Map.of("teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
-                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE));
+        List<TeacherPlan> teacherPlans = teacherPlanService.findAll();
+
+        final Map<String, Object> map = Map.of(
+                "teachers", mapper.map(teachers, PERSON_SHORT_LIST_TYPE),
+                "lessonKinds", mapper.map(lessonKinds, LESSON_KIND_LIST_TYPE),
+                "teacherPlans", mapper.map(teacherPlans, TEACHER_PLAN_LIST_TYPE)
+        );
 
         model.addAllAttributes(map);
 
