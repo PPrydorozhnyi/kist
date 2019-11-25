@@ -1,8 +1,12 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.entity.Privilege;
+import com.peter.kist.model.entity.Speciality;
 import com.peter.kist.model.entity.Student;
 import com.peter.kist.model.enums.MarkNames;
+import com.peter.kist.service.PrivilegeService;
 import com.peter.kist.service.QueryService;
+import com.peter.kist.service.SpecialityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -15,8 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-import static com.peter.kist.AppConstants.STUDENT_LIST_TYPE;
+import static com.peter.kist.AppConstants.*;
 
 @Controller
 @Slf4j
@@ -28,10 +33,24 @@ public class QueryYarikController {
 
     private final QueryService queryService;
 
+    private final PrivilegeService privilegeService;
+
+    private final SpecialityService specialityService;
+
     private final ModelMapper mapper;
 
     @GetMapping
     public String getQueryPage(Model model) {
+
+        List<Privilege> privileges = privilegeService.findAll();
+        List<Speciality> specialities = specialityService.findAll();
+
+        final Map<String, Object> map = Map.of(
+                "privileges", mapper.map(privileges, PRIVILEGE_LIST_TYPE),
+                "specialities", mapper.map(specialities, SPECIALITY_LIST_TYPE)
+        );
+
+        model.addAllAttributes(map);
 
         return "query/queryY";
     }

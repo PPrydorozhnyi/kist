@@ -98,7 +98,7 @@
                 <%--obligatory--%>
                 <spring:bind path="obligatory">
                     <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="obligatory">   Obligatory: </label>
-                        <form:checkbox id = "obligatory" path="obligatory" class="form-control"
+                        <form:checkbox id = "obligatory" path="obligatory" class=""
                                     readonly="true"/>
                         <form:errors path="obligatory"/>
                     </div>
