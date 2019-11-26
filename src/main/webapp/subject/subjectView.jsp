@@ -81,10 +81,6 @@
             <form:form method="GET" action="${contextPath}/subject/all" class="form-signin">
                 <button class="btn btn btn-info btn-block" type="submit">View all subjects</button>
             </form:form>
-            <form:form method="GET" action="${contextPath}/subject/${subjectForm.id}/groups" modelAttribute="subjectForm"
-                       class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View groups for subject</button>
-            </form:form>
         </div>
     </div>
 </div>

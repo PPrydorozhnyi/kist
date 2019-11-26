@@ -67,13 +67,17 @@
 
         <%--TeacherPlan--%>
         <spring:bind path="teacherPlan.id">
-            <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teacherPlan"> TeacherPlan
-                (testDate): </label>
+            <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teacherPlan"> TeacherPlan: </label>
                 <form:select path="teacherPlan.id" id="teacherPlan" class="selectpicker" data-show-subtext="true"
                              data-live-search="true">
                     <c:forEach items="${teacherPlans}" var="teacherPlan">
                         <option ${teacherPlan.id == studentMarkForm.teacherPlan.id ? 'selected="selected"' : ''}
-                                value="${teacherPlan.id}">${teacherPlan.testDate}</option>
+                                value="${teacherPlan.id}">
+                                ${"".concat(teacherPlan.subject.name).concat(" ")
+                                .concat(teacherPlan.tester.name).concat(" ")
+                                .concat(teacherPlan.tester.surname).concat(" ")
+                                .concat(teacherPlan.group.groupCode)}
+                        </option>
                     </c:forEach>
                 </form:select>
                 <form:errors path="teacherPlan.id"/>

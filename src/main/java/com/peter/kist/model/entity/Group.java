@@ -24,10 +24,10 @@ public class Group {
 
     private Date groupCreateDate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", orphanRemoval = true)
     private List<StudentGroup> studentGroups;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", orphanRemoval = true)
     private List<TeacherPlan> teacherPlans;
 
     //Yarik
