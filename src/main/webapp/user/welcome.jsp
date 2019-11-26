@@ -49,8 +49,10 @@
                     <a class="dropdown-item" href="${contextPath}/order-kind/all">Order kind</a>
                     <a class="dropdown-item" href="${contextPath}/student-group/all">Student groups</a>
                     <a class="dropdown-item" href="${contextPath}/student-mark/all">Student marks</a>
-
                 </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="${contextPath}/queryV">Query <span class="sr-only"></span></a>
             </li>
         </ul>
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -62,7 +64,7 @@
 </nav>
 <!--/.navbar -->
 
-<div class="container mt-5">
+<div class="container" style="margin-top: 70px">
     <img src="${contextPath}/resources/IMG_1286.PNG" class="img-fluid mx-auto d-block" alt="img" />
 </div>
 

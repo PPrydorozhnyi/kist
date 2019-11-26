@@ -55,8 +55,10 @@
                     <a class="dropdown-item" href="${contextPath}/order-kind/all">Order kind</a>
                     <a class="dropdown-item" href="${contextPath}/student-group/all">Student groups</a>
                     <a class="dropdown-item" href="${contextPath}/student-mark/all">Student marks</a>
-
                 </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="${contextPath}/queryV">Query <span class="sr-only"></span></a>
             </li>
         </ul>
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -67,7 +69,7 @@
     <!--/.nav-collapse -->
 </nav>
 
-<div class="container mt-5">
+<div class="container" style="margin-top: 70px">
     <h4 class="form-signin-heading" align="left">First query</h4>
     <form:form id="form1" method="GET" action="${contextPath}/queryV/query1" class="form-signin">
         <h6><em>Query for search all students that have marks higher <br> than average for specified group</em></h6>
