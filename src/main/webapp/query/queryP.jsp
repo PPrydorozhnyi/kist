@@ -41,7 +41,7 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
-<div class="container margin-table-view">
+<div class="container" style="margin-top: 60px;">
     <h2 class="form-signin-heading" align="center">First query</h2>
     <form:form id="form1" method="GET" action="${contextPath}/queryP/query1"
                class="form-signin border border-primary my-border">

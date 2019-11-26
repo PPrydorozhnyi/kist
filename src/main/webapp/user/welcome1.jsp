@@ -48,7 +48,7 @@
 
 <header class="bg-primary text-white">
     <div class="container text-center">
-        <h1>Welcome ${pageContext.request.userPrincipal.name} to DB Admin</h1>
+        <h1>Welcome to DB Admin, ${pageContext.request.userPrincipal.name}!</h1>
         <p class="lead">A landing page for DB Admin</p>
     </div>
 </header>
