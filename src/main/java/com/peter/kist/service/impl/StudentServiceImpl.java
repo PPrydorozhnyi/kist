@@ -57,7 +57,7 @@ public class StudentServiceImpl implements StudentService {
     private Student updateStudent(Student person) {
         Student personFromCache = studentRepository.getOne(person.getId());
         BeanUtils.copyProperties(person, personFromCache, "id", "lessons", "teacherPlans",
-                "violations", "personPrivilege");
+                "violations", "personPrivilege", "studentGroups", "studentMarks");
         return personFromCache;
     }
 

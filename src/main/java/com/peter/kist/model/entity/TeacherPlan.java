@@ -52,5 +52,6 @@ public class TeacherPlan {
     private Subject subject;
 
     @OneToMany(mappedBy = "teacherPlan", fetch = FetchType.LAZY, orphanRemoval = true)
+    @EqualsAndHashCode.Exclude
     private List<Lesson> lesson;
 }

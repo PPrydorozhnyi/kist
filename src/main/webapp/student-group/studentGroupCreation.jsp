@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <title>Student Group Page</title>
 
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
