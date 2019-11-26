@@ -66,19 +66,6 @@
             </div>
         </spring:bind>
 
-        <%--speciality--%>
-        <spring:bind path="speciality.id">
-            <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="specialityName">   Speciality name: </label>
-                <form:select path="speciality.id" id = "specialityName" class="selectpicker" data-show-subtext="true" data-live-search="true">
-                    <c:forEach items="${specialities}" var="speciality">
-                        <option ${speciality.id == groupForm.speciality.id ? 'selected="selected"' : ''}
-                                value="${speciality.id}">${speciality.name}</option>
-                    </c:forEach>
-                </form:select>
-                <form:errors path="speciality.id"/>
-            </div>
-        </spring:bind>
-
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 </div>

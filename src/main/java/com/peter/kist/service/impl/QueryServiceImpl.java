@@ -63,9 +63,4 @@ public class QueryServiceImpl implements QueryService {
     public List<Student> queryY2(Date violationDate, Date orderDate) {
         return studentRepository.getStudentsByViolationDate(violationDate, orderDate);
     }
-
-    @Override
-    public List<Student> queryY3(Integer specialityId, MarkNames mark) {
-        return studentRepository.getStudentsBySpecialityAndMark(specialityId, mark);
-    }
 }

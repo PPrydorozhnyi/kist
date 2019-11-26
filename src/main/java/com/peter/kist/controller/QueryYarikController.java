@@ -3,7 +3,6 @@ package com.peter.kist.controller;
 import com.peter.kist.model.entity.Privilege;
 import com.peter.kist.model.entity.Speciality;
 import com.peter.kist.model.entity.Student;
-import com.peter.kist.model.enums.MarkNames;
 import com.peter.kist.service.PrivilegeService;
 import com.peter.kist.service.QueryService;
 import com.peter.kist.service.SpecialityService;
@@ -78,18 +77,6 @@ public class QueryYarikController {
         model.addAttribute(STUDENTS_PROPERTY_NAME, mapper.map(students, STUDENT_LIST_TYPE));
 
         return "person/personTableView";
-    }
-
-    @GetMapping("/query3")
-    public String getStudents(Model model, @RequestParam Integer specialityId, @RequestParam MarkNames mark) {
-
-        log.debug("third query");
-
-        final List<Student> students = queryService.queryY3(specialityId, mark);
-
-        model.addAttribute(STUDENTS_PROPERTY_NAME, mapper.map(students, STUDENT_LIST_TYPE));
-
-        return "student/studentTableView";
     }
 
 }

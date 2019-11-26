@@ -72,15 +72,6 @@
                     </div>
                 </spring:bind>
 
-                <spring:bind path="speciality.name">
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        Speciality name:<br>
-                        <form:input type="text" path="speciality.name" class="form-control" placeholder="Speciality name"
-                                    readonly="true"/>
-                        <form:errors path="speciality.name"/>
-                    </div>
-                </spring:bind>
-
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
             </form:form>
         </div>
