@@ -5,6 +5,7 @@ import com.peter.kist.repository.TeacherPlanRepository;
 import com.peter.kist.service.TeacherPlanService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,16 @@ public class TeacherPlanServiceImpl implements TeacherPlanService {
 
     @Override
     public TeacherPlan createTeacherPlan(TeacherPlan teacherPlan) {
+        if (teacherPlan.getId() != null) {
+            teacherPlan = updateTeacherPlan(teacherPlan);
+        }
         return teacherPlanRepository.save(teacherPlan);
+    }
+
+    private TeacherPlan updateTeacherPlan(TeacherPlan teacherPlan) {
+        final TeacherPlan teacherPlanFromCache = teacherPlanRepository.getOne(teacherPlan.getId());
+        BeanUtils.copyProperties(teacherPlan, teacherPlanFromCache, "id", "studentMarks", "lesson");
+        return teacherPlanFromCache;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class TeacherPlan {
     private Integer id;
 
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "teacherPlan", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "teacherPlan", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<StudentMark> studentMarks;
 
     private Date testDate;

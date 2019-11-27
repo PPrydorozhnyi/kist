@@ -120,10 +120,6 @@
             <form:form method="GET" action="${contextPath}/semester/all" class="form-signin">
                 <button class="btn btn btn-info btn-block" type="submit">View all semesters</button>
             </form:form>
-            <form:form method="GET" action="${contextPath}/semester/${semesterForm.id}/groups" modelAttribute="semesterForm"
-                       class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View groups for semester</button>
-            </form:form>
         </div>
     </div>
 </div>

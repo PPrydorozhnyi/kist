@@ -21,7 +21,7 @@ public class LessonKind {
     @Column(name = "lesson_kind_name")
     private String name;
 
-    @OneToMany(mappedBy = "lessonKind")
+    @OneToMany(mappedBy = "lessonKind", orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     private List<Lesson> lessons;
 }

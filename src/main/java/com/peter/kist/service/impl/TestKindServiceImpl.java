@@ -5,6 +5,7 @@ import com.peter.kist.repository.TestKindRepository;
 import com.peter.kist.service.TestKindService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,16 @@ public class TestKindServiceImpl implements TestKindService {
 
     @Override
     public TestKind createTestKind(TestKind testKind) {
+        if (testKind.getId() != null) {
+            testKind = updateTestKind(testKind);
+        }
         return testKindRepository.save(testKind);
+    }
+
+    private TestKind updateTestKind(TestKind testKind) {
+        final TestKind testKindFromCache = testKindRepository.getOne(testKind.getId());
+        BeanUtils.copyProperties(testKind, testKindFromCache, "id", "teacherPlan");
+        return testKindFromCache;
     }
 
     @Override

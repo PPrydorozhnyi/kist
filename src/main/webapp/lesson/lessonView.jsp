@@ -101,10 +101,6 @@
             <form:form method="GET" action="${contextPath}/lesson/all" class="form-signin">
                 <button class="btn btn btn-info btn-block" type="submit">View all lessons</button>
             </form:form>
-            <form:form method="GET" action="${contextPath}/lesson/${lessonForm.id}/groups" modelAttribute="lessonForm"
-                       class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View groups for lesson</button>
-            </form:form>
         </div>
     </div>
 </div>

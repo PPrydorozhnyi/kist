@@ -5,6 +5,7 @@ import com.peter.kist.repository.SubjectRepository;
 import com.peter.kist.service.SubjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,16 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject createSubject(Subject subject) {
+        if (subject.getId() != null) {
+            subject = updateSubject(subject);
+        }
         return subjectRepository.save(subject);
+    }
+
+    private Subject updateSubject(Subject subject) {
+        final Subject subjectFromCache = subjectRepository.getOne(subject.getId());
+        BeanUtils.copyProperties(subject, subjectFromCache, "id", "teacherPlans");
+        return subjectFromCache;
     }
 
     @Override
