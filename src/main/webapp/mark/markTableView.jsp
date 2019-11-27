@@ -74,7 +74,7 @@
     <div class="row">
         <div class="col-10">
             <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                 <tr>
                     <th>Value</th>
                 </tr>

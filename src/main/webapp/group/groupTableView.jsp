@@ -74,11 +74,11 @@
     <div class="row">
         <div class="col-10">
             <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                 <tr>
                     <th>Group code</th>
                     <th>Group date</th>
-                    <th>Speciality name</th>
+<%--                    <th>Speciality name</th>--%>
                 </tr>
                 </thead>
                 <tbody>
@@ -86,7 +86,7 @@
                     <tr>
                         <td><a href="${contextPath}/group/${group.id}">${group.groupCode}</a></td>
                         <td>${group.groupCreateDate}</td>
-                        <td>${group.speciality.name}</td>
+<%--                        <td>${group.speciality.name}</td>--%>
                     </tr>
                 </c:forEach>
                 </tbody>

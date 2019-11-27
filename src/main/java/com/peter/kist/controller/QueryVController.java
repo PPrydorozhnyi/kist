@@ -61,7 +61,7 @@ public class QueryVController{
 
         log.debug("first V query");
 
-        final List<Student> students = queryService.queryVadim1(groupId);
+        final List<Student> students = queryService.query1(groupId);
 
         model.addAttribute("students", mapper.map(students, STUDENT_LIST_TYPE));
 
