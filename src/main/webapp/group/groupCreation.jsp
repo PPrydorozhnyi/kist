@@ -3,24 +3,30 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="specialities" value="${pageContext.request.getAttribute('specialities')}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Group page</title>
-
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/group/create" modelAttribute="groupForm" class="form-signin">
+    <form:form cssClass="f" method="POST" action="${contextPath}/group/create" modelAttribute="groupForm" class="form-signin">
         <h2 class="form-signin-heading">${groupForm.id != null ? 'Edit' : 'Create'} group</h2>
 
         <form:hidden path="id"/>
@@ -45,7 +51,7 @@
         <%--speciality--%>
         <spring:bind path="speciality.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="specialityName">   Speciality name: </label>
-                <form:select path="speciality.id" id = "specialityName" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select path="speciality.id" id = "specialityName">
                     <c:forEach items="${specialities}" var="speciality">
                         <option ${speciality.id == groupForm.speciality.id ? 'selected="selected"' : ''}
                                 value="${speciality.id}">${speciality.name}</option>
@@ -55,7 +61,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

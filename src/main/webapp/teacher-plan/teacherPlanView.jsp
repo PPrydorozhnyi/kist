@@ -3,25 +3,33 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Teacher Plan page</title>
-
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
     <div class="row">
         <div class="col-10">
 
-            <form:form method="POST" action="${contextPath}/teacher-plan/edit" modelAttribute="teacherPlanForm"
+            <form:form cssClass="f" method="POST" action="${contextPath}/teacher-plan/edit" modelAttribute="teacherPlanForm"
                        class="form-signin">
                 <h2 class="form-signin-heading">View TeacherPlan</h2>
 

@@ -7,24 +7,30 @@
 <c:set var="testers" value="${pageContext.request.getAttribute('testers')}"/>
 <c:set var="testkinds" value="${pageContext.request.getAttribute('testkinds')}"/>
 <c:set var="subjects" value="${pageContext.request.getAttribute('subjects')}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Teacher Plan page</title>
-
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/teacher-plan/create" modelAttribute="teacherPlanForm" class="form-signin">
+    <form:form cssClass="f" method="POST" action="${contextPath}/teacher-plan/create" modelAttribute="teacherPlanForm" class="form-signin">
         <h2 class="form-signin-heading">${teacherPlanForm.id != null ? 'Edit' : 'Create'} teacherPlan</h2>
 
         <form:hidden path="id"/>
@@ -32,7 +38,7 @@
         <%--tester--%>
         <spring:bind path="tester.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="tester">   Tester: </label>
-                <form:select id = "tester" path="tester.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "tester" path="tester.id">
                     <c:forEach items="${testers}" var="tester">
                         <option ${tester.id == teacherPlanForm.tester.id ? 'selected="selected"' : ''}
                                 value="${tester.id}">${"".concat(tester.name).concat(" ").concat(tester.surname)}</option>
@@ -45,7 +51,7 @@
         <%--semester--%>
         <spring:bind path="semester.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="semester">   Semester: </label>
-                <form:select id = "semester" path="semester.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "semester" path="semester.id">
                     <c:forEach items="${semesters}" var="semester">
                         <option ${semester.id == teacherPlanForm.semester.id ? 'selected="selected"' : ''}
                                 value="${semester.id}">${semester.teachBeginDate}</option>
@@ -58,7 +64,7 @@
         <%--group--%>
         <spring:bind path="group.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="group">   Group: </label>
-                <form:select id = "group" path="group.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "group" path="group.id">
                     <c:forEach items="${groups}" var="group">
                         <option ${group.id == teacherPlanForm.group.id ? 'selected="selected"' : ''}
                                 value="${group.id}">${group.groupCode}</option>
@@ -71,7 +77,7 @@
         <%--testKind--%>
         <spring:bind path="testKind.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="testKind">   TestKind: </label>
-                <form:select id = "testKind" path="testKind.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "testKind" path="testKind.id">
                     <c:forEach items="${testKinds}" var="testKind">
                         <option ${testKind.id == teacherPlanForm.testKind.id ? 'selected="selected"' : ''}
                                 value="${testKind.id}">${testKind.name}</option>
@@ -84,7 +90,7 @@
         <%--subject--%>
         <spring:bind path="subject.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="subject">   Subject: </label>
-                <form:select id = "subject" path="subject.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "subject" path="subject.id">
                     <c:forEach items="${subjects}" var="subject">
                         <option ${subject.id == teacherPlanForm.subject.id ? 'selected="selected"' : ''}
                                 value="${subject.id}">${subject.name}</option>
@@ -113,7 +119,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

@@ -1,9 +1,11 @@
 package com.peter.kist.controller;
 
+import com.peter.kist.model.entity.Mark;
 import com.peter.kist.model.entity.Privilege;
 import com.peter.kist.model.entity.Speciality;
 import com.peter.kist.model.entity.Student;
 import com.peter.kist.model.enums.MarkNames;
+import com.peter.kist.service.MarkService;
 import com.peter.kist.service.PrivilegeService;
 import com.peter.kist.service.QueryService;
 import com.peter.kist.service.SpecialityService;
@@ -37,6 +39,8 @@ public class QueryYarikController {
 
     private final SpecialityService specialityService;
 
+    private final MarkService markService;
+
     private final ModelMapper mapper;
 
     @GetMapping
@@ -44,10 +48,12 @@ public class QueryYarikController {
 
         List<Privilege> privileges = privilegeService.findAll();
         List<Speciality> specialities = specialityService.findAll();
+        List<Mark> marks = markService.findAll();
 
         final Map<String, Object> map = Map.of(
                 "privileges", mapper.map(privileges, PRIVILEGE_LIST_TYPE),
-                "specialities", mapper.map(specialities, SPECIALITY_LIST_TYPE)
+                "specialities", mapper.map(specialities, SPECIALITY_LIST_TYPE),
+                "marks", mapper.map(marks, MARK_LIST_TYPE)
         );
 
         model.addAllAttributes(map);
@@ -81,11 +87,11 @@ public class QueryYarikController {
     }
 
     @GetMapping("/query3")
-    public String getStudents(Model model, @RequestParam Integer specialityId, @RequestParam MarkNames mark) {
+    public String getStudents(Model model, @RequestParam Integer specialityId, @RequestParam Integer markId) {
 
         log.debug("third query");
 
-        final List<Student> students = queryService.queryY3(specialityId, mark);
+        final List<Student> students = queryService.queryY3(specialityId, markId);
 
         model.addAttribute(STUDENTS_PROPERTY_NAME, mapper.map(students, STUDENT_LIST_TYPE));
 

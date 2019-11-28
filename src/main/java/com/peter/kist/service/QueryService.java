@@ -26,5 +26,5 @@ public interface QueryService {
 
     List<Student> queryY2(Date violationDate, Date orderDate);
 
-    List<Student> queryY3(Integer specialityId, MarkNames mark);
+    List<Student> queryY3(Integer specialityId, Integer mark);
 }

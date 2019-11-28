@@ -1,9 +1,11 @@
 <%@ page import="com.peter.kist.model.enums.Sex" %>
+<%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <% pageContext.setAttribute("sexnEnum", Sex.values()); %>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,16 +13,23 @@
     <meta charset="utf-8">
     <title>Person page</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/person/create" modelAttribute="personForm" class="form-signin">
+    <form:form cssClass="f" method="POST" action="${contextPath}/person/create" modelAttribute="personForm">
         <h2 class="form-signin-heading">${personForm.id != null ? 'Edit' : 'Create'} person</h2>
 
         <form:hidden path="id" />
@@ -83,7 +92,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

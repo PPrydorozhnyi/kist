@@ -4,24 +4,29 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="students" value="${pageContext.request.getAttribute('students')}"/>
 <c:set var="groups" value="${pageContext.request.getAttribute('groups')}"/>
-
+<%@ page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Student Group Page</title>
-
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/student-group/create" modelAttribute="studentGroupForm"
+    <form:form cssClass="f" method="POST" action="${contextPath}/student-group/create" modelAttribute="studentGroupForm"
                class="form-signin">
         <h2 class="form-signin-heading">${studentGroupForm.id != null ? 'Edit' : 'Create'} student group</h2>
 
@@ -30,8 +35,7 @@
         <%--student--%>
         <spring:bind path="student.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="stud_name"> Student: </label>
-                <form:select id="stud_name" path="student.id" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select id="stud_name" path="student.id">
                     <c:forEach items="${students}" var="student">
                         <option ${student.id == studentGroupForm.student.id ? 'selected="selected"' : ''}
                                 value="${student.id}">${"".concat(student.name).concat(" ").concat(student.surname)}</option>
@@ -44,8 +48,7 @@
         <%--group--%>
         <spring:bind path="group.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="groupCode"> Group: </label>
-                <form:select path="group.id" id="groupCode" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select path="group.id" id="groupCode">
                     <c:forEach items="${groups}" var="group">
                         <option ${group.id == studentGroupForm.group.id ? 'selected="selected"' : ''}
                                 value="${group.id}">${group.groupCode}</option>
@@ -64,7 +67,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

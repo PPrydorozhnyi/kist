@@ -4,24 +4,30 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="persons" value="${pageContext.request.getAttribute('persons')}"/>
 <c:set var="privileges" value="${pageContext.request.getAttribute('privileges')}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Person Privilege Page</title>
-
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/person-privilege/create" modelAttribute="personPrivilegeForm"
+    <form:form cssClass="f" method="POST" action="${contextPath}/person-privilege/create" modelAttribute="personPrivilegeForm"
                class="form-signin">
         <h2 class="form-signin-heading">${personPrivilegeForm.id != null ? 'Edit' : 'Create'} personPrivilege</h2>
 
@@ -30,8 +36,7 @@
         <%--Person--%>
         <spring:bind path="person.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teach_name"> Person: </label>
-                <form:select id="teach_name" path="person.id" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select id="teach_name" path="person.id">
                     <c:forEach items="${persons}" var="person">
                         <option ${person.id == personPrivilegeForm.person.id ? 'selected="selected"' : ''}
                                 value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>
@@ -44,8 +49,7 @@
         <%--Privilege--%>
         <spring:bind path="privilege.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="kind_name"> Privilege: </label>
-                <form:select path="privilege.id" id="kind_name" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select path="privilege.id" id="kind_name">
                     <c:forEach items="${privileges}" var="privilege">
                         <option ${privilege.id == personPrivilegeForm.privilege.id ? 'selected="selected"' : ''}
                                 value="${privilege.id}">${privilege.name}</option>
@@ -82,7 +86,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

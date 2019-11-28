@@ -6,24 +6,30 @@
 <c:set var="orders" value="${pageContext.request.getAttribute('orders')}"/>
 <c:set var="violationKinds" value="${pageContext.request.getAttribute('violationKinds')}"/>
 <c:set var="punishKinds" value="${pageContext.request.getAttribute('punishKinds')}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Violation page</title>
-
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/violation/create" modelAttribute="violationForm" class="form-signin">
+    <form:form cssClass="f" method="POST" action="${contextPath}/violation/create" modelAttribute="violationForm" class="form-signin">
         <h2 class="form-signin-heading">${violationForm.id != null ? 'Edit' : 'Create'} violation</h2>
 
         <form:hidden path="id"/>
@@ -39,7 +45,7 @@
         <%--Person name--%>
         <spring:bind path="person.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="teach_name">   Person name: </label>
-                <form:select id = "teach_name" path="person.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "teach_name" path="person.id">
                     <c:forEach items="${people}" var="person">
                         <option ${person.id == violationForm.person.id ? 'selected="selected"' : ''}
                                 value="${person.id}">${"".concat(person.name).concat(" ").concat(person.surname)}</option>
@@ -52,7 +58,7 @@
         <%--orderNo--%>
         <spring:bind path="order.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="orderNo">   Order No: </label>
-                <form:select id = "orderNo" path="order.id" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select id = "orderNo" path="order.id">
                     <c:forEach items="${orders}" var="order">
                         <option ${order.id == violationForm.order.id ? 'selected="selected"' : ''}
                                 value="${order.id}">${order.orderNo}</option>
@@ -65,7 +71,7 @@
         <%--violationKind--%>
         <spring:bind path="violationKind.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="violationKind">   Violation kind: </label>
-                <form:select path="violationKind.id" id = "violationKind" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select path="violationKind.id" id = "violationKind">
                     <c:forEach items="${violationKinds}" var="violationKind">
                         <option ${violationKind.id == violationForm.violationKind.id ? 'selected="selected"' : ''}
                                 value="${violationKind.id}">${violationKind.name}</option>
@@ -78,7 +84,7 @@
         <%--punishKind--%>
         <spring:bind path="punishKind.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"> <label for="punishKind">   Punish kind: </label>
-                <form:select path="punishKind.id" id = "punishKind" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                <form:select path="punishKind.id" id = "punishKind">
                     <c:forEach items="${punishKinds}" var="punishKind">
                         <option ${punishKind.id == violationForm.punishKind.id ? 'selected="selected"' : ''}
                                 value="${punishKind.id}">${punishKind.name}</option>
@@ -88,7 +94,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

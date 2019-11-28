@@ -3,25 +3,41 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Order page</title>
-
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
+    <form:form method="DELETE" action="${contextPath}/order/${orderForm.id}" modelAttribute="orderForm"
+                                  class="form-signin">
+    <button class="but" style="background-color:red;" type="submit">Delete</button>
+</form:form>
+    <form:form method="GET" action="${contextPath}/order/all" class="form-signin">
+        <button class="but" style="background-color:lightblue;" type="submit">View all orders</button>
+    </form:form>
+    <hr>
 
     <div class="row">
         <div class="col-10">
 
-            <form:form method="POST" action="${contextPath}/order/edit" modelAttribute="orderForm"
+            <form:form cssClass="f" method="POST" action="${contextPath}/order/edit" modelAttribute="orderForm"
                        class="form-signin">
                 <h2 class="form-signin-heading">View order</h2>
 
@@ -66,17 +82,11 @@
                     </div>
                 </spring:bind>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+                <button class="but" type="submit">Edit</button>
             </form:form>
         </div>
         <div class="col-2 margin-view">
-            <form:form method="DELETE" action="${contextPath}/order/${orderForm.id}" modelAttribute="orderForm"
-                       class="form-signin">
-                <button class="btn btn btn-danger btn-block" type="submit">Delete</button>
-            </form:form>
-            <form:form method="GET" action="${contextPath}/order/all" class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View all orders</button>
-            </form:form>
+
         </div>
     </div>
 </div>

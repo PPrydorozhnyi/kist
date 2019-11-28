@@ -1,24 +1,34 @@
-<%@ page import="com.peter.kist.model.enums.MarkNames" %>
+<%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="privileges" value="${pageContext.request.getAttribute('privileges')}"/>
 <c:set var="specialities" value="${pageContext.request.getAttribute('specialities')}"/>
-<% pageContext.setAttribute("markEnum", MarkNames.values()); %>
+<c:set var="marks" value="${pageContext.request.getAttribute('marks')}"/>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Query</title>
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 <body>
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
     <h2 class="form-signin-heading" align="center">First query</h2>
-    <form:form id="form1" method="GET" action="${contextPath}/queryY/query1" class="form-signin border border-primary">
-        <h5 class="form-signin-heading">Query for search all students that have marks higher than average for specified group</h5>
+    <form:form cssClass="f" method="GET" action="${contextPath}/queryY/query1" class="form-signin border border-primary">
+        <h5 class="form-signin-heading">Вивести студентів, що мали привілею "Olympiad" у період з 10 по 15 жовтня 2019 року.</h5>
 
         <%--Privilege--%>
         <div class="form-group"> Privilege:
@@ -46,9 +56,9 @@
 
     <br>
     <h2 class="form-signin-heading" align="center">Second query</h2>
-    <form:form id="form2" method="GET" action="${contextPath}/queryY/query2"
+    <form:form cssClass="f" id="form2" method="GET" action="${contextPath}/queryY/query2"
                class="form-signin border border-primary">
-        <h5 class="form-signin-heading">Choose teachers ...</h5>
+        <h5 class="form-signin-heading">Вивести студентів, що мали порушення 4 жовтня за наказом "About skip lessons" від 01.09.2019р.</h5>
 
         <%--violationDate--%>
         <div class="form-group"> Violation date:
@@ -66,9 +76,9 @@
 
     <br>
     <h2 class="form-signin-heading" align="center">Third query</h2>
-    <form:form id="form3" method="GET" action="${contextPath}/queryY/query3"
+    <form:form cssClass="f" id="form3" method="GET" action="${contextPath}/queryY/query3"
                class="form-signin border border-primary">
-        <h5 class="form-signin-heading">Query for search all students that have marks in specified range and teacher for Math credit</h5>
+        <h5 class="form-signin-heading">Вивести студентів з кафедри "TK" і "AUTS", спеціальності "Automatization and computer technology" груп, створених у 2016 році, які мають хоча б одну оцінку 100."</h5>
 
         <%--Speciality--%>
         <div class="form-group ${status.error ? 'has-error' : ''}"> Speciality:
@@ -81,10 +91,11 @@
         </div>
 
         <%--Mark--%>
-        <div class="form-group ${status.error ? 'has-error' : ''}">  Mark:
-            <select path="mark" name="mark" cssClass="form-control">
-                <c:forEach items="${markEnum}" var="mark">
-                    <option value="${mark}">${mark}</option>
+        <div class="form-group ${status.error ? 'has-error' : ''}"> Mark:
+            <select id="markId" name="markId">
+                <c:forEach items="${marks}" var="mark">
+                    <option ${id == mark.id ? 'selected="selected"' : ''}
+                            value="${mark.id}">${mark.value}</option>
                 </c:forEach>
             </select>
         </div>

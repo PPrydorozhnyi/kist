@@ -75,12 +75,12 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     @Query("SELECT DISTINCT s FROM Student s JOIN s.studentGroups sg JOIN sg.group g" +
             " JOIN g.speciality spec JOIN spec.cafedra caf JOIN s.studentMarks sm JOIN sm.mark m " +
-            "WHERE spec.shifr = '151' " +
-            "AND caf.shifr IN ('TK', 'AUTS') " +
-            "AND sg.puttingDate BETWEEN '2016-01-01' AND '2016-12-31' " +
-            "AND m.value = 100")
-    List<Student> getStudentsBySpecialityAndMark(Integer specialityId, MarkNames mark);
-
+            "WHERE spec.id = ?1 " +
+            "AND caf.name IN ('TK', 'AUTS') " +
+            "AND g.groupCreateDate BETWEEN '2016-01-01' AND '2016-12-31' " +
+            "AND m.id = ?2")
+    List<Student> getStudentsBySpecialityAndMark(Integer specialityId, Integer markId);
+    //
     @Modifying
     @Transactional
     void deleteStudentById(Integer id);

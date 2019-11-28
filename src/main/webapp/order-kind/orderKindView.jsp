@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,18 +11,34 @@
     <meta charset="utf-8">
     <title>Order kind page</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
+    <form:form method="DELETE" action="${contextPath}/order-kind/${orderKindForm.id}" modelAttribute="orderKindForm"
+               class="form-signin">
+        <button class="but" style="background-color:red;" type="submit">Delete</button>
+    </form:form>
+    <form:form method="GET" action="${contextPath}/order-kind/all" class="form-signin">
+        <button class="but" style="background-color:lightblue;" type="submit">View all order kinds</button>
+    </form:form>
+    <hr>
 
     <div class="row">
         <div class="col-10">
 
-            <form:form method="POST" action="${contextPath}/order-kind/edit" modelAttribute="orderKindForm"
+            <form:form cssClass="f" method="POST" action="${contextPath}/order-kind/edit" modelAttribute="orderKindForm"
                        class="form-signin">
                 <h2 class="form-signin-heading">View order kind</h2>
 
@@ -37,17 +54,10 @@
                     </div>
                 </spring:bind>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+                <button class="but" type="submit">Edit</button>
             </form:form>
         </div>
         <div class="col-2 margin-view">
-            <form:form method="DELETE" action="${contextPath}/order-kind/${orderKindForm.id}" modelAttribute="orderKindForm"
-                       class="form-signin">
-                <button class="btn btn btn-danger btn-block" type="submit">Delete</button>
-            </form:form>
-            <form:form method="GET" action="${contextPath}/order-kind/all" class="form-signin">
-                <button class="btn btn btn-info btn-block" type="submit">View all order kinds</button>
-            </form:form>
         </div>
     </div>
 </div>

@@ -4,24 +4,29 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="students" value="${pageContext.request.getAttribute('students')}"/>
 <c:set var="teacherPlans" value="${pageContext.request.getAttribute('teacherPlans')}"/>
-
+<%@ page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Student Mark Page</title>
-
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
+    <link href="${contextPath}/resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div class = "mainmenu">
+    <ul class = "list">
+        <li><a class="link" href="${contextPath}/welcome">Home page</a></li>
+        <li><a class="link" href="${contextPath}/queryY">Query</a></li>
+        <li><form id="logoutForm" class="link" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <a class="link" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </form></li>
+    </ul>
+</div>
 <div class="container">
 
-    <form:form method="POST" action="${contextPath}/student-mark/create" modelAttribute="studentMarkForm"
+    <form:form cssClass="f" method="POST" action="${contextPath}/student-mark/create" modelAttribute="studentMarkForm"
                class="form-signin">
         <h2 class="form-signin-heading">${studentMarkForm.id != null ? 'Edit' : 'Create'} studentMark</h2>
 
@@ -30,8 +35,7 @@
         <%--student--%>
         <spring:bind path="student.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="student"> Student: </label>
-                <form:select id="student" path="student.id" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select id="student" path="student.id">
                     <c:forEach items="${students}" var="student">
                         <option ${student.id == studentMarkForm.student.id ? 'selected="selected"' : ''}
                                 value="${student.id}">${"".concat(student.name).concat(" ").concat(student.surname)}</option>
@@ -44,8 +48,7 @@
         <%--TeacherPlan--%>
         <spring:bind path="teacherPlan.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teacherPlan"> TeacherPlan (testDate): </label>
-                <form:select path="teacherPlan.id" id="teacherPlan" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select path="teacherPlan.id" id="teacherPlan">
                     <c:forEach items="${teacherPlans}" var="teacherPlan">
                         <option ${teacherPlan.id == studentMarkForm.teacherPlan.id ? 'selected="selected"' : ''}
                                     value="${teacherPlan.id}">${teacherPlan.testDate}</option>
@@ -58,8 +61,7 @@
         <%--Mark--%>
         <spring:bind path="mark.id">
             <div class="form-group ${status.error ? 'has-error' : ''}"><label for="mark"> Mark: </label>
-                <form:select path="mark.id" id="mark" class="selectpicker" data-show-subtext="true"
-                             data-live-search="true">
+                <form:select path="mark.id" id="mark">
                     <c:forEach items="${marks}" var="mark">
                         <option ${mark.id == studentMarkForm.mark.id ? 'selected="selected"' : ''}
                                 value="${mark.id}">${mark.value}</option>
@@ -69,7 +71,7 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="but" type="submit">Submit</button>
     </form:form>
 </div>
 

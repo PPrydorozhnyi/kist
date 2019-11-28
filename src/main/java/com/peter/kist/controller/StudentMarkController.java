@@ -95,7 +95,7 @@ public class StudentMarkController {
 
         studentMark = studentMarkService.createStudentMark(studentMark);
 
-        return String.format("redirect:/student-mark/student/%o/teacherPlan/%o", studentMark.getStudent().getId(), studentMark.getTeacherPlan().getId());
+        return String.format("redirect:/student-mark/all");
     }
 
     @PostMapping("/edit")

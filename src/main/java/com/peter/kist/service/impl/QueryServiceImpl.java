@@ -69,7 +69,7 @@ public class QueryServiceImpl implements QueryService {
     }
 
     @Override
-    public List<Student> queryY3(Integer specialityId, MarkNames mark) {
-        return studentRepository.getStudentsBySpecialityAndMark(specialityId, mark);
+    public List<Student> queryY3(Integer specialityId, Integer markId) {
+        return studentRepository.getStudentsBySpecialityAndMark(specialityId, markId);
     }
 }
