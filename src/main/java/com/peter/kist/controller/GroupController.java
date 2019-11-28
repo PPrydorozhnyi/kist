@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,14 +30,12 @@ public class GroupController {
 
     private static final String GROUP_CREATION_PAGE = "group/groupCreation";
 
-    private static final Type SPECIALITY_SHORT_LIST_TYPE = (new TypeToken<List<SpecialityShortDTO>>(){
+    private static final Type SPECIALITY_SHORT_LIST_TYPE = (new TypeToken<List<SpecialityShortDTO>>() {
     }).getType();
 
     private final GroupService groupService;
 
     private final SpecialityService specialityService;
-
-    private final ConversionService conversionService;
 
     private final ModelMapper mapper;
 
@@ -61,8 +58,10 @@ public class GroupController {
 
         List<Speciality> specialities = specialityService.findAll();
 
-        final Map<String, Object> map = Map.of("groupForm", new GroupDTO(new SpecialityShortDTO()),
-                "specialities", mapper.map(specialities, SPECIALITY_SHORT_LIST_TYPE));
+        final Map<String, Object> map = Map.of(
+                "groupForm", new GroupDTO(new SpecialityShortDTO()),
+                "specialities", mapper.map(specialities, SPECIALITY_SHORT_LIST_TYPE)
+        );
 
         model.addAllAttributes(map);
 
@@ -74,7 +73,7 @@ public class GroupController {
 
         log.debug("Group creation");
 
-        Group group = conversionService.convert(groupForm, Group.class);
+        Group group = mapper.map(groupForm, Group.class);
 
         if (bindingResult.hasErrors()) {
             return GROUP_CREATION_PAGE;

@@ -83,7 +83,7 @@ public class QueryYarikController {
 
         model.addAttribute(STUDENTS_PROPERTY_NAME, mapper.map(students, STUDENT_LIST_TYPE));
 
-        return "person/personTableView";
+        return "student/studentTableView";
     }
 
     @GetMapping("/query3")

@@ -2,11 +2,7 @@ package com.peter.kist.model.converter;
 
 import com.peter.kist.model.dto.TeacherPlanDTO;
 import com.peter.kist.model.entity.TeacherPlan;
-import com.peter.kist.repository.SemesterRepository;
-import com.peter.kist.repository.GroupRepository;
-import com.peter.kist.repository.PersonRepository;
-import com.peter.kist.repository.TestKindRepository;
-import com.peter.kist.repository.SubjectRepository;
+import com.peter.kist.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +19,12 @@ public class TeacherPlanDtoToInstanceConverter implements Converter<TeacherPlanD
     private final SemesterRepository semesterRepository;
 
     private final GroupRepository groupRepository;
-    
+
     private final PersonRepository personRepository;
 
     private final TestKindRepository testKindRepository;
+
+    private final LessonRepository lessonRepository;
 
     private final ModelMapper mapper;
 
@@ -40,6 +38,7 @@ public class TeacherPlanDtoToInstanceConverter implements Converter<TeacherPlanD
         teacherPlan.setGroup(groupRepository.getOne(teacherPlanDTO.getGroup().getId()));
         teacherPlan.setSemester(semesterRepository.getOne(teacherPlanDTO.getSemester().getId()));
         teacherPlan.setSubject(subjectRepository.getOne(teacherPlanDTO.getSubject().getId()));
+        teacherPlan.setLesson(lessonRepository.findLessonsByTeacherPlanId(teacherPlanDTO.getId()));
 
         return teacherPlan;
     }

@@ -21,7 +21,7 @@ public class TestKind {
     @Column(name = "test_name")
     private String name;
 
-    @OneToMany(mappedBy = "testKind")
+    @OneToMany(mappedBy = "testKind", orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     private List<TeacherPlan> teacherPlan;
 }

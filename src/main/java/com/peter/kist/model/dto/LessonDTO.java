@@ -13,10 +13,12 @@ public class LessonDTO {
 
     private PersonShortDTO teacher;
     private LessonKindDTO lessonKind;
+    private TeacherPlanDTO teacherPlan;
 
-    public LessonDTO(PersonShortDTO teacher, LessonKindDTO lessonKind) {
+    public LessonDTO(PersonShortDTO teacher, LessonKindDTO lessonKind, TeacherPlanDTO teacherPlan) {
         this.teacher = teacher;
         this.lessonKind = lessonKind;
+        this.teacherPlan = teacherPlan;
     }
 
 }

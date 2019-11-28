@@ -70,7 +70,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query("SELECT s FROM Student s JOIN s.violations v JOIN v.order o JOIN o.orderKind ok " +
             "WHERE v.violationDate = ?1 " +
             "AND o.orderDate = ?2 " +
-            "AND ok.name = 'Skip Lesson'")
+            "AND ok.name = 'About skip lesson'")
     List<Student> getStudentsByViolationDate(Date violationDate, Date orderDate);
 
     @Query("SELECT DISTINCT s FROM Student s JOIN s.studentGroups sg JOIN sg.group g" +

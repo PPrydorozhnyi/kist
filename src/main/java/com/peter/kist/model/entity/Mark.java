@@ -22,6 +22,6 @@ public class Mark {
     private Integer value;
 
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "mark", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mark", orphanRemoval = true)
     private List<StudentMark> studentMarks;
 }

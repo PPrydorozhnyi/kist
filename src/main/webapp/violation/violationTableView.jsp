@@ -38,6 +38,7 @@
                     <th>Violation date</th>
                     <th>Person name</th>
                     <th>Person surname</th>
+                    <th>Order No</th>
                     <th>Violation kind</th>
                     <th>Punish kind</th>
                 </tr>
@@ -48,6 +49,7 @@
                         <td><a href="${contextPath}/violation/${violation.id}">${violation.violationDate}</a></td>
                         <td>${violation.person.name}</td>
                         <td>${violation.person.surname}</td>
+                        <td>${violation.order.orderNo}</td>
                         <td>${violation.violationKind.name}</td>
                         <td>${violation.punishKind.name}</td>
                     </tr>

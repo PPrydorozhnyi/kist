@@ -33,7 +33,7 @@ public class Semester {
     @Column(name = "attest2_date")
     private Date attest2Date;
 
-    @OneToMany(mappedBy = "semester")
+    @OneToMany(mappedBy = "semester", orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     private List<TeacherPlan> teacherPlans;
 }

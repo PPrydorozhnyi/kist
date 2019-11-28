@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="teachers" value="${pageContext.request.getAttribute('teachers')}"/>
 <c:set var="lessonKinds" value="${pageContext.request.getAttribute('lessonKinds')}"/>
+<c:set var="teacherPlans" value="${pageContext.request.getAttribute('teacherPlans')}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,30 @@
 
 <body>
 
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">DB Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="${contextPath}/welcome">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<form id="logoutForm" method="POST" action="${contextPath}/logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+
+<div class="container margin-table-view">
 
     <form:form method="POST" action="${contextPath}/lesson/create" modelAttribute="lessonForm" class="form-signin">
         <h2 class="form-signin-heading">${lessonForm.id != null ? 'Edit' : 'Create'} lesson</h2>
@@ -49,6 +73,20 @@
                     </c:forEach>
                 </form:select>
                 <form:errors path="lessonKind.id"/>
+            </div>
+        </spring:bind>
+
+        <%--TeacherPlan--%>
+        <spring:bind path="teacherPlan.id">
+            <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teacherPlan"> TeacherPlan (testDate): </label>
+                <form:select path="teacherPlan.id" id="teacherPlan" class="selectpicker" data-show-subtext="true"
+                             data-live-search="true">
+                    <c:forEach items="${teacherPlans}" var="teacherPlan">
+                        <option ${teacherPlan.id == lessonForm.teacherPlan.id ? 'selected="selected"' : ''}
+                                value="${teacherPlan.id}">${teacherPlan.testDate}</option>
+                    </c:forEach>
+                </form:select>
+                <form:errors path="teacherPlan.id"/>
             </div>
         </spring:bind>
 

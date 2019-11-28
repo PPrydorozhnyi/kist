@@ -1,9 +1,8 @@
 package com.peter.kist.service.impl;
 
-import com.peter.kist.model.entity.Group;
 import com.peter.kist.model.entity.Mark;
 import com.peter.kist.model.entity.Student;
-import com.peter.kist.model.entity.StudentMark;
+import com.peter.kist.repository.MarkRepository;
 import com.peter.kist.repository.StudentRepository;
 import com.peter.kist.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -21,6 +19,7 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final MarkRepository markRepository;
 
     @Override
     public Student createStudent(Student student) {
@@ -50,19 +49,15 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
-    //TODO refactor to repository method
     @Override
     public List<Mark> getMarksForStudent(Integer id) {
-        Student student = studentRepository.getOne(id);
-        return student.getStudentMarks().stream()
-                .map(StudentMark::getMark)
-                .collect(Collectors.toList());
+        return markRepository.findMarksByStudentId(id);
     }
 
     private Student updateStudent(Student person) {
         Student personFromCache = studentRepository.getOne(person.getId());
         BeanUtils.copyProperties(person, personFromCache, "id", "lessons", "teacherPlans",
-                "violations", "personPrivilege");
+                "violations", "personPrivilege", "studentGroups", "studentMarks");
         return personFromCache;
     }
 

@@ -5,6 +5,7 @@ import com.peter.kist.repository.GroupRepository;
 import com.peter.kist.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,12 @@ public class GroupServiceImpl implements GroupService {
     private final GroupRepository groupRepository;
 
     @Override
-    public Group createGroup(Group group) { return groupRepository.save(group); }
+    public Group createGroup(Group group) {
+        if (group.getId() != null) {
+            group = updateGroup(group);
+        }
+        return groupRepository.save(group);
+    }
 
     @Override
     public Group editGroup(Group group) {
@@ -38,6 +44,13 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<Group> findAll() {
         return groupRepository.findAll();
+    }
+
+    private Group updateGroup(Group group) {
+        Group groupFromCache = groupRepository.getOne(group.getId());
+        BeanUtils.copyProperties(group, groupFromCache, "id", "teacherPlans",
+                "studentGroups", "speciality");
+        return groupFromCache;
     }
 
 }
