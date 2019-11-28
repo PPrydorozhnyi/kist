@@ -12,6 +12,7 @@ import com.peter.kist.service.MarkService;
 import com.peter.kist.service.StudentMarkService;
 import com.peter.kist.service.StudentService;
 import com.peter.kist.service.TeacherPlanService;
+import com.peter.kist.validator.StudentMarkValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -44,6 +45,8 @@ public class StudentMarkController {
     private final TeacherPlanService teacherPlanService;
 
     private final ConversionService conversionService;
+
+    private final StudentMarkValidator validator;
 
     private final ModelMapper mapper;
 
@@ -83,19 +86,36 @@ public class StudentMarkController {
     }
 
     @PostMapping("/create")
-    public String createStudentMark(@ModelAttribute("studentMarkForm") StudentMarkDTO studentMarkForm, BindingResult bindingResult) {
+    public String createStudentMark(Model model, @ModelAttribute("studentMarkForm") StudentMarkDTO studentMarkForm,
+                                    BindingResult bindingResult) {
 
         log.debug("StudentMark creation");
+
+        validator.validate(studentMarkForm, bindingResult);
 
         StudentMark studentMark = conversionService.convert(studentMarkForm, StudentMark.class);
 
         if (bindingResult.hasErrors()) {
+            List<Student> students = studentService.findAll();
+
+            List<Mark> marks = markService.findAll();
+
+            List<TeacherPlan> teacherPlans = teacherPlanService.findAll();
+
+            final Map<String, Object> map = Map.of(
+                    "marks", mapper.map(marks, MARK_LIST_TYPE),
+                    "students", mapper.map(students, STUDENT_LIST_TYPE),
+                    "teacherPlans", mapper.map(teacherPlans, TEACHER_PLAN_LIST_TYPE)
+            );
+
+            model.addAllAttributes(map);
             return STUDENT_MARK_CREATION_PAGE;
         }
 
         studentMark = studentMarkService.createStudentMark(studentMark);
 
-        return String.format("redirect:/student-mark/student/%o/teacherPlan/%o", studentMark.getStudent().getId(), studentMark.getTeacherPlan().getId());
+        return String.format("redirect:/student-mark/student/%o/teacherPlan/%o",
+                studentMark.getStudent().getId(), studentMark.getTeacherPlan().getId());
     }
 
     @PostMapping("/edit")

@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <title>Student Mark Page</title>
 
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/my.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +20,30 @@
 
 <body>
 
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">DB Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="${contextPath}/welcome">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<form id="logoutForm" method="POST" action="${contextPath}/logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+
+<div class="container margin-table-view">
 
     <form:form method="POST" action="${contextPath}/student-mark/create" modelAttribute="studentMarkForm"
                class="form-signin">
@@ -43,12 +67,17 @@
 
         <%--TeacherPlan--%>
         <spring:bind path="teacherPlan.id">
-            <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teacherPlan"> TeacherPlan (testDate): </label>
+            <div class="form-group ${status.error ? 'has-error' : ''}"><label for="teacherPlan"> TeacherPlan: </label>
                 <form:select path="teacherPlan.id" id="teacherPlan" class="selectpicker" data-show-subtext="true"
                              data-live-search="true">
                     <c:forEach items="${teacherPlans}" var="teacherPlan">
                         <option ${teacherPlan.id == studentMarkForm.teacherPlan.id ? 'selected="selected"' : ''}
-                                    value="${teacherPlan.id}">${teacherPlan.testDate}</option>
+                                value="${teacherPlan.id}">
+                                ${"".concat(teacherPlan.subject.name).concat(" ")
+                                .concat(teacherPlan.tester.name).concat(" ")
+                                .concat(teacherPlan.tester.surname).concat(" ")
+                                .concat(teacherPlan.group.groupCode)}
+                        </option>
                     </c:forEach>
                 </form:select>
                 <form:errors path="teacherPlan.id"/>

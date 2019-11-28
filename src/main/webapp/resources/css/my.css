@@ -3,8 +3,8 @@
     text-align: center;
 }
 
-.margin-table-view{
-    margin-top: 20px;
+.margin-table-view {
+    margin-top: 70px;
 }
 
 .margin-view {
@@ -13,4 +13,9 @@
 
 td {
     text-align: center;
+}
+
+.my-border {
+    padding: 20px;
+    border-width: 5px !important
 }

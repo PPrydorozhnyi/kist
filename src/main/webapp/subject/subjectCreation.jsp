@@ -16,17 +16,39 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">DB Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="${contextPath}/welcome">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<form id="logoutForm" method="POST" action="${contextPath}/logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
 
-<div class="container">
+<div class="container margin-table-view">
 
     <form:form method="POST" action="${contextPath}/subject/create" modelAttribute="subjectForm" class="form-signin">
         <h2 class="form-signin-heading">${subjectForm.id != null ? 'Edit' : 'Create'} subject</h2>
 
-        <form:hidden path="id" />
+        <form:hidden path="id"/>
 
         <%--subject_name--%>
         <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">  Subject name:
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Subject name:
                 <form:input type="text" path="name" class="form-control"
                             autofocus="true"/>
                 <form:errors path="name"/>
@@ -35,8 +57,8 @@
 
         <%--subject_shifr--%>
         <spring:bind path="code">
-            <div class="form-group ${status.error ? 'has-error' : ''}">  Subject shifr:
-                <form:input type="text" path="code" class="form-control" />
+            <div class="form-group ${status.error ? 'has-error' : ''}"> Subject shifr:
+                <form:input type="text" path="code" class="form-control"/>
                 <form:errors path="code"/>
             </div>
         </spring:bind>

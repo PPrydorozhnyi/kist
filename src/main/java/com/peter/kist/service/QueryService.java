@@ -1,6 +1,5 @@
 package com.peter.kist.service;
 
-import com.peter.kist.model.dto.ThirdQueryDTO;
 import com.peter.kist.model.entity.Person;
 import com.peter.kist.model.entity.Student;
 import com.peter.kist.model.enums.MarkNames;
@@ -25,6 +24,4 @@ public interface QueryService {
     List<Student> queryY1(Integer privilegeId, Date privBeginDate, Date privEndDate);
 
     List<Student> queryY2(Date violationDate, Date orderDate);
-
-    List<Student> queryY3(Integer specialityId, MarkNames mark);
 }

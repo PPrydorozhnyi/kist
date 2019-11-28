@@ -23,6 +23,6 @@ public class Subject {
     @Column(name = "subject_shifr")
     private String code;
 
-    @OneToMany(mappedBy = "subject")
+    @OneToMany(mappedBy = "subject", orphanRemoval = true)
     private List<TeacherPlan> teacherPlans;
 }

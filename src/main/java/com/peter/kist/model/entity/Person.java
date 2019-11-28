@@ -39,10 +39,10 @@ public class Person {
 
     private String telephoneNumber;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", orphanRemoval = true)
     private List<Lesson> lessons;
 
-    @OneToMany(mappedBy = "tester")
+    @OneToMany(mappedBy = "tester", orphanRemoval = true)
     private List<TeacherPlan> teacherPlans;
 
     //Vadim

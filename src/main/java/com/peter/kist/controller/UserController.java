@@ -69,6 +69,6 @@ public class UserController {
 
     @GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
-        return "user/welcome";
+        return "user/welcome1";
     }
 }

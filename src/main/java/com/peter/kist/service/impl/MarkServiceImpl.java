@@ -5,6 +5,7 @@ import com.peter.kist.repository.MarkRepository;
 import com.peter.kist.service.MarkService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,16 @@ public class MarkServiceImpl implements MarkService {
 
     @Override
     public Mark createMark(Mark mark) {
+        if (mark.getId() != null) {
+            mark = updateSubject(mark);
+        }
         return markRepository.save(mark);
+    }
+
+    private Mark updateSubject(Mark mark) {
+        final Mark markFromCache = markRepository.getOne(mark.getId());
+        BeanUtils.copyProperties(mark, markFromCache, "id", "studentMarks");
+        return markFromCache;
     }
 
     @Override

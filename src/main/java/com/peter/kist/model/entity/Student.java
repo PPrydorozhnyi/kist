@@ -1,12 +1,10 @@
 package com.peter.kist.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,6 +23,6 @@ public class Student extends Person {
     private List<StudentGroup> studentGroups;
 
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<StudentMark> studentMarks;
 }
