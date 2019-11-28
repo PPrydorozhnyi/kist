@@ -97,15 +97,6 @@
                 </div>
             </spring:bind>
 
-            <%--LAST GROUP JOIN DATE--%>
-            <spring:bind path="groupPuttingDate">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    Last group putting date: <br>
-                    <form:input type="date" path="groupPuttingDate" class="form-control"/>
-                    <form:errors path="groupPuttingDate"/>
-                </div>
-            </spring:bind>
-
             <%--NOTE--%>
             <spring:bind path="note">
                 <div class="form-group ${status.error ? 'has-error' : ''}">  Note about student:

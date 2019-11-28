@@ -45,7 +45,6 @@
                     <th>Birth place</th>
                     <th>Telephone number</th>
                     <th>Book number</th>
-                    <th>Group putting date</th>
                     <th>Note</th>
                 </tr>
                 </thead>
@@ -60,7 +59,6 @@
                         <td>${student.birthPlace}</td>
                         <td>${student.telephoneNumber}</td>
                         <td>${student.bookNumber}</td>
-                        <td>${student.groupPuttingDate}</td>
                         <td>${student.note}</td>
                     </tr>
                 </c:forEach>
