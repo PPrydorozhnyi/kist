@@ -7,5 +7,7 @@ import lombok.Data;
 public class InputDto {
 
   private List<Integer> inputValues;
+  private int amountOfAlternative;
+  private int amountOfExpert;
 
 }

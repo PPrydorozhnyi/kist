@@ -26,11 +26,12 @@ public class Lab1Controller {
 
     @PostMapping("/input")
     public String init(@ModelAttribute("init") InitDto initDto, Model model) {
+        final var inputDto = new InputDto();
+        inputDto.setAmountOfExpert(initDto.getAmountOfExpert());
+        inputDto.setAmountOfAlternative(initDto.getAmountOfAlternative());
+        model.addAttribute("input", inputDto);
 
-        model.addAttribute("input", new InputDto());
-
-        return "redirect:/lab1/firstLabTable.jsp?amountOfExpert=" + initDto.getAmountOfExpert()
-            + "&amountOfAlternative=" + initDto.getAmountOfAlternative();
+        return "lab1/firstLabTable";
     }
 
 //    @PostMapping("/create")
