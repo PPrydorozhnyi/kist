@@ -1,7 +1,8 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.dto.InitDto;
-import com.peter.kist.model.dto.InputDto;
+import com.peter.kist.model.dto.first.InitDto;
+import com.peter.kist.model.dto.first.InputDto;
+import com.peter.kist.service.FirstMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,21 +32,22 @@ public class Lab1Controller {
         inputDto.setAmountOfAlternative(initDto.getAmountOfAlternative());
         model.addAttribute("input", inputDto);
         model.addAttribute("amountOfExpert", initDto.getAmountOfExpert());
-        model.addAttribute("amountOfAlternative", initDto.getAmountOfExpert());
+        model.addAttribute("amountOfAlternative", initDto.getAmountOfAlternative());
 
         return "lab1/firstLabTable";
     }
 
-//    @PostMapping("/create")
-//    public String init(@ModelAttribute("cafedraForm") CafedraDTO cafedraForm) {
-//        log.debug("createCafedra [cafedraForm={}]", cafedraForm);
-//
-//
-//
-//        cafedraService.createCafedra(cafedra);
-//
-//        return "redirect:/cafedra/" + cafedra.getId();
-//    }
+    @PostMapping("/calculate")
+    public String init(@ModelAttribute("input") InputDto inputDto, Model model) {
+        log.debug("init [inputDto={}, model={}]", inputDto, model);
+        final var firstMethod =
+            new FirstMethod(inputDto.getInputValues(), inputDto.getAmountOfExpert(),
+                inputDto.getAmountOfAlternative());
+        final var marks = firstMethod.calculateMarks();
+
+        model.addAttribute("results", marks);
+        return "lab1/firstLabResult";
+    }
 //
 //    @PostMapping("/edit")
 //    public String edit(@ModelAttribute("cafedraForm") CafedraDTO cafedra, Model model) {

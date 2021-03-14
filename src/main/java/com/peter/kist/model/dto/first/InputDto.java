@@ -1,4 +1,4 @@
-package com.peter.kist.model.dto;
+package com.peter.kist.model.dto.first;
 
 import java.util.List;
 import lombok.Data;
