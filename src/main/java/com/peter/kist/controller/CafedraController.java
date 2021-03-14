@@ -2,7 +2,6 @@ package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.CafedraDTO;
 import com.peter.kist.model.entity.Cafedra;
-import com.peter.kist.service.CafedraService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
