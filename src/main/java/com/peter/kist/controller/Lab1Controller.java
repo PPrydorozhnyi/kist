@@ -48,33 +48,5 @@ public class Lab1Controller {
         model.addAttribute("results", marks);
         return "lab1/firstLabResult";
     }
-//
-//    @PostMapping("/edit")
-//    public String edit(@ModelAttribute("cafedraForm") CafedraDTO cafedra, Model model) {
-//        log.debug("editCafedra");
-//
-//        return CAFEDRA_CREATION_PAGE;
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public String delete(@PathVariable Integer id) {
-//
-//        log.debug("deleteCafedra");
-//
-//        cafedraService.deleteCafedra(id);
-//
-//        return "redirect:/cafedra/all";
-//    }
-//
-//    @GetMapping("/all")
-//    public String findAll(Model model) {
-//
-//        log.debug("findAllCafedra");
-//
-//        List<Cafedra> cafedras = cafedraService.findAll();
-//
-//        model.addAttribute("cafedras", mapper.map(cafedras, CAFEDRA_LIST_TYPE));
-//
-//        return "cafedra/cafedraTableView";
-//    }
+
 }
