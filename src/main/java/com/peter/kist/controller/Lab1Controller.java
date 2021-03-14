@@ -30,6 +30,8 @@ public class Lab1Controller {
         inputDto.setAmountOfExpert(initDto.getAmountOfExpert());
         inputDto.setAmountOfAlternative(initDto.getAmountOfAlternative());
         model.addAttribute("input", inputDto);
+        model.addAttribute("amountOfExpert", initDto.getAmountOfExpert());
+        model.addAttribute("amountOfAlternative", initDto.getAmountOfExpert());
 
         return "lab1/firstLabTable";
     }
