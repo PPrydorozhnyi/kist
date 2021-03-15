@@ -20,7 +20,7 @@ public class SecondMethod {
     final var outputNeg = maxValueAdd(minValues);
     final var outputGur = maxValueAdd(gurvicSums);
 
-    return new GurvicResult(outputPos, outputNeg, outputNeg);
+    return new GurvicResult(outputPos, outputNeg, outputGur);
   }
 
   private List<Double> gurvicMethod(List<Double> maxValues, List<Double> minValues) {
