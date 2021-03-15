@@ -1,7 +1,7 @@
 package com.peter.kist.controller;
 
-import com.peter.kist.model.dto.first.InitDto;
-import com.peter.kist.model.dto.first.InputDto;
+import com.peter.kist.model.dto.first.AlternativeInitDto;
+import com.peter.kist.model.dto.first.AlternativeInputDto;
 import com.peter.kist.service.FirstMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,37 +16,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/alternative")
 public class Lab1Controller {
 
-    @GetMapping
-    public String getInitial(Model model) {
-        log.debug("getInittial [model={}]", model);
+  @GetMapping
+  public String getInitial(Model model) {
+    log.debug("getInittial [model={}]", model);
+    model.addAttribute("init", new AlternativeInitDto());
+    return "lab1/firstLab";
+  }
 
-        model.addAttribute("init", new InitDto());
+  @PostMapping("/input")
+  public String init(@ModelAttribute("init") AlternativeInitDto alternativeInitDto, Model model) {
+    log.debug("init [alternativeInitDto={}, model={}]", alternativeInitDto, model);
 
-        return "lab1/firstLab";
-    }
+    final var inputDto = new AlternativeInputDto();
+    inputDto.setAmountOfExpert(alternativeInitDto.getAmountOfExpert());
+    inputDto.setAmountOfAlternative(alternativeInitDto.getAmountOfAlternative());
 
-    @PostMapping("/input")
-    public String init(@ModelAttribute("init") InitDto initDto, Model model) {
-        final var inputDto = new InputDto();
-        inputDto.setAmountOfExpert(initDto.getAmountOfExpert());
-        inputDto.setAmountOfAlternative(initDto.getAmountOfAlternative());
-        model.addAttribute("input", inputDto);
-        model.addAttribute("amountOfExpert", initDto.getAmountOfExpert());
-        model.addAttribute("amountOfAlternative", initDto.getAmountOfAlternative());
+    model.addAttribute("input", inputDto);
+    model.addAttribute("amountOfExpert", alternativeInitDto.getAmountOfExpert());
+    model.addAttribute("amountOfAlternative", alternativeInitDto.getAmountOfAlternative());
 
-        return "lab1/firstLabTable";
-    }
+    return "lab1/firstLabTable";
+  }
 
-    @PostMapping("/calculate")
-    public String init(@ModelAttribute("input") InputDto inputDto, Model model) {
-        log.debug("init [inputDto={}, model={}]", inputDto, model);
-        final var firstMethod =
-            new FirstMethod(inputDto.getInputValues(), inputDto.getAmountOfExpert(),
-                inputDto.getAmountOfAlternative());
-        final var marks = firstMethod.calculateMarks();
+  @PostMapping("/calculate")
+  public String init(@ModelAttribute("input") AlternativeInputDto alternativeInputDto,
+                     Model model) {
+    log.debug("init [inputDto={}, model={}]", alternativeInputDto, model);
 
-        model.addAttribute("results", marks);
-        return "lab1/firstLabResult";
-    }
+    final var firstMethod =
+        new FirstMethod(alternativeInputDto.getInputValues(),
+            alternativeInputDto.getAmountOfExpert(),
+            alternativeInputDto.getAmountOfAlternative());
+    final var marks = firstMethod.calculateMarks();
+
+    model.addAttribute("results", marks);
+
+    return "lab1/firstLabResult";
+  }
 
 }

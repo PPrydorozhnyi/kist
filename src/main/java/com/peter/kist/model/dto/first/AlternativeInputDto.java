@@ -4,7 +4,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class InputDto {
+public class AlternativeInputDto {
 
   private List<Integer> inputValues;
   private int amountOfAlternative;
