@@ -20,13 +20,15 @@
                 <tr>
                     <th>Alternative</th>
                     <th>Total Marks</th>
+                    <th>Rank</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${results}" var="result" varStatus="loop">
+                <c:forEach items="${results.marks}" var="result" varStatus="loop">
                     <tr>
                         <td>${loop.count}</td>
                         <td>${result}</td>
+                        <td>${results.ranks.get(loop.index)}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
