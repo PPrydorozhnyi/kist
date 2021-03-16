@@ -4,6 +4,7 @@ import com.peter.kist.model.dto.second.GurvicResult;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,9 +12,13 @@ public class SecondMethod {
 
   private static final Double POSITIVE_OUTCOME = 0.6;
 
+  private static final BiPredicate<Double, Double> greater = (x, y) -> x > y;
+  private static final BiPredicate<Double, Double> less = (x, y) -> x < y;
+
+
   public GurvicResult calculateAll(List<Double> inputValues, Integer amountOfStage) {
-    final var maxValues = findMaxV(inputValues, amountOfStage);
-    final var minValues = findMinV(inputValues, amountOfStage);
+    final var maxValues = findSomething(inputValues, amountOfStage, greater);
+    final var minValues = findSomething(inputValues, amountOfStage, less);
     final var gurvicSums = gurvicMethod(maxValues, minValues);
 
     final var posRank = ranking(maxValues);
@@ -33,7 +38,8 @@ public class SecondMethod {
     return gurvicSums;
   }
 
-  private List<Double> findMaxV(List<Double> inputValues, Integer amountOfStage){
+  private List<Double> findSomething(List<Double> inputValues, Integer amountOfStage,
+                                     BiPredicate<Double, Double> something) {
     List<Double> result = new ArrayList<>();
     double maxValue;
     double currentValue;
@@ -42,29 +48,11 @@ public class SecondMethod {
       maxValue = inputValues.get(i);
       for(int j = i; j < inputValues.size(); j += amountOfStage){
         currentValue = inputValues.get(j);
-        if(currentValue > maxValue){
+        if(something.test(currentValue, maxValue)){
           maxValue = currentValue;
         }
       }
       result.add(maxValue);
-    }
-    return result;
-  }
-
-  private List<Double> findMinV(List<Double> inputValues, Integer amountOfStage){
-    List<Double> result = new ArrayList<>();
-    double minValue;
-    double currentValue;
-
-    for(int i = 0; i < amountOfStage; ++i){
-      minValue = inputValues.get(i);
-      for(int j = i; j < inputValues.size(); j += amountOfStage){
-        currentValue = inputValues.get(j);
-        if(currentValue < minValue){
-          minValue = currentValue;
-        }
-      }
-      result.add(minValue);
     }
     return result;
   }
