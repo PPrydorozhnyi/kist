@@ -1,11 +1,11 @@
 package com.peter.kist.service;
 
-import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.second.GurvicResult;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SecondMethod {
 
@@ -20,10 +20,6 @@ public class SecondMethod {
     final var negRank = ranking(minValues);
     final var gurRank = ranking(gurvicSums);
 
-    final var outputPos = maxValueAdd(maxValues);
-    final var outputNeg = maxValueAdd(minValues);
-    final var outputGur = maxValueAdd(gurvicSums);
-
     return new GurvicResult(maxValues, minValues, gurvicSums, posRank, negRank, gurRank);
   }
 
@@ -35,14 +31,6 @@ public class SecondMethod {
       gurvicSums.add(currentSum);
     }
     return gurvicSums;
-  }
-
-  private List<Double> findMaxValues(List<Double> inputValues, Integer amountOfStage) {
-    return Lists.partition(inputValues, amountOfStage).parallelStream()
-        .map(list -> list.stream()
-            .max(Comparator.comparingDouble(Double::doubleValue))
-            .orElse(Double.MIN_VALUE))
-        .collect(Collectors.toList());
   }
 
   private List<Double> findMaxV(List<Double> inputValues, Integer amountOfStage){
@@ -81,20 +69,6 @@ public class SecondMethod {
     return result;
   }
 
-  private List<Double> findMinValues(List<Double> inputValues, Integer amountOfStage) {
-    return Lists.partition(inputValues, amountOfStage).parallelStream()
-        .map(list -> list.stream()
-            .min(Comparator.comparingDouble(Double::doubleValue))
-            .orElse(Double.MAX_VALUE))
-        .collect(Collectors.toList());
-  }
-
-  private Double maxValueAdd(List<Double> valuesList) {
-    return valuesList.stream()
-        .max(Comparator.comparingDouble(Double::doubleValue))
-        .orElse(Double.MIN_VALUE);
-  }
-
   private List<Integer> ranking(List<Double> inputList){
     List<Double> sorted = new ArrayList<>(inputList);
     List<Integer> rank = new ArrayList<>();
@@ -104,13 +78,23 @@ public class SecondMethod {
     }
 
     sorted.sort(Comparator.reverseOrder());
-    int index;
 
-    for(int i = 0; i < sorted.size(); ++i){
-      index = inputList.indexOf(sorted.get(i));
-      rank.set(index, i + 1);
+    for(int i = 0; i < sorted.size(); ++i) {
+      final var allIndexes = findAllIndexes(inputList, sorted.get(i));
+      for (int ind : allIndexes) {
+        if (rank.get(ind) == 0) {
+          rank.set(ind, i + 1);
+        }
+      }
     }
 
     return rank;
+  }
+
+  private List<Integer> findAllIndexes(List<Double> list, Double value) {
+    return IntStream.range(0, list.size())
+        .filter(i -> value.equals(list.get(i)))
+        .boxed()
+        .collect(Collectors.toList());
   }
 }
