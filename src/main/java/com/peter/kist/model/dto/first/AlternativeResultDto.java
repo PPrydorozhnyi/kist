@@ -9,6 +9,6 @@ import lombok.Data;
 public class AlternativeResultDto {
 
   private List<Double> marks;
-  private List<Integer> ranks;
+  private int[] ranks;
 
 }

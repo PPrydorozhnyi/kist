@@ -1,9 +1,8 @@
 package com.peter.kist.model.dto.second;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +12,7 @@ public class GurvicResult {
   private List<Double> outputNeg;
   private List<Double> outputGur;
 
-  private List<Integer> posRank;
-  private List<Integer> negRank;
-  private List<Integer> gurRank;
+  private int[] posRank;
+  private int[] negRank;
+  private int[] gurRank;
 }

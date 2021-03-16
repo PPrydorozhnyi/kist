@@ -32,11 +32,11 @@
                     <tr>
                         <td>${loop.count}</td>
                         <td>${result}</td>
-                        <td>${results.gurRank.get(loop.index)}</td>
+                        <td>${results.gurRank[loop.index]}</td>
                         <td>${results.outputNeg.get(loop.index)}</td>
-                        <td>${results.negRank.get(loop.index)}</td>
+                        <td>${results.negRank[loop.index]}</td>
                         <td>${results.outputPos.get(loop.index)}</td>
-                        <td>${results.posRank.get(loop.index)}</td>
+                        <td>${results.posRank[loop.index]}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

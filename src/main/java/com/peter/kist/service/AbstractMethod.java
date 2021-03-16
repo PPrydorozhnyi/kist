@@ -8,21 +8,17 @@ import java.util.stream.IntStream;
 
 public abstract class AbstractMethod {
 
-  protected List<Integer> ranking(List<Double> inputList){
+  protected int[] ranking(List<Double> inputList){
     List<Double> sorted = new ArrayList<>(inputList);
-    List<Integer> rank = new ArrayList<>();
-
-    for(int i = 0; i < inputList.size(); ++i){
-      rank.add(0);
-    }
+    int[] rank = new int[inputList.size()];
 
     sorted.sort(Comparator.reverseOrder());
 
     for(int i = 0; i < sorted.size(); ++i) {
       final var allIndexes = findAllIndexes(inputList, sorted.get(i));
       for (int ind : allIndexes) {
-        if (rank.get(ind) == 0) {
-          rank.set(ind, i + 1);
+        if (rank[ind] == 0) {
+          rank[ind] = i + 1;
         }
       }
     }
