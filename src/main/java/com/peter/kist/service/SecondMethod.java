@@ -12,15 +12,15 @@ public class SecondMethod {
   private static final Double POSITIVE_OUTCOME = 0.6;
 
   public GurvicResult calculateAll(List<Double> inputValues, Integer amountOfStage) {
-    final var maxValues = findMaxValues(inputValues, amountOfStage);
-    final var minValues = findMinValues(inputValues, amountOfStage);
+    final var maxValues = findMaxV(inputValues, amountOfStage);
+    final var minValues = findMinV(inputValues, amountOfStage);
     final var gurvicSums = gurvicMethod(maxValues, minValues);
 
     final var outputPos = maxValueAdd(maxValues);
     final var outputNeg = maxValueAdd(minValues);
     final var outputGur = maxValueAdd(gurvicSums);
 
-    return new GurvicResult(outputPos, outputNeg, outputGur);
+    return new GurvicResult(maxValues, minValues, gurvicSums);
   }
 
   private List<Double> gurvicMethod(List<Double> maxValues, List<Double> minValues) {
@@ -39,6 +39,42 @@ public class SecondMethod {
             .max(Comparator.comparingDouble(Double::doubleValue))
             .orElse(Double.MIN_VALUE))
         .collect(Collectors.toList());
+  }
+
+  private List<Double> findMaxV(List<Double> inputValues, Integer amountOfStage){
+    List<Double> result = new ArrayList<>();
+    double maxValue;
+    double currentValue;
+
+    for(int i = 0; i < amountOfStage; ++i){
+      maxValue = inputValues.get(i);
+      for(int j = i; j < inputValues.size(); j += amountOfStage){
+        currentValue = inputValues.get(j);
+        if(currentValue > maxValue){
+          maxValue = currentValue;
+        }
+      }
+      result.add(maxValue);
+    }
+    return result;
+  }
+
+  private List<Double> findMinV(List<Double> inputValues, Integer amountOfStage){
+    List<Double> result = new ArrayList<>();
+    double minValue;
+    double currentValue;
+
+    for(int i = 0; i < amountOfStage; ++i){
+      minValue = inputValues.get(i);
+      for(int j = i; j < inputValues.size(); j += amountOfStage){
+        currentValue = inputValues.get(j);
+        if(currentValue < minValue){
+          minValue = currentValue;
+        }
+      }
+      result.add(minValue);
+    }
+    return result;
   }
 
   private List<Double> findMinValues(List<Double> inputValues, Integer amountOfStage) {

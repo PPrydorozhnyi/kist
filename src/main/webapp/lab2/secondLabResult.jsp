@@ -18,23 +18,21 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Type</th>
-                    <th>Total Marks</th>
+                    <th>Stages</th>
+                    <th>Gurvic</th>
+                    <th>Negative</th>
+                    <th>Positive</th>
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${results.outputGur}" var="result" varStatus="loop">
                     <tr>
-                        <td>Gurvic method</td>
-                        <td>${results.outputGur}</td>
+                        <td>${loop.count}</td>
+                        <td>${result}</td>
+                        <td>${results.outputNeg.get(loop.index)}</td>
+                        <td>${results.outputPos.get(loop.index)}</td>
                     </tr>
-                    <tr>
-                        <td>Negative method</td>
-                        <td>${results.outputNeg}</td>
-                    </tr>
-                    <tr>
-                        <td>Positive method</td>
-                        <td>${results.outputPos}</td>
-                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
