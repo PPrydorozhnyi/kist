@@ -1,6 +1,7 @@
 package com.peter.kist.service;
 
 import com.google.common.collect.Lists;
+import com.peter.kist.model.dto.first.AlternativeResultDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-public class FirstMethod {
+public class FirstMethod extends AbstractMethod {
 
   private final List<Integer> inputValues;
   private final Integer amountOfExpert;
@@ -40,9 +41,11 @@ public class FirstMethod {
     return normalMark;
   }
 
-  public List<Double> calculateMarks() {
+  public AlternativeResultDto calculateMarks() {
     final var sumExpectedMarks = calculateSum();
-    return calculateNormalMark(sumExpectedMarks);
+    final var marks = calculateNormalMark(sumExpectedMarks);
+    final var ranking = ranking(marks);
+    return new AlternativeResultDto(marks, ranking);
   }
 
 }
