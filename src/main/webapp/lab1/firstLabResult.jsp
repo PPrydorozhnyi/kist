@@ -28,7 +28,7 @@
                     <tr>
                         <td>${loop.count}</td>
                         <td>${result}</td>
-                        <td>${results.ranks.get(loop.index)}</td>
+                        <td>${results.ranks[loop.index]}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
