@@ -16,11 +16,15 @@ public class SecondMethod {
     final var minValues = findMinV(inputValues, amountOfStage);
     final var gurvicSums = gurvicMethod(maxValues, minValues);
 
+    final var posRank = ranking(maxValues);
+    final var negRank = ranking(minValues);
+    final var gurRank = ranking(gurvicSums);
+
     final var outputPos = maxValueAdd(maxValues);
     final var outputNeg = maxValueAdd(minValues);
     final var outputGur = maxValueAdd(gurvicSums);
 
-    return new GurvicResult(maxValues, minValues, gurvicSums);
+    return new GurvicResult(maxValues, minValues, gurvicSums, posRank, negRank, gurRank);
   }
 
   private List<Double> gurvicMethod(List<Double> maxValues, List<Double> minValues) {
@@ -91,4 +95,22 @@ public class SecondMethod {
         .orElse(Double.MIN_VALUE);
   }
 
+  private List<Integer> ranking(List<Double> inputList){
+    List<Double> sorted = new ArrayList<>(inputList);
+    List<Integer> rank = new ArrayList<>();
+
+    for(int i = 0; i < inputList.size(); ++i){
+      rank.add(0);
+    }
+
+    sorted.sort(Comparator.reverseOrder());
+    int index;
+
+    for(int i = 0; i < sorted.size(); ++i){
+      index = inputList.indexOf(sorted.get(i));
+      rank.set(index, i + 1);
+    }
+
+    return rank;
+  }
 }

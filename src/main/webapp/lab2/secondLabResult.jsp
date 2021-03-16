@@ -20,8 +20,11 @@
                 <tr>
                     <th>Stages</th>
                     <th>Gurvic</th>
+                    <th>Rank</th>
                     <th>Negative</th>
+                    <th>Rank</th>
                     <th>Positive</th>
+                    <th>Rank</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,8 +32,11 @@
                     <tr>
                         <td>${loop.count}</td>
                         <td>${result}</td>
+                        <td>${results.gurRank.get(loop.index)}</td>
                         <td>${results.outputNeg.get(loop.index)}</td>
+                        <td>${results.negRank.get(loop.index)}</td>
                         <td>${results.outputPos.get(loop.index)}</td>
+                        <td>${results.posRank.get(loop.index)}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -13,4 +13,7 @@ public class GurvicResult {
   private List<Double> outputNeg;
   private List<Double> outputGur;
 
+  private List<Integer> posRank;
+  private List<Integer> negRank;
+  private List<Integer> gurRank;
 }
