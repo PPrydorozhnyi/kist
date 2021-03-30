@@ -2,6 +2,8 @@ package com.peter.kist.service;
 
 import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.first.AlternativeResultDto;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +36,8 @@ public class FirstMethod extends AbstractMethod {
         currentSum += currentValue;
       }
       currentSum /= amountOfExpert;
-      normalMark.add(currentSum);
+      BigDecimal bd = BigDecimal.valueOf(currentSum).setScale(4, RoundingMode.HALF_UP);
+      normalMark.add(bd.doubleValue());
       currentSum = 0;
     }
 
