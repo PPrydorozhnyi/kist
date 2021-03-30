@@ -32,15 +32,18 @@
                                 autofocus="true"/>
                 </spring:bind>
 
-                <table class="table table-bordered table-hover">
+                <table class="table table-striped table-dark table-bordered table-hover">
                     <thead class="thead-dark">
                     <tr>
-                        <th>Solving</th>
+                        <th>Solution</th>
+                        <% for(int j = 0; j < (Integer)request.getAttribute("amountOfStage"); ++j){ %>
+                        <th>Condition <%= j + 1 %></th>
+                        <% } %>
                     </tr>
                     </thead>
                     <% for(int i = 0; i < (Integer)request.getAttribute("amountOfSolving"); ++i){ %>
                     <tr>
-                        <td>Solving <% out.print(i + 1); %></td>
+                        <td>Solution <% out.print(i + 1); %></td>
                         <% for(int j = 0; j < (Integer)request.getAttribute("amountOfStage"); ++j){ %>
                         <td>
                             <form:input type="text" path="inputValues" class="form-control"
@@ -51,7 +54,7 @@
                     </tr>
                     <% } %>
                 </table>
-                <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                <button class="btn btn-lg btn-success float-right" type="submit">Submit</button>
             </form:form>
         </div>
     </div>

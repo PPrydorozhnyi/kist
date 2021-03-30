@@ -15,11 +15,11 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
+            <table class="table table-striped table-success table-bordered table-hover">
+                <thead class="thead-light">
                 <tr>
                     <th>Alternative</th>
-                    <th>Total Marks</th>
+                    <th>Mark</th>
                     <th>Rank</th>
                 </tr>
                 </thead>

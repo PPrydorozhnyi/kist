@@ -15,15 +15,15 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
+            <table class="table table-striped table-success table-bordered table-hover">
+                <thead class="thead-light">
                 <tr>
-                    <th>Stages</th>
-                    <th>Gurvic</th>
+                    <th>Condition</th>
+                    <th>Hurwitz</th>
                     <th>Rank</th>
-                    <th>Negative</th>
+                    <th>Wald</th>
                     <th>Rank</th>
-                    <th>Positive</th>
+                    <th>maxmax</th>
                     <th>Rank</th>
                 </tr>
                 </thead>

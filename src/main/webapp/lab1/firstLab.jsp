@@ -21,20 +21,20 @@
     <form:form method="POST" action="${contextPath}/alternative/input" modelAttribute="init" class="form-signin">
 
         <spring:bind path="amountOfAlternative">
-            <div class="form-group">  Alternative:
+            <div class="form-group">Number of alternatives:
                 <form:input type="text" path="amountOfAlternative" class="form-control"
                             autofocus="true"/>
             </div>
         </spring:bind>
 
         <spring:bind path="amountOfExpert">
-            <div class="form-group">  Expert:
+            <div class="form-group">Number of experts:
                 <form:input type="text" path="amountOfExpert" class="form-control"
                             autofocus="true"/>
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-success btn-block" type="submit">Submit</button>
     </form:form>
 </div>
 

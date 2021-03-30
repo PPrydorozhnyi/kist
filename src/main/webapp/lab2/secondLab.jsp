@@ -21,20 +21,20 @@
     <form:form method="POST" action="${contextPath}/gurvic/input" modelAttribute="init" class="form-signin">
 
         <spring:bind path="amountOfStage">
-            <div class="form-group">  Stage:
+            <div class="form-group">Number of conditions:
                 <form:input type="text" path="amountOfStage" class="form-control"
                             autofocus="true"/>
             </div>
         </spring:bind>
 
         <spring:bind path="amountOfSolving">
-            <div class="form-group">  Solution:
+            <div class="form-group">Number of solution options:
                 <form:input type="text" path="amountOfSolving" class="form-control"
                             autofocus="true"/>
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-success btn-block" type="submit">Submit</button>
     </form:form>
 </div>
 
