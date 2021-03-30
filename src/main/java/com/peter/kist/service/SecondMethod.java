@@ -2,6 +2,8 @@ package com.peter.kist.service;
 
 import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.second.GurvicResult;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -29,7 +31,8 @@ public class SecondMethod extends AbstractMethod {
     double currentSum;
     for (int i = 0; i < maxValues.size(); ++i) {
       currentSum = maxValues.get(i) * POSITIVE_OUTCOME + (1 - POSITIVE_OUTCOME) * minValues.get(i);
-      gurvicSums.add(currentSum);
+      BigDecimal bd = BigDecimal.valueOf(currentSum).setScale(4, RoundingMode.HALF_UP);
+      gurvicSums.add(bd.doubleValue());
     }
     return gurvicSums;
   }
@@ -39,6 +42,7 @@ public class SecondMethod extends AbstractMethod {
         .map(list -> list.stream()
             .max(Comparator.comparingDouble(Double::doubleValue))
             .orElse(Double.MIN_VALUE))
+        .map(current -> BigDecimal.valueOf(current).setScale(4, RoundingMode.HALF_UP).doubleValue())
         .collect(Collectors.toList());
   }
 
@@ -48,6 +52,7 @@ public class SecondMethod extends AbstractMethod {
         .map(list -> list.stream()
             .min(Comparator.comparingDouble(Double::doubleValue))
             .orElse(Double.MAX_VALUE))
+        .map(current -> BigDecimal.valueOf(current).setScale(4, RoundingMode.HALF_UP).doubleValue())
         .collect(Collectors.toList());
   }
 
