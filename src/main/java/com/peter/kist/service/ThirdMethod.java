@@ -1,9 +1,12 @@
 package com.peter.kist.service;
 
+import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.third.LaplaceResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ThirdMethod extends AbstractMethod {
 
@@ -12,7 +15,7 @@ public class ThirdMethod extends AbstractMethod {
         final var sorryMatrix = createSorryMatrix(inputValues, maxCondition, amountOfAlternative, amountOfCondition);
 
         final var savageResult = findMaxValues(sorryMatrix, amountOfCondition);
-        final var laplaceResult = averageSum(inputValues, amountOfAlternative, amountOfCondition);
+        final var laplaceResult = avgSum(inputValues, amountOfCondition);
 
         final var savageRank = ranking(savageResult);
         final var laplaceRank = ranking(laplaceResult);
@@ -46,18 +49,12 @@ public class ThirdMethod extends AbstractMethod {
         return sorryMatrix;
     }
 
-    private List<Double> averageSum(List<Double> inputValues, Integer amountOfAlternative, Integer amountOfCondition){
-        List<Double> averageSum = new ArrayList<>();
-        Double conditionSum = 0.0;
-
-        for(int i = 0; i < amountOfAlternative; ++i){
-            for(int j = 0, k = i * amountOfCondition; j < amountOfCondition; ++j, ++k){
-                conditionSum += (inputValues.get(k));
-            }
-            averageSum.add(conditionSum / amountOfCondition);
-            conditionSum = 0.0;
-        }
-
-        return averageSum;
+    private List<Double> avgSum(List<Double> inputValues, Integer amountOfCondition) {
+        return Lists.partition(inputValues, amountOfCondition).stream()
+                .map(list -> list.stream()
+                        .reduce(Double::sum)
+                        .map(sum -> sum / amountOfCondition)
+                        .orElse(0.0))
+                .collect(Collectors.toList());
     }
 }

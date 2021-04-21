@@ -2,11 +2,12 @@ package com.peter.kist.service;
 
 import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.first.AlternativeResultDto;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
