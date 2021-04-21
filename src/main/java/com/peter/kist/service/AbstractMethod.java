@@ -1,5 +1,7 @@
 package com.peter.kist.service;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -24,6 +26,23 @@ public abstract class AbstractMethod {
     }
 
     return rank;
+  }
+
+  protected List<Double> findMaxValues(List<Double> inputValues, Integer amountOfStage) {
+    return Lists.partition(inputValues, amountOfStage).parallelStream()
+            .map(list -> list.stream()
+                    .max(Comparator.comparingDouble(Double::doubleValue))
+                    .orElse(Double.MIN_VALUE))
+            .collect(Collectors.toList());
+  }
+
+
+  protected List<Double> findMinValues(List<Double> inputValues, Integer amountOfStage) {
+    return Lists.partition(inputValues, amountOfStage).parallelStream()
+            .map(list -> list.stream()
+                    .min(Comparator.comparingDouble(Double::doubleValue))
+                    .orElse(Double.MAX_VALUE))
+            .collect(Collectors.toList());
   }
 
   private List<Integer> findAllIndexes(List<Double> list, Double value) {

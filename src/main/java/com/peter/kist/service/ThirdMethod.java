@@ -1,0 +1,63 @@
+package com.peter.kist.service;
+
+import com.peter.kist.model.dto.third.LaplaceResult;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ThirdMethod extends AbstractMethod {
+
+    public LaplaceResult calculateAll(List<Double> inputValues, Integer amountOfAlternative, Integer amountOfCondition) {
+        final var maxCondition = findMaxByCondition(inputValues, amountOfAlternative, amountOfCondition);
+        final var sorryMatrix = createSorryMatrix(inputValues, maxCondition, amountOfAlternative, amountOfCondition);
+
+        final var savageResult = findMaxValues(sorryMatrix, amountOfCondition);
+        final var laplaceResult = averageSum(inputValues, amountOfAlternative, amountOfCondition);
+
+        final var savageRank = ranking(savageResult);
+        final var laplaceRank = ranking(laplaceResult);
+
+        return new LaplaceResult(savageResult, laplaceResult, savageRank, laplaceRank);
+    }
+
+    private List<Double> findMaxByCondition(List<Double> inputValues, Integer amountOfAlternative, Integer amountOfCondition) {
+        List<Double> maxCondition = new ArrayList<>();
+
+        for (int i = 0; i < amountOfCondition; ++i) {
+            for (int j = i; j < amountOfCondition * amountOfAlternative; j += amountOfCondition) {
+                maxCondition.add(inputValues.get(j));
+            }
+        }
+
+        maxCondition = findMaxValues(maxCondition, amountOfAlternative);
+
+        return maxCondition;
+    }
+
+    private List<Double> createSorryMatrix(List<Double> inputValues, List<Double> maxConditions, Integer amountOfAlternative, Integer amountOfCondition) {
+        List<Double> sorryMatrix = new ArrayList<>();
+
+        for (int i = 0, k = 0; i < amountOfAlternative * amountOfCondition; i += amountOfCondition){
+            for(int j = i; k < amountOfCondition; ++j, ++k){
+                sorryMatrix.add(maxConditions.get(k) - inputValues.get(j));
+            }
+            k = 0;
+        }
+        return sorryMatrix;
+    }
+
+    private List<Double> averageSum(List<Double> inputValues, Integer amountOfAlternative, Integer amountOfCondition){
+        List<Double> averageSum = new ArrayList<>();
+        Double conditionSum = 0.0;
+
+        for(int i = 0; i < amountOfAlternative; ++i){
+            for(int j = 0, k = i * amountOfCondition; j < amountOfCondition; ++j, ++k){
+                conditionSum += (inputValues.get(k));
+            }
+            averageSum.add(conditionSum / amountOfCondition);
+            conditionSum = 0.0;
+        }
+
+        return averageSum;
+    }
+}

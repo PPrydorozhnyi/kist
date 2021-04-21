@@ -34,21 +34,4 @@ public class SecondMethod extends AbstractMethod {
     return gurvicSums;
   }
 
-  private List<Double> findMaxValues(List<Double> inputValues, Integer amountOfStage) {
-    return Lists.partition(inputValues, amountOfStage).parallelStream()
-        .map(list -> list.stream()
-            .max(Comparator.comparingDouble(Double::doubleValue))
-            .orElse(Double.MIN_VALUE))
-        .collect(Collectors.toList());
-  }
-
-
-  private List<Double> findMinValues(List<Double> inputValues, Integer amountOfStage) {
-    return Lists.partition(inputValues, amountOfStage).parallelStream()
-        .map(list -> list.stream()
-            .min(Comparator.comparingDouble(Double::doubleValue))
-            .orElse(Double.MAX_VALUE))
-        .collect(Collectors.toList());
-  }
-
 }
