@@ -33,7 +33,7 @@ public class Lab4Controller {
     public String init(@ModelAttribute("init") ParetoInitDto laplaceInitDto, Model model) {
         log.debug("init [LaplaceInitDto={}, model={}]", laplaceInitDto, model);
 
-        final var inputDto = new ParetoInitDto();
+        final var inputDto = new ParetoInputDto();
         inputDto.setAmountOfExperts(laplaceInitDto.getAmountOfExperts());
         inputDto.setAmountOfAlternatives(laplaceInitDto.getAmountOfAlternatives());
 
