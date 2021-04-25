@@ -51,9 +51,7 @@ public class ThirdMethod extends AbstractMethod {
     private List<Double> avgSum(List<Double> inputValues, Integer amountOfCondition) {
         return Lists.partition(inputValues, amountOfCondition).stream()
                 .map(list -> list.stream()
-                        .reduce(Double::sum)
-                        .map(sum -> sum / amountOfCondition)
-                        .orElse(0.0))
+                        .reduce(0.0, Double::sum) / amountOfCondition)
                 .collect(Collectors.toList());
     }
 }
