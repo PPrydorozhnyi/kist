@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/laplace")
 public class Lab3Controller {
+
     @GetMapping
     public String getInitial(Model model) {
         log.debug("getInittial [model={}]", model);
@@ -25,7 +26,6 @@ public class Lab3Controller {
     }
 
     @PostMapping("/input")
-
     public String init(@ModelAttribute("init") LaplaceInitDto laplaceInitDto, Model model) {
         log.debug("init [LaplaceInitDto={}, model={}]", laplaceInitDto, model);
 
