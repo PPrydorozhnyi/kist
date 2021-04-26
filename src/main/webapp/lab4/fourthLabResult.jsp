@@ -23,9 +23,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${results.rankedMap}" var="result" varStatus="loop">
+                <c:forEach items="${results.rankedMap}" var="result">
                     <tr>
-                        <td>y${loop.count}</td>
+                        <td>${result.key}</td>
                         <c:forEach items="${result.value}" var ="current">
                         <td>${current}</td>
                         </c:forEach>
