@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.second.GurvicResult;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -35,25 +36,6 @@ public class SecondMethod extends AbstractMethod {
       gurvicSums.add(bd.doubleValue());
     }
     return gurvicSums;
-  }
-
-  private List<Double> findMaxValues(List<Double> inputValues, Integer amountOfStage) {
-    return Lists.partition(inputValues, amountOfStage).parallelStream()
-        .map(list -> list.stream()
-            .max(Comparator.comparingDouble(Double::doubleValue))
-            .orElse(Double.MIN_VALUE))
-        .map(current -> BigDecimal.valueOf(current).setScale(4, RoundingMode.HALF_UP).doubleValue())
-        .collect(Collectors.toList());
-  }
-
-
-  private List<Double> findMinValues(List<Double> inputValues, Integer amountOfStage) {
-    return Lists.partition(inputValues, amountOfStage).parallelStream()
-        .map(list -> list.stream()
-            .min(Comparator.comparingDouble(Double::doubleValue))
-            .orElse(Double.MAX_VALUE))
-        .map(current -> BigDecimal.valueOf(current).setScale(4, RoundingMode.HALF_UP).doubleValue())
-        .collect(Collectors.toList());
   }
 
 }
