@@ -10,6 +10,26 @@ import java.util.stream.IntStream;
 
 public abstract class AbstractMethod {
 
+  protected int[] rankingSavage(List<Double> inputList){
+    int[] rank = new int[inputList.size()];
+    int counter = 1;
+
+    TreeSet<Double> sortedSet = new TreeSet<>(Comparator.naturalOrder());
+    sortedSet.addAll(inputList);
+
+    for(Double value : sortedSet) {
+      final var allIndexes = findAllIndexes(inputList, value);
+      for (int ind : allIndexes) {
+        if (rank[ind] == 0) {
+          rank[ind] = counter;
+        }
+      }
+      ++counter;
+    }
+
+    return rank;
+  }
+
   protected int[] ranking(List<Double> inputList){
     int[] rank = new int[inputList.size()];
     int counter = 1;

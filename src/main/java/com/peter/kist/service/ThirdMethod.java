@@ -17,7 +17,7 @@ public class ThirdMethod extends AbstractMethod {
         final var savageResult = findMaxValues(sorryMatrix, amountOfCondition);
         final var laplaceResult = avgSum(inputValues, amountOfCondition);
 
-        final var savageRank = ranking(savageResult);
+        final var savageRank = rankingSavage(savageResult);
         final var laplaceRank = ranking(laplaceResult);
 
         return new LaplaceResult(savageResult, laplaceResult, savageRank, laplaceRank);
