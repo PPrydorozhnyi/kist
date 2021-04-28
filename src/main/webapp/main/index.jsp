@@ -26,8 +26,8 @@
                 </a>
                 <a href="${contextPath}/alternative" class="list-group-item list-group-item-primary">The method of direct assessment of the comparative advantage of alternatives</a>
                 <a href="${contextPath}/gurvic" class="list-group-item list-group-item-secondary">Criteria for decision-making in conditions of uncertainty</a>
-                <%--        <a href="#" class="list-group-item list-group-item-success">Porta ac consectetur ac</a>--%>
-                <%--        <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>--%>
+                <a href="${contextPath}/laplace" class="list-group-item list-group-item-success">Savage and Laplace criteria</a>
+                <a href="${contextPath}/pareto" class="list-group-item list-group-item-danger">Direct search method for constructing a Pareto set</a>
             </div>
         </div>
     </div>

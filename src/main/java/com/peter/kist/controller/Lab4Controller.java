@@ -2,11 +2,7 @@ package com.peter.kist.controller;
 
 import com.peter.kist.model.dto.fourth.ParetoInitDto;
 import com.peter.kist.model.dto.fourth.ParetoInputDto;
-import com.peter.kist.model.dto.fourth.ParetoResultDto;
-import com.peter.kist.model.dto.third.LaplaceInitDto;
-import com.peter.kist.model.dto.third.LaplaceInputDto;
 import com.peter.kist.service.FourthMethod;
-import com.peter.kist.service.ThirdMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

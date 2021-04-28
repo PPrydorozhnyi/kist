@@ -2,7 +2,8 @@ package com.peter.kist.service;
 
 import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.third.LaplaceResult;
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,8 +51,9 @@ public class ThirdMethod extends AbstractMethod {
 
     private List<Double> avgSum(List<Double> inputValues, Integer amountOfCondition) {
         return Lists.partition(inputValues, amountOfCondition).stream()
-                .map(list -> list.stream()
-                        .reduce(0.0, Double::sum) / amountOfCondition)
-                .collect(Collectors.toList());
+            .map(list -> list.stream()
+                .reduce(0.0, Double::sum) / amountOfCondition)
+            .map(value -> BigDecimal.valueOf(value).setScale(4, RoundingMode.HALF_UP).doubleValue())
+            .collect(Collectors.toList());
     }
 }

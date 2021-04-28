@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
-            <table class="table table-bordered table-hover">
+            <table class="table table-striped table-success table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th>Alternatives</th>
@@ -33,7 +33,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <table class="table table-bordered table-hover">
+            <table class="table table-striped table-success table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th>Alternatives that better then other</th>

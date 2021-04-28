@@ -24,15 +24,15 @@ public class FourthMethod {
 
     private void paretoComparing(Map<String, List<Integer>> rankedMap, Set<String> pareto) {
 
-        for (String keys : rankedMap.keySet()) {
-            for (String keys2 : rankedMap.keySet()) {
+        for (Map.Entry<String, List<Integer>> entry : rankedMap.entrySet()) {
+            for (Map.Entry<String, List<Integer>> entry1 : rankedMap.entrySet()) {
 
-                if (keys.equals(keys2))
+                if (entry.getKey().equals(entry1.getKey()))
                     continue;
 
                 var result = new HashSet<Integer>();
-                var firstList = rankedMap.get(keys);
-                var secondList = rankedMap.get(keys2);
+                var firstList = entry.getValue();
+                var secondList = entry1.getValue();
 
                 for (int i = 0; i < firstList.size(); ++i) {
                     result.add(Integer.compare(firstList.get(i), secondList.get(i)));
@@ -42,9 +42,9 @@ public class FourthMethod {
                     var sum = result.stream()
                             .reduce(0, Integer::sum);
                     if (sum > 0) {
-                        pareto.remove(keys);
+                        pareto.remove(entry.getKey());
                     } else if (sum < 0) {
-                        pareto.remove(keys2);
+                        pareto.remove(entry1.getKey());
                     }
                 }
             }

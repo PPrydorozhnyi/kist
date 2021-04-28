@@ -32,12 +32,7 @@
                                 autofocus="true"/>
                 </spring:bind>
 
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Alternative</th>
-                    </tr>
-                    </thead>
+                <table class="table table-striped table-dark table-bordered table-hover">
                     <% for (int i = 0; i < (Integer) request.getAttribute("amountOfExperts"); ++i) { %>
                     <tr>
                         <td>Expert <% out.print(i + 1); %></td>
@@ -61,7 +56,7 @@
                     </tr>
                     <% } %>
                 </table>
-                <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                <button class="btn btn-lg btn-success float-right" type="submit">Submit</button>
             </form:form>
         </div>
     </div>

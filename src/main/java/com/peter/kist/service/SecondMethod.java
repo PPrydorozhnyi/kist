@@ -1,14 +1,10 @@
 package com.peter.kist.service;
 
-import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.second.GurvicResult;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SecondMethod extends AbstractMethod {
 

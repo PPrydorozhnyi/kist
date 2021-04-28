@@ -32,7 +32,7 @@
                                 autofocus="true"/>
                 </spring:bind>
 
-                <table class="table table-bordered table-hover">
+                <table class="table table-striped table-dark table-bordered table-hover">
                     <thead class="thead-dark">
                     <tr>
                         <th>Alternative</th>
@@ -51,7 +51,7 @@
                     </tr>
                     <% } %>
                 </table>
-                <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                <button class="btn btn-lg btn-success float-right" type="submit">Submit</button>
             </form:form>
         </div>
     </div>
