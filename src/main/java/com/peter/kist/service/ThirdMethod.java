@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.peter.kist.model.dto.third.LaplaceResult;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,8 +17,8 @@ public class ThirdMethod extends AbstractMethod {
         final var savageResult = findMaxValues(sorryMatrix, amountOfCondition);
         final var laplaceResult = avgSum(inputValues, amountOfCondition);
 
-        final var savageRank = rankingSavage(savageResult);
-        final var laplaceRank = ranking(laplaceResult);
+        final var savageRank = ranking(savageResult, Comparator.naturalOrder());
+        final var laplaceRank = ranking(laplaceResult, Comparator.reverseOrder());
 
         return new LaplaceResult(savageResult, laplaceResult, savageRank, laplaceRank);
     }

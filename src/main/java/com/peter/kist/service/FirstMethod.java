@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,7 @@ public class FirstMethod extends AbstractMethod {
   public AlternativeResultDto calculateMarks() {
     final var sumExpectedMarks = calculateSum();
     final var marks = calculateNormalMark(sumExpectedMarks);
-    final var ranking = ranking(marks);
+    final var ranking = ranking(marks, Comparator.reverseOrder());
     return new AlternativeResultDto(marks, ranking);
   }
 
