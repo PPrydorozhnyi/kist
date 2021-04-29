@@ -9,17 +9,16 @@ import java.util.*;
 
 public class FourthMethod {
 
-    public ParetoResultDto calculateAll(List<String> inputValues, int amountOfAlternatives) {
-        var listInput = parsingList(inputValues, amountOfAlternatives);
+    public ParetoResultDto calculateAll(List<Integer> inputValues, int amountOfExperts) {
+        var listInput = parsingList(inputValues, amountOfExperts);
         var pairPareto = createParetoAndMap(listInput);
-        rankingMap(pairPareto.getRight(), listInput);
         paretoComparing(pairPareto.getRight(), pairPareto.getLeft());
 
         return new ParetoResultDto(pairPareto.getRight(), pairPareto.getLeft());
     }
 
-    private List<List<String>> parsingList(List<String> inputValues, Integer amountOfAlternatives){
-        return Lists.partition(inputValues, 2 * amountOfAlternatives - 1);
+    private List<List<Integer>> parsingList(List<Integer> inputValues, Integer amountOfExperts){
+        return Lists.partition(inputValues, amountOfExperts);
     }
 
     private void paretoComparing(Map<String, List<Integer>> rankedMap, Set<String> pareto) {
@@ -51,35 +50,16 @@ public class FourthMethod {
         }
     }
 
-    private void rankingMap(Map<String, List<Integer>> rankedMap, List<List<String>> inputValues) {
-        int counter;
-
-        for (List<String> input : inputValues) {
-            counter = 1;
-            for (int i = 0; i < input.size(); ++i) {
-                if (i % 2 == 0) {
-                    rankedMap.get(input.get(i)).add(counter);
-                } else {
-                    counter += Integer.parseInt(input.get(i));
-                }
-            }
-        }
-    }
-
-    private Pair<Set<String>, Map<String, List<Integer>>> createParetoAndMap(List<List<String>> inputValues) {
+    private Pair<Set<String>, Map<String, List<Integer>>> createParetoAndMap(List<List<Integer>> inputValues) {
         var rankedMap = new HashMap<String, List<Integer>>();
         var pareto = new HashSet<String>();
 
-        var values = inputValues.get(0);
-
-        for (int i = 0; i < values.size(); ++i) {
-            if (i % 2 == 0) {
-                var currentOne = values.get(i);
-
-                rankedMap.put(currentOne, new ArrayList<>());
-                pareto.add(currentOne);
-            }
+        for(int i = 0; i < inputValues.size(); ++i){
+            String key = "y" + (i + 1);
+            rankedMap.put(key, inputValues.get(i));
+            pareto.add(key);
         }
+
         return Pair.of(pareto, rankedMap);
     }
 

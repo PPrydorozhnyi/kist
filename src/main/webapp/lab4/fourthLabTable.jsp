@@ -38,24 +38,14 @@
                         <th>Alternative</th>
                     </tr>
                     </thead>
-                    <% for (int i = 0; i < (Integer) request.getAttribute("amountOfExperts"); ++i) { %>
+                    <% for(int i = 0; i < (Integer)request.getAttribute("amountOfAlternatives"); ++i){ %>
                     <tr>
-                        <td>Expert <% out.print(i + 1); %></td>
-                        <% for (int j = 0; j < 2 * (Integer) request.getAttribute("amountOfAlternatives") - 1; ++j) { %>
+                        <td>Alternative <% out.print(i + 1); %></td>
+                        <% for(int j = 0; j < (Integer)request.getAttribute("amountOfExperts"); ++j){ %>
                         <td>
-                        <form:select path="inputValues" class="form-control">
-                        <% if (j % 2 == 0) {%>
-
-                            <% for(int optionI = 0; optionI < (Integer) request.getAttribute("amountOfAlternatives"); ++optionI) { %>
-                            <% String valueI = "y" + (optionI + 1); %>
-                            <form:option value = "<%=valueI%>" >y <% out.print(optionI + 1); %></form:option>
-                            <% } %>
-                        <% } else {%>
-                            <form:option value="1"> ">" </form:option>
-                            <form:option value="0"> "~" </form:option>
-
-                        <% } %>
-                            </form:select>
+                            <form:input type="text" path="inputValues" class="form-control"
+                                        autofocus="true"/>
+                            <form:errors path="inputValues"/>
                         </td>
                         <% } %>
                     </tr>
