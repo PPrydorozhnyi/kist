@@ -4,6 +4,7 @@ import com.peter.kist.model.dto.second.GurvicResult;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class SecondMethod extends AbstractMethod {
@@ -16,9 +17,9 @@ public class SecondMethod extends AbstractMethod {
     final var minValues = findMinValues(inputValues, amountOfStage);
     final var gurvicSums = gurvicMethod(maxValues, minValues);
 
-    final var posRank = ranking(maxValues);
-    final var negRank = ranking(minValues);
-    final var gurRank = ranking(gurvicSums);
+    final var posRank = ranking(maxValues, Comparator.reverseOrder());
+    final var negRank = ranking(minValues, Comparator.reverseOrder());
+    final var gurRank = ranking(gurvicSums, Comparator.reverseOrder());
 
     return new GurvicResult(maxValues, minValues, gurvicSums, posRank, negRank, gurRank);
   }

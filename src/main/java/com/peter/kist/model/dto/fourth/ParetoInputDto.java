@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ParetoInputDto {
 
-    private List<String> inputValues;
+    private List<Integer> inputValues;
     private int amountOfAlternatives;
     private int amountOfExperts;
 
