@@ -33,6 +33,12 @@
                 </spring:bind>
 
                 <table class="table table-striped table-dark table-bordered table-hover">
+                    <tr>
+                        <th>Alternatives</th>
+                        <% for(int j = 0; j < (Integer)request.getAttribute("amountOfExperts"); ++j){ %>
+                        <th>Expert <%= j + 1 %></th>
+                        <% } %>
+                    </tr>
                     <% for(int i = 0; i < (Integer)request.getAttribute("amountOfAlternatives"); ++i){ %>
                     <tr>
                         <td>Alternative <% out.print(i + 1); %></td>
